@@ -73,6 +73,9 @@ jdbc.properties
 # 예시 설정 파일은 포함
 !cybercareercatch_backend/src/main/resources/db-example.properties
 
+# Apache Tomcat Server
+/Servers/
+
 # =============================
 # Backup & Temp
 # =============================
