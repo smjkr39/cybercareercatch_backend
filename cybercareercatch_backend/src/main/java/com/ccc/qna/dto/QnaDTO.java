@@ -73,9 +73,12 @@ public class QnaDTO {
 		}
 		@Override
 		public String toString() {
-			// TODO Auto-generated method stub
-			return super.toString();
+			return "QnaDTO [postNumber=" + postNumber + ", postTitle=" + postTitle + ", postContent=" + postContent
+					+ ", userNumber=" + userNumber + ", userId=" + userId + ", companyNumber=" + companyNumber
+					+ ", companyName=" + companyName + ", postDate=" + postDate + ", viewCount=" + viewCount
+					+ ", answerStatus=" + answerStatus + "]";
 		}
+
 	    
 	    
 }

@@ -30,14 +30,13 @@ public class QnaWriteDTO {
 	public void setPostContent(String postContent) {
 		this.postContent = postContent;
 	}
-	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		return "QnaWriteDTO [userNumber=" + userNumber + ", companyNumber=" + companyNumber + ", postTitle=" + postTitle
+				+ ", postContent=" + postContent + "]";
 	}
-    
 	
+
     
 
 }

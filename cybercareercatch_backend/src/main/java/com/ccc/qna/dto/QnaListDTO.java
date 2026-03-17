@@ -50,12 +50,14 @@ public class QnaListDTO {
 		public void setAnswerStatus(String answerStatus) {
 			this.answerStatus = answerStatus;
 		}
-		
 		@Override
 		public String toString() {
-			// TODO Auto-generated method stub
-			return super.toString();
+			return "QnaListDTO [postNumber=" + postNumber + ", postTitle=" + postTitle + ", companyName=" + companyName
+					+ ", userId=" + userId + ", postDate=" + postDate + ", viewCount=" + viewCount + ", answerStatus="
+					+ answerStatus + "]";
 		}
+		
+
 
 
 	    
