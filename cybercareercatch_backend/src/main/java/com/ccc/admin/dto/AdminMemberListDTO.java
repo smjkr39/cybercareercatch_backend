@@ -40,4 +40,11 @@ public class AdminMemberListDTO {
     public void setUserJoinDate(String userJoinDate) {
         this.userJoinDate = userJoinDate;
     }
+
+	@Override
+	public String toString() {
+		return "AdminMemberListDTO [userNumber=" + userNumber + ", userId=" + userId + ", userName=" + userName
+				+ ", userJoinDate=" + userJoinDate + "]";
+	}
+    
 }
