@@ -48,4 +48,11 @@ public class AdminDTO {
     public void setAddDate(String addDate) {
         this.addDate = addDate;
     }
+
+	@Override
+	public String toString() {
+		return "AdminDTO [adminNumber=" + adminNumber + ", adminId=" + adminId + ", adminPw=" + adminPw + ", adminName="
+				+ adminName + ", addDate=" + addDate + "]";
+	}
+    
 }
