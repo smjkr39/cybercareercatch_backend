@@ -57,7 +57,7 @@
         </div>
 
         <!-- 로그인 폼 -->
-        <form id="loginForm" class="account_login_form">
+        <form action="${pageContext.request.contextPath}/member/loginOk.mefc" method="post" id="loginForm" class="account_login_form">
           
           <!-- 아이디 입력란 -->
           <div class="account_login_field">
@@ -70,7 +70,7 @@
                   <circle cx="12" cy="7" r="4"></circle>
                 </svg>
               </span>
-              <input type="text" id="loginId" class="account_login_input" placeholder="아이디를 입력해주세요" required />
+              <input type="text" id="loginId" name="userId" class="account_login_input" placeholder="아이디를 입력해주세요" required />
             </div>
           </div>
 
@@ -85,7 +85,7 @@
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
               </span>
-              <input type="password" id="loginPw" class="account_login_input" placeholder="비밀번호를 입력해주세요" required />
+              <input type="password" name="userPassword" id="loginPw" class="account_login_input" placeholder="비밀번호를 입력해주세요" required />
             </div>
             
             <!-- 하단 옵션 (에러 메시지 & 비밀번호 찾기) -->
@@ -112,7 +112,7 @@
   <!-- 공통 footer 영역 -->
 
   <!-- JS: 로그인 및 회원가입 페이지 이동 로직 (뼈대) -->
-  <script src="../../../assets/js/main/account/login.js">
+  <!-- <script src="../../../assets/js/main/account/login.js"> -->
     
   </script>
 </body>
