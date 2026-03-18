@@ -129,7 +129,7 @@
 		</main>
 
 	</div>
-
+<script src="${pageContext.request.contextPath}/assets/js/admin/member-management/job-cheak.js"></script>
 </body>
 
 </html>

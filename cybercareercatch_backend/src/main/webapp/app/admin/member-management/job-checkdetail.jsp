@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<title>질의문 답변 상세</title>
 	<link rel="stylesheet"
-		href="${pageContext.request.contextPath}assets/css/admin/member-management/job-checkdetail.css">
+		href="${pageContext.request.contextPath}/assets/css/admin/member-management/job-checkdetail.css">
 </head>
 
 <body class="company-checkdetail-body">
@@ -162,7 +162,7 @@
 		</main>
 
 	</div>
-
+<script src="${pageContext.request.contextPath}/assets/js/admin/member-management/job-cheakdetail.js"></script>
 </body>
 
 </html>
