@@ -112,8 +112,8 @@
   <!-- 공통 footer 영역 -->
 
   <!-- JS: 로그인 및 회원가입 페이지 이동 로직 (뼈대) -->
-  <!-- <script src="../../../assets/js/main/account/login.js"> -->
+  <!-- <script src="../../../assets/js/main/account/login.js"> 
     
-  </script>
+  </script>-->
 </body>
 </html>

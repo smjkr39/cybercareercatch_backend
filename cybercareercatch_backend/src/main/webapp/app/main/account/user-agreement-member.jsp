@@ -1,24 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>일반회원가입 약관동의</title>
-  
-  <!-- 폰트 연결 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- CSS 연결 -->
-  <link rel="stylesheet" href="../../../assets/css/main/account/user-agreement-member.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>일반회원가입 약관동의</title>
+
+<!-- 폰트 연결 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+	rel="stylesheet">
+
+<!-- CSS 연결 -->
+<link rel="stylesheet"
+	href="../../../assets/css/main/account/user-agreement-member.css" />
 </head>
 <body>
-  <header></header>
+	<header></header>
 
-  <!--
+	<!--
     =============================================================
     [클래스명 안내]
     * 기업회원가입 양식과 동일한 구조 적용 완료 (경로 표시줄 삭제)
@@ -40,90 +44,100 @@
     =============================================================
   -->
 
-  <main class="user_agree_mem_container">
-    <div class="user_agree_mem_inner">
-      
-      <!-- 페이지 제목 -->
-      <h2 class="user_agree_mem_main_title">일반회원가입 약관동의</h2>
+	<main class="user_agree_mem_container">
+		<div class="user_agree_mem_inner">
 
-      <!-- 약관 폼 시작 -->
-      <form id="userAgreeMemForm" class="user_agree_mem_form">
-        
-        <!-- 1. 서비스 이용약관 동의 -->
-        <section class="user_agree_mem_section">
-          <h3 class="user_agree_mem_subtitle">1. 서비스 이용약관 동의</h3>
-          <div class="user_agree_mem_box" tabindex="0">
-            본 서비스는 정보보안 및 관련 직군에 관심 있는 이용자에게 직군 추천, 학습 로드맵, 기업 정보, 박람회 일정, 자유게시판, 기업 Q&A 커뮤니티 등의 서비스를 제공합니다.<br>
-            회원은 본 서비스를 이용함에 있어 관련 법령 및 본 약관을 준수하여야 하며, 타인의 권리를 침해하거나 서비스 운영을 방해하는 행위를 하여서는 안 됩니다.<br>
-            회사는 회원에게 안정적인 서비스 제공을 위해 노력하며, 서비스의 일부 내용은 운영상 필요에 따라 변경될 수 있습니다.
-          </div>
-          <label class="user_agree_mem_check_wrap">
-            <span class="user_agree_mem_check_text">[필수] 서비스 이용약관에 동의합니다.</span>
-            <input type="checkbox" class="user_agree_mem_checkbox req-checkbox" />
-          </label>
-        </section>
+			<!-- 페이지 제목 -->
+			<h2 class="user_agree_mem_main_title">일반회원가입 약관동의</h2>
 
-        <!-- 2. 개인정보 수집 및 이용 동의 -->
-        <section class="user_agree_mem_section">
-          <h3 class="user_agree_mem_subtitle">2. 개인정보 수집 및 이용 동의</h3>
-          <div class="user_agree_mem_box" tabindex="0">
-            회사는 회원가입, 본인 식별, 서비스 제공, 문의 응대 및 커뮤니티 운영을 위해 최소한의 개인정보를 수집합니다.<br>
-            수집 항목은 아이디, 비밀번호, 이름, 이메일, 연락처 등이며, 수집된 개인정보는 회원관리 및 서비스 제공 목적 외에는 사용되지 않습니다.<br>
-            회사는 관련 법령에 따라 개인정보를 안전하게 관리하며, 회원은 언제든지 본인의 개인정보 열람, 수정 및 회원탈퇴를 요청할 수 있습니다.
-          </div>
-          <label class="user_agree_mem_check_wrap">
-            <span class="user_agree_mem_check_text">[필수] 개인정보 수집 및 이용에 동의합니다.</span>
-            <input type="checkbox" class="user_agree_mem_checkbox req-checkbox" />
-          </label>
-        </section>
+			<!-- 약관 폼 시작 -->
+			<form action="${pageContext.request.contextPath}/member/signup-member.mefc" method="POST" id="userAgreeMemForm" class="user_agree_mem_form">
 
-        <!-- 3. 커뮤니티 운영정책 동의 -->
-        <section class="user_agree_mem_section">
-          <h3 class="user_agree_mem_subtitle">3. 커뮤니티 운영정책 동의</h3>
-          <div class="user_agree_mem_box" tabindex="0">
-            회원은 자유게시판, 기업 Q&A 등 커뮤니티 기능을 이용할 때 건전한 온라인 문화를 유지해야 합니다.<br>
-            욕설, 비방, 허위사실 유포, 광고성 게시물, 음란 또는 불법적인 내용, 타인의 권리를 침해하는 게시물은 등록할 수 없습니다.<br>
-            운영정책에 위반되는 게시물은 사전 통보 없이 삭제될 수 있으며, 반복적인 위반 행위가 있을 경우 서비스 이용이 제한될 수 있습니다.
-          </div>
-          <label class="user_agree_mem_check_wrap">
-            <span class="user_agree_mem_check_text">[필수] 커뮤니티 운영정책에 동의합니다.</span>
-            <input type="checkbox" class="user_agree_mem_checkbox req-checkbox" />
-          </label>
-        </section>
+				<!-- 1. 서비스 이용약관 동의 -->
+				<section class="user_agree_mem_section">
+					<h3 class="user_agree_mem_subtitle">1. 서비스 이용약관 동의</h3>
+					<div class="user_agree_mem_box" tabindex="0">
+						본 서비스는 정보보안 및 관련 직군에 관심 있는 이용자에게 직군 추천, 학습 로드맵, 기업 정보, 박람회 일정,
+						자유게시판, 기업 Q&A 커뮤니티 등의 서비스를 제공합니다.<br> 회원은 본 서비스를 이용함에 있어 관련
+						법령 및 본 약관을 준수하여야 하며, 타인의 권리를 침해하거나 서비스 운영을 방해하는 행위를 하여서는 안 됩니다.<br>
+						회사는 회원에게 안정적인 서비스 제공을 위해 노력하며, 서비스의 일부 내용은 운영상 필요에 따라 변경될 수 있습니다.
+					</div>
+					<label class="user_agree_mem_check_wrap"> <span
+						class="user_agree_mem_check_text">[필수] 서비스 이용약관에 동의합니다.</span> <input
+						type="checkbox" class="user_agree_mem_checkbox req-checkbox" />
+					</label>
+				</section>
 
-        <!-- 4. 직군 추천 및 로드맵 서비스 안내 -->
-        <section class="user_agree_mem_section">
-          <h3 class="user_agree_mem_subtitle">4. 직군 추천 및 로드맵 서비스 안내</h3>
-          <div class="user_agree_mem_box" tabindex="0">
-            본 서비스에서 제공하는 직군 추천 결과 및 로드맵 정보는 이용자의 입력 내용을 바탕으로 제공되는 참고 자료입니다.<br>
-            해당 정보는 진로 탐색과 학습 방향 설정에 도움을 주기 위한 것이며, 특정 기업 취업이나 합격을 보장하지 않습니다.<br>
-            회원은 제공되는 정보를 참고자료로 활용하며, 최종적인 진로 및 취업 관련 판단은 본인의 책임하에 이루어집니다.
-          </div>
-          <label class="user_agree_mem_check_wrap">
-            <span class="user_agree_mem_check_text">[필수] 직군 추천 및 로드맵 서비스 안내를 확인하였으며 이에 동의합니다.</span>
-            <input type="checkbox" class="user_agree_mem_checkbox req-checkbox" />
-          </label>
-        </section>
+				<!-- 2. 개인정보 수집 및 이용 동의 -->
+				<section class="user_agree_mem_section">
+					<h3 class="user_agree_mem_subtitle">2. 개인정보 수집 및 이용 동의</h3>
+					<div class="user_agree_mem_box" tabindex="0">
+						회사는 회원가입, 본인 식별, 서비스 제공, 문의 응대 및 커뮤니티 운영을 위해 최소한의 개인정보를 수집합니다.<br>
+						수집 항목은 아이디, 비밀번호, 이름, 이메일, 연락처 등이며, 수집된 개인정보는 회원관리 및 서비스 제공 목적 외에는
+						사용되지 않습니다.<br> 회사는 관련 법령에 따라 개인정보를 안전하게 관리하며, 회원은 언제든지 본인의
+						개인정보 열람, 수정 및 회원탈퇴를 요청할 수 있습니다.
+					</div>
+					<label class="user_agree_mem_check_wrap"> <span
+						class="user_agree_mem_check_text">[필수] 개인정보 수집 및 이용에 동의합니다.</span>
+						<input type="checkbox"
+						class="user_agree_mem_checkbox req-checkbox" />
+					</label>
+				</section>
 
-        <!-- 우측 하단 전체동의 및 버튼 영역 (기업회원 폼 구조와 동일하게 적용) -->
-        <div class="user_agree_mem_bottom_area">
-          <label class="user_agree_mem_all_wrap">
-            <span class="user_agree_mem_check_text" style="font-weight: 700;">전체동의</span>
-            <input type="checkbox" id="chkAll" class="user_agree_mem_checkbox" />
-          </label>
-          <div class="user_agree_mem_btn_wrap">
-            <button type="submit" class="user_agree_mem_submit_btn">확인</button>
-          </div>
-        </div>
+				<!-- 3. 커뮤니티 운영정책 동의 -->
+				<section class="user_agree_mem_section">
+					<h3 class="user_agree_mem_subtitle">3. 커뮤니티 운영정책 동의</h3>
+					<div class="user_agree_mem_box" tabindex="0">
+						회원은 자유게시판, 기업 Q&A 등 커뮤니티 기능을 이용할 때 건전한 온라인 문화를 유지해야 합니다.<br>
+						욕설, 비방, 허위사실 유포, 광고성 게시물, 음란 또는 불법적인 내용, 타인의 권리를 침해하는 게시물은 등록할 수
+						없습니다.<br> 운영정책에 위반되는 게시물은 사전 통보 없이 삭제될 수 있으며, 반복적인 위반 행위가 있을
+						경우 서비스 이용이 제한될 수 있습니다.
+					</div>
+					<label class="user_agree_mem_check_wrap"> <span
+						class="user_agree_mem_check_text">[필수] 커뮤니티 운영정책에 동의합니다.</span> <input
+						type="checkbox" class="user_agree_mem_checkbox req-checkbox" />
+					</label>
+				</section>
 
-      </form>
-    </div>
-  </main>
+				<!-- 4. 직군 추천 및 로드맵 서비스 안내 -->
+				<section class="user_agree_mem_section">
+					<h3 class="user_agree_mem_subtitle">4. 직군 추천 및 로드맵 서비스 안내</h3>
+					<div class="user_agree_mem_box" tabindex="0">
+						본 서비스에서 제공하는 직군 추천 결과 및 로드맵 정보는 이용자의 입력 내용을 바탕으로 제공되는 참고 자료입니다.<br>
+						해당 정보는 진로 탐색과 학습 방향 설정에 도움을 주기 위한 것이며, 특정 기업 취업이나 합격을 보장하지 않습니다.<br>
+						회원은 제공되는 정보를 참고자료로 활용하며, 최종적인 진로 및 취업 관련 판단은 본인의 책임하에 이루어집니다.
+					</div>
+					<label class="user_agree_mem_check_wrap"> <span
+						class="user_agree_mem_check_text">[필수] 직군 추천 및 로드맵 서비스 안내를
+							확인하였으며 이에 동의합니다.</span> <input type="checkbox"
+						class="user_agree_mem_checkbox req-checkbox" />
+					</label>
+				</section>
 
-  <footer></footer>
+				<!-- 우측 하단 전체동의 및 버튼 영역 (기업회원 폼 구조와 동일하게 적용) -->
+				<div class="user_agree_mem_bottom_area">
+					<label class="user_agree_mem_all_wrap"> <span
+						class="user_agree_mem_check_text" style="font-weight: 700;">전체동의</span>
+						<input type="checkbox" id="chkAll" class="user_agree_mem_checkbox" />
+					</label>
+					<div class="user_agree_mem_btn_wrap">
+						<button type="submit" class="user_agree_mem_submit_btn">확인</button>
+					</div>
+				</div>
 
-  <!-- 유효성 검사 및 전체동의 자바스크립트 -->
-  <script src="../../../assets/js/main/account/user-agreement-member.js">
-  </script>
+			</form>
+		</div>
+	</main>
+
+	<footer></footer>
+
+	<!-- 유효성 검사 및 전체동의 자바스크립트 -->
+	<script>
+		const contextPath = '${pageContext.request.contextPath}';
+	</script>
+	<script
+		src="${pageContext.request.contextPath}/assets/js/main/account/user-agreement-member.js"
+		defer></script>
+	</script>
 </body>
 </html>

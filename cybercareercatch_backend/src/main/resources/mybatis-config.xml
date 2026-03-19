@@ -38,4 +38,3 @@
 		<mapper resource="mapper/member/MemberMapper.xml" />
 	</mappers>
 </configuration>
-

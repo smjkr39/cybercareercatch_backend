@@ -334,9 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
     validatePassword(true) && validatePasswordConfirm(true);
   });
 
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-
+  form.addEventListener("submit", () => {
     if (!validateName(true)) return;
     if (!validateBirth(true)) return;
     if (!validateGender(true)) return;
@@ -367,7 +365,5 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!validatePasswordConfirm(true)) return;
 
     alert("회원가입이 완료되었습니다");
-    form.reset();
-    resetAllStates();
   });
 });

@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
       alert("동의란을 체크해주세요");
     } else {
       // 모두 체크되었을 때, 실제 일반 회원가입 입력 페이지로 연결
-      window.location.href = "signup-member.html"; 
+      window.location.href = contextPath + "/member/signup-member.mefc"; 
     }
   });
 });

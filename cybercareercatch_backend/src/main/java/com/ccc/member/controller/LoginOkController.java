@@ -43,12 +43,12 @@ public class LoginOkController implements Execute{
 			System.out.println("세션값 : " + memberNumber);
 			
 			if(remember != null) {
-				Cookie cookie = new Cookie("memberId", userId);
+				Cookie cookie = new Cookie("userId", userId);
 				cookie.setMaxAge(60 * 60 * 24); //1일
 				response.addCookie(cookie);
 			}else {
 				//체크 해제시 쿠키 삭제
-				Cookie cookie = new Cookie("memberId", "");
+				Cookie cookie = new Cookie("userId", "");
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
 			}

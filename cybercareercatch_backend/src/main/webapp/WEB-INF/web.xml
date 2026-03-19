@@ -96,26 +96,13 @@
 		<servlet-name>MypageFrontController</servlet-name>
 		<url-pattern>*.mpfc</url-pattern>
 	</servlet-mapping>
-
 	<!-- 관리자 -->
 	<servlet>
 		<servlet-name>AdminFrontController</servlet-name>
 		<servlet-class>com.ccc.admin.AdminFrontController</servlet-class>
 	</servlet>
-	<servlet>
-		<description>
-    	</description>
-		<display-name>LoginOkController</display-name>
-		<servlet-name>LoginOkController</servlet-name>
-		<servlet-class>com.ccc.member.controller.LoginOkController</servlet-class>
-	</servlet>
 	<servlet-mapping>
 		<servlet-name>AdminFrontController</servlet-name>
 		<url-pattern>*.adfc</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>LoginOkController</servlet-name>
-		<url-pattern>/LoginOkController</url-pattern>
-	</servlet-mapping>
-
 </web-app>

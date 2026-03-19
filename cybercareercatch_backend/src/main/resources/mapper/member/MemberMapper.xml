@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
-	<!-- 로그인 쿼리 -->
+
+	<!-- 로그인 -->
 	<select id="login" parameterType="UserDTO" resultType="int">
-		SELECT user_number FROM
-		tbl_user
-		WHERE user_id = #{userId} and user_pw = #{userPassword}
+		SELECT user_number
+		FROM tbl_user
+		WHERE user_id = #{userId}
+		AND user_pw = #{userPassword}
 	</select>
+
+	<!-- 회원가입 - TBL_USER -->
+	<insert id="userJoin" parameterType="MemberJoinDTO">
+		INSERT INTO TBL_USER (USER_NUMBER, USER_ID, USER_PW, USER_NAME, USER_PHONE,
+		USER_JOIN_DATE, USER_TYPE)
+		VALUES (SEQ_USER_NUMBER.NEXTVAL, #{userId}, #{userPw}, #{userName},
+		#{userPhone}, SYSDATE, '일반회원')
+	</insert>
+
+	<!-- 회원가입 - TBL_MEMBER -->
+	<insert id="memberJoin" parameterType="MemberJoinDTO">
+		INSERT INTO TBL_MEMBER (USER_NUMBER, MEMBER_DOB, MEMBER_GENDER)
+		VALUES ((SELECT MAX(USER_NUMBER) FROM TBL_USER), #{memberDob},
+		#{memberGender})
+	</insert>
+
 </mapper>

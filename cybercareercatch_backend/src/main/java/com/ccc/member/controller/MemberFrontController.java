@@ -51,6 +51,39 @@ public class MemberFrontController extends HttpServlet {
 		case "/member/loginOk.mefc":
 			result = new LoginOkController().execute(request, response);
 			break;
+		case "/member/signup.mefc":
+			result = new Result();
+			result.setPath("/app/main/account/signup.jsp");
+			result.setRedirect(false);
+			break;
+		case "/member/user-agreement-member.mefc":
+			result = new Result();
+			result.setPath("/app/main/account/user-agreement-member.jsp");
+			result.setRedirect(false);
+			break;
+		case "/member/signup-member.mefc":
+			result = new Result();
+			result.setPath("/app/main/account/signup-member.jsp");
+			result.setRedirect(false);
+			break;
+		case "/member/signupOk-member.mefc":
+			result = new MemberJoinOkController().execute(request, response);
+			break;
+		case "/member/user-agreement-company.mefc":
+			result = new Result();
+			result.setPath("/app/main/account/user-agreement-company.jsp");
+			result.setRedirect(false);
+			break;
+		case "/member/signup-company.mefc":
+			result = new Result();
+			result.setPath("/app/main/account/signup-company.jsp");
+			result.setRedirect(false);
+			break;
+		case "/member/signupOk-company.mefc":
+			result = new CompanyJoinOkController().execute(request, response);
+			break;
+		default:
+			System.out.println("어디로감?");
 		}
 		
 		if(result != null && result.getPath() != null) {

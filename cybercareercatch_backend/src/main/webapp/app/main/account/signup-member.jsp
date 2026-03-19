@@ -6,7 +6,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>일반회원가입</title>
-  <link rel="stylesheet" href="../../../assets/css/main/account/signup-member.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main/account/signup-member.css" />
 </head>
 <body class="signup-member_body">
   <header></header>
@@ -15,7 +15,7 @@
     <section class="signup-member_wrap" aria-labelledby="signupMemberTitle">
       <h1 id="signupMemberTitle" class="signup-member_tit">회원가입</h1>
 
-      <form class="signup-member_form" id="signupMemberForm" action="${pageContext.request.contextPath}/" method="post" novalidate>
+      <form action="${pageContext.request.contextPath}/member/signupOk-member.mefc" method="POST" class="signup-member_form" id="signupMemberForm">
         <div class="signup-member_sec">
           <div class="signup-member_head">
             <label class="signup-member_lab" for="signupMemberName">
@@ -25,13 +25,7 @@
           </div>
           <div class="signup-member_ctl">
             <div class="signup-member_inpbox" id="signupMemberNameBox">
-              <input
-                class="signup-member_inp"
-                type="text"
-                id="signupMemberName"
-                name="memberName"
-                placeholder="ex) 홍길동"
-                autocomplete="name"
+              <input class="signup-member_inp"type="text" id="signupMemberName" name="userName" placeholder="ex) 홍길동" autocomplete="name"
               />
             </div>
           </div>
@@ -46,15 +40,8 @@
           </div>
           <div class="signup-member_ctl">
             <div class="signup-member_inpbox" id="signupMemberBirthBox">
-              <input
-                class="signup-member_inp"
-                type="text"
-                id="signupMemberBirth"
-                name="memberBirth"
-                placeholder="ex) 000111"
-                inputmode="numeric"
-                maxlength="6"
-                autocomplete="bday"
+              <input class="signup-member_inp" type="text" id="signupMemberBirth" name="memberDob" placeholder="ex) 000111" inputmode="numeric" 
+                maxlength="6" autocomplete="bday"
               />
             </div>
           </div>
@@ -91,15 +78,8 @@
           </div>
           <div class="signup-member_ctl signup-member_ctl_row">
             <div class="signup-member_inpbox" id="signupMemberPhoneBox">
-              <input
-                class="signup-member_inp"
-                type="tel"
-                id="signupMemberPhone"
-                name="memberPhone"
-                placeholder="ex) 01012345678 (- 제외 입력)"
-                inputmode="numeric"
-                maxlength="11"
-                autocomplete="tel"
+              <input class="signup-member_inp" type="tel" id="signupMemberPhone" name="userPhone"
+                placeholder="ex) 01012345678 (- 제외 입력)" inputmode="numeric" maxlength="11" autocomplete="tel"
               />
             </div>
             <button type="button" class="signup-member_btn_sm" id="signupMemberSendBtn">
@@ -126,14 +106,10 @@
           <div class="signup-member_ctl signup-member_ctl_row">
             <div class="signup-member_inpbox" id="signupMemberAuthBox">
               <input
-                class="signup-member_inp"
-                type="text"
-                id="signupMemberAuthCode"
-                name="memberAuthCode"
-                placeholder="ex) 123456"
-                inputmode="numeric"
-                maxlength="6"
-                autocomplete="one-time-code"
+                class="signup-member_inp" type="text"
+                id="signupMemberAuthCode" name="authCode"
+                placeholder="ex) 123456" inputmode="numeric"
+                maxlength="6" autocomplete="one-time-code"
               />
             </div>
             <button type="button" class="signup-member_btn_sm" id="signupMemberAuthBtn">
@@ -163,7 +139,7 @@
                 class="signup-member_inp"
                 type="text"
                 id="signupMemberUserId"
-                name="memberUserId"
+                name="userId"
                 placeholder="ex) hong1234 (영문, 숫자 포함 5자 이상 20자 미만)"
                 minlength="5"
                 maxlength="20"
@@ -186,7 +162,7 @@
                 class="signup-member_inp"
                 type="password"
                 id="signupMemberPwd"
-                name="memberPwd"
+                name="userPw"
                 placeholder="영문, 숫자, 특수문자 포함 8자 이상 20자 미만"
                 minlength="8"
                 maxlength="20"
@@ -217,7 +193,7 @@
                 class="signup-member_inp"
                 type="password"
                 id="signupMemberPwdRe"
-                name="memberPwdRe"
+                name="userPwConfirm"
                 placeholder="다시 입력하세요."
                 minlength="8"
                 maxlength="20"
@@ -239,6 +215,6 @@
 
   <footer></footer>
 
-  <script src="../../../assets/js/main/account/signup-member.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/main/account/signup-member.js"></script>
 </body>
 </html>
