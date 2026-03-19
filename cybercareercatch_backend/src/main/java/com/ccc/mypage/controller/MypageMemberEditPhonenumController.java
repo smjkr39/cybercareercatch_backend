@@ -10,29 +10,26 @@ import javax.servlet.http.HttpSession;
 import com.ccc.common.Execute;
 import com.ccc.common.Result;
 import com.ccc.mypage.dao.MypageDAO;
-import com.ccc.mypage.dto.MemberMypageInfoDTO;
 
-public class MypageMemberEditInfoController implements Execute{
+public class MypageMemberEditPhonenumController implements Execute{
 
 	@Override
 	public Result execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("MypageMemberEditInfoController 실행");
+		System.out.println("MypageMemberEditPhonenumController 실행");
 		MypageDAO mypageDAO = new MypageDAO();
 		Result result = new Result();
 		HttpSession session = request.getSession();
 		
-		//로그인 정보 가져오기
+		//로그인 정보 확인
 		Integer userNumber = (Integer) session.getAttribute("userNumber");
 		System.out.println("로그인한 회원 번호 : " + userNumber);
 		String userType = (String) session.getAttribute("userType");
 		System.out.println("로그인한 회원 타입 : " + userType);
-		Boolean memberPwChecked = (Boolean) session.getAttribute("memberPwChecked");
-		System.out.println("로그인한 비밀번호 확인 : " + memberPwChecked);
 		
 		// 비로그인
 		if (userNumber == null) {
-			result.setPath(request.getContextPath() + "/member/login.mpfc");
+			result.setPath(request.getContextPath() + "/member/login.mefc");
 			result.setRedirect(true);
 			return result;
 		}
@@ -44,29 +41,23 @@ public class MypageMemberEditInfoController implements Execute{
 			return result;
 		}
 		
-		if(memberPwChecked == null || !memberPwChecked) {
-			result.setPath(request.getContextPath() + "/mypage/member/checkPw.mpfc");
-			result.setRedirect(true);
+		String newPhone = request.getParameter("userPhone");
+		
+		//전화번호 공백 체크
+		if( newPhone.trim() == null || newPhone.trim().isEmpty()) {
+			request.setAttribute("phoneMessage", "전화번호를 입력해주세요");
+			result.setPath("/app/mypage/mypage-member-edit.jsp");
+			result.setRedirect(false);
 			return result;
 		}
 		
-		session.removeAttribute("memberPwChecked");
-			
-		//보여줄 아이디 조회
-		MemberMypageInfoDTO memberMypageInfoDTO = new MemberMypageInfoDTO();
-		memberMypageInfoDTO = mypageDAO.selectMemberMyPageInfo(userNumber);
 		
-		// 조회결과가 없는 경우
-		if (memberMypageInfoDTO == null) {
-			result.setPath(request.getContextPath() + "/main/main.mafc");
-			result.setRedirect(true);
-			return result;
-		}
 		
-		request.setAttribute("memberMypageInfoDTO", memberMypageInfoDTO);
+		mypageDAO.updateMemberPhone(userNumber, newPhone);
+		System.out.println("변경할 전화번호 " + newPhone);
+		result.setPath(request.getContextPath() + "/member/mypage.mpfc");
+		result.setRedirect(true);
 		
-		result.setPath("/app/mypage/mypage-member-edit.jsp");
-		result.setRedirect(false);
 		
 		return result;
 	}

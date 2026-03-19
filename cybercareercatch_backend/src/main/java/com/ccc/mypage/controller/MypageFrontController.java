@@ -66,6 +66,11 @@ public class MypageFrontController extends HttpServlet {
 			result = new MypageMemberEditInfoController().execute(request, response);
 			System.out.println("일반회원 마이페이지 정보수정 진입 완료");
 			break;
+		case "/member/mypage/updatePhone.mpfc":
+			System.out.println("일반회원 마이페이지 전화번호 수정 요청");
+			result = new MypageMemberEditPhonenumController().execute(request, response);
+			System.out.println("일반회원 마이페이지 전화번호 수정 완료");
+			break;
 		}
 		
 		
