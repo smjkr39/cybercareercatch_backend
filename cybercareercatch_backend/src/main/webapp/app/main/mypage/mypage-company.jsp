@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>기업회원마이페이지</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/main/mypage/mypage-company.css">
+	href="${contextPath}/assets/css/main/mypage/mypage-company.css">
 </head>
 
 <body>
@@ -23,46 +25,46 @@
 				<div class="main-container-section-changeinfo">
 					<div class="mypage-info-box">
 						<div class="mypage-info-title">아이디</div>
-						<div class="mypage-info-text" id="company-id">${CompanyMypageInfoDTO.userId}</div>
+						<div class="mypage-info-text" id="company-id">${companyInfo.userId}</div>
 					</div>
 
 					<div class="mypage-info-box">
 						<div class="mypage-info-title">기업명</div>
-						<div class="mypage-info-text" id="company-name">${CompanyMypageInfoDTO.companyName}</div>
+						<div class="mypage-info-text" id="company-name">${companyInfo.companyName}</div>
 					</div>
 
 					<div class="mypage-info-box">
 						<div class="mypage-info-title">사업자등록번호</div>
-						<div class="mypage-info-text" id="company-number">${CompanyMypageInfoDTO.companyBrn}</div>
+						<div class="mypage-info-text" id="company-number">${companyInfo.companyBrn}</div>
 					</div>
 
 					<div class="mypage-info-box">
 						<div class="mypage-info-title">기업 주소</div>
-						<div class="mypage-info-text" id="company-address">${CompanyMypageInfoDTO.companyAddress}</div>
+						<div class="mypage-info-text" id="company-address">${companyInfo.companyAddress}</div>
 					</div>
 
 					<div class="mypage-info-box">
 						<div class="mypage-info-title">채용담당자 이름</div>
-						<div class="mypage-info-text" id="company-manager-name">${CompanyMypageInfoDTO.userName}</div>
+						<div class="mypage-info-text" id="company-manager-name">${companyInfo.userName}</div>
 					</div>
 
 					<div class="mypage-info-box">
 						<div class="mypage-info-title">채용담당자 연락처</div>
-						<div class="mypage-info-text" id="company-manager-phonenumber">${CompanyMypageInfoDTO.userPhone}</div>
+						<div class="mypage-info-text" id="company-manager-phonenumber">${companyInfo.userPhone}</div>
 
-						<a href="${pageContext.request.contextPath}/company/mypage/checkPw.mpfc"
+						<a href="${contextPath}/mypage/company/check-password.my"
 							class="btn" id="company-phonenumber-submit-btn">회원정보수정</a>
 					</div>
 
 					<div class="mypage-button-box">
 						<c:choose>
 							<c:when test="${empty companyPageCount or companyPageCount == 0}">
-								<a href="${pageContext.request.contextPath}/mypage/company/companypageRegister.mpfc"
+								<a href="${contextPath}/mypage/company/company-page-register.my"
 									class="btn"> 기업정보페이지 등록 </a>
 							</c:when>
 							<c:otherwise>
 								<a
-									href="${pageContext.request.contextPath}/mypage/company/companypageEdit.mpfc"
+									href="${contextPath}/mypage/company/company-page-edit.my?companyNumber=${companyInfo.companyNumber}"
 									class="btn"> 기업정보페이지 수정/삭제 </a>
 							</c:otherwise>
 						</c:choose>
@@ -94,7 +96,7 @@
 								<c:forEach var="qna" items="${waitingQnaList}">
 									<li class="mypage-QnAlist-content">
 										<div class="no">${qna.postNumber}</div> <a
-										href="${pageContext.request.contextPath}/qna/detail.qna?postNumber=${qna.postNumber}"
+										href="${contextPath}/qna/detail.qna?postNumber=${qna.postNumber}"
 										class="QnAlist-title"> ${qna.postTitle} </a>
 
 										<div class="companyname">${qna.companyName}</div>
@@ -102,7 +104,7 @@
 										<div class="date">${qna.postDate}</div>
 
 										<div
-											class="answer-status ${qna.answerStatus}">
+											class="answer-status ${qna.answerStatus eq '답변완료' ? 'answer-status-active' : ''}">
 											${qna.answerStatus}</div>
 									</li>
 								</c:forEach>
@@ -116,21 +118,21 @@
 
 								<c:if test="${prev}">
 									<a class="page-btn page-arrow"
-									   href="${pageContext.request.contextPath}/mypage/company/main.mpfc?page=${startPage - 1}">
+									   href="${contextPath}/mypage/company/main.my?page=${startPage - 1}">
 										&lt;
 									</a>
 								</c:if>
 
 								<c:forEach var="i" begin="${startPage}" end="${endPage}">
 									<a class="page-btn ${page == i ? 'page-btn-active' : ''}"
-									   href="${pageContext.request.contextPath}/mypage/company/main.mpfc?page=${i}">
+									   href="${contextPath}/mypage/company/main.my?page=${i}">
 										${i}
 									</a>
 								</c:forEach>
 
 								<c:if test="${next}">
 									<a class="page-btn page-arrow"
-									   href="${pageContext.request.contextPath}/mypage/company/main.mpfc?page=${endPage + 1}">
+									   href="${contextPath}/mypage/company/main.my?page=${endPage + 1}">
 										&gt;
 									</a>
 								</c:if>
