@@ -3,7 +3,6 @@
     background: #f5f7fb;
     font-family: "Malgun Gothic", sans-serif;
     color: #222222;
-    min-width: 1400px;
 }
 
 .rm-container {
@@ -97,7 +96,6 @@
     padding: 24px;
     box-sizing: border-box;
     margin-bottom: 24px;
-    background: #ffffff;
 }
 
 .rm-section-title {
@@ -122,7 +120,6 @@
     width: 180px;
     font-weight: 700;
     flex-shrink: 0;
-    line-height: 1.5;
 }
 
 .rm-input,
@@ -146,7 +143,6 @@
     min-height: 92px;
     resize: vertical;
     font-family: "Malgun Gothic", sans-serif;
-    line-height: 1.6;
 }
 
 .rm-readonly {

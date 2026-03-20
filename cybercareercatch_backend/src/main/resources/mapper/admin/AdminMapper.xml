@@ -12,49 +12,57 @@
 			ADMIN_ID,
 			ADMIN_PW,
 			ADMIN_NAME,
-			ADD_DATE
+			TO_CHAR(ADD_DATE, 'YYYY-MM-DD') AS ADD_DATE
 		FROM TBL_ADMIN
 		WHERE ADMIN_ID = #{adminId}
 		AND ADMIN_PW = #{adminPw}
 	</select>
 
+	<!-- 관리자 메인 총 일반 회원 수 -->
+	<select id="getMemberTotal" resultType="int">
+		SELECT COUNT(*)
+		FROM TBL_USER
+		WHERE USER_TYPE = '일반회원'
+	</select>
 
 	<!-- 관리자 메인 총 기업 회원 수 -->
 	<select id="getCompanyMemberCount" resultType="int">
-		SELECT COUNT(USER_NUMBER)
+		SELECT COUNT(*)
 		FROM TBL_USER
 		WHERE USER_TYPE = '기업회원'
 	</select>
 
 	<!-- 관리자 메인 총 박람회 수 -->
 	<select id="getExpoCount" resultType="int">
-		SELECT COUNT(EXPO_NUMBER)
+		SELECT COUNT(*)
 		FROM TBL_EXPO
 	</select>
 
 	<!-- 관리자 일반 회원 목록 조회 -->
 	<select id="selectMemberList" parameterType="map" resultType="AdminMemberListDTO">
-		<![CDATA[
-		SELECT * FROM (
+		SELECT *
+		FROM (
 			SELECT ROWNUM AS RNUM, A.*
 			FROM (
 				SELECT
-					USER_NUMBER,
-					USER_ID,
-					USER_NAME,
-					USER_JOIN_DATE
-				FROM TBL_USER
-				WHERE USER_TYPE = '일반회원'
-				ORDER BY USER_NUMBER DESC
+					U.USER_NUMBER,
+					U.USER_ID,
+					U.USER_NAME,
+					TO_CHAR(U.USER_JOIN_DATE, 'YYYY-MM-DD') AS USER_JOIN_DATE,
+					NVL(JR.JOB_RESULT_STATUS, '미제출') AS JOB_RESULT_STATUS
+				FROM TBL_USER U
+				LEFT JOIN TBL_JOB_RESULT JR
+				ON U.USER_NUMBER = JR.USER_NUMBER
+				WHERE U.USER_TYPE = '일반회원'
+				ORDER BY U.USER_NUMBER DESC
 			) A
 		)
 		WHERE RNUM BETWEEN #{startRow} AND #{endRow}
-		]]>
 	</select>
 
 	<!-- 관리자 일반 회원 수 -->
-	<select id="getMemberTotal" resultType="int">
-		SELECT COUNT(USER_NUMBER)
+	<select id="getMemberTotalForList" resultType="int">
+		SELECT COUNT(*)
 		FROM TBL_USER
 		WHERE USER_TYPE = '일반회원'
 	</select>
@@ -65,7 +73,8 @@
 			USER_NUMBER,
 			USER_ID,
 			USER_NAME,
-			USER_JOIN_DATE
+			USER_PHONE,
+			TO_CHAR(USER_JOIN_DATE, 'YYYY-MM-DD') AS USER_JOIN_DATE
 		FROM TBL_USER
 		WHERE USER_NUMBER = #{userNumber}
 		AND USER_TYPE = '일반회원'
@@ -75,7 +84,7 @@
 	<select id="selectMemberDetail" parameterType="int" resultType="MemberDTO">
 		SELECT
 			USER_NUMBER,
-			MEMBER_DOB,
+			TO_CHAR(MEMBER_DOB, 'YYYY-MM-DD') AS MEMBER_DOB,
 			MEMBER_GENDER,
 			JOB_NUMBER
 		FROM TBL_MEMBER
@@ -90,8 +99,8 @@
 
 	<!-- 관리자 기업 회원 승인/반려 목록 조회 -->
 	<select id="selectCompanyApproveList" parameterType="map" resultType="AdminCompanyListDTO">
-		<![CDATA[
-		SELECT * FROM (
+		SELECT *
+		FROM (
 			SELECT ROWNUM AS RNUM, A.*
 			FROM (
 				SELECT
@@ -99,7 +108,7 @@
 					U.USER_ID,
 					C.COMPANY_NUMBER,
 					C.COMPANY_NAME,
-					U.USER_JOIN_DATE,
+					TO_CHAR(U.USER_JOIN_DATE, 'YYYY-MM-DD') AS USER_JOIN_DATE,
 					C.COMPANY_STATE
 				FROM TBL_USER U
 				JOIN TBL_COMPANY_MEMBER CM
@@ -111,12 +120,11 @@
 			) A
 		)
 		WHERE RNUM BETWEEN #{startRow} AND #{endRow}
-		]]>
 	</select>
 
 	<!-- 관리자 기업 회원 승인/반려 총 개수 -->
 	<select id="getCompanyApproveTotal" resultType="int">
-		SELECT COUNT(U.USER_NUMBER)
+		SELECT COUNT(*)
 		FROM TBL_USER U
 		JOIN TBL_COMPANY_MEMBER CM
 		ON U.USER_NUMBER = CM.USER_NUMBER
@@ -149,11 +157,11 @@
 			JP.JOB_POST_CONTENT,
 			JP.JOB_POST_PROCESS,
 			JP.JOB_POST_METHOD,
-			JP.JOB_POST_DATE,
-			JP.CAT1_IS_HIRING,
-			JP.CAT2_IS_HIRING,
-			JP.CAT3_IS_HIRING,
-			JP.CAT4_IS_HIRING
+			TO_CHAR(JP.JOB_POST_DATE, 'YYYY-MM-DD') AS JOB_POST_DATE,
+			NVL(JP.CAT1_IS_HIRING, 0) AS CAT1_IS_HIRING,
+			NVL(JP.CAT2_IS_HIRING, 0) AS CAT2_IS_HIRING,
+			NVL(JP.CAT3_IS_HIRING, 0) AS CAT3_IS_HIRING,
+			NVL(JP.CAT4_IS_HIRING, 0) AS CAT4_IS_HIRING
 		FROM TBL_COMPANY C
 		LEFT JOIN TBL_COMP_INFO CI
 		ON C.COMPANY_NUMBER = CI.COMPANY_NUMBER

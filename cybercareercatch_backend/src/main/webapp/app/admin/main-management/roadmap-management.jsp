@@ -1,245 +1,214 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
 <meta charset="UTF-8">
-<title>기업 승인여부 리스트</title>
-<link rel="stylesheet" href="/assets/css/admin/member-management/company-check.css">
+<title>관리자 페이지</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/admin/main-management/roadmap-management.css">
 </head>
 
-<body class="company-check-body">
+<body class="rm-body">
+
+	<div class="rm-container">
 
-<div class="company-check-container">
-
-<header class="company-check-header">
-
-<div class="company-check-title">
- <a href="../admin-main.html">관리자 페이지</a>
-</div>
-
-<nav class="company-check-menu">
-<a href="../member-management/member-info.html">회원 관리</a>
-<a href="../main-management/qna-management.html">메인 관리</a>
-<a href="../community-management/expo-schedule.html">커뮤니티 관리</a>
-</nav>
-
-<a href="${pageContext.request.contextPath}/admin/logout.adfc" class="logout-btn">로그아웃</a>
-
-</header>
-
-<main class="company-check-main">
-
-<!-- 사이드바 -->
-<aside class="company-check-sidebar">
-
-<div class="company-check-sidebar-item">
-<a href="./member-info.html">일반회원 정보 조회</a>
-</div>
-
-<div class="company-check-sidebar-item company-check-active">
-<a href="./company-check.html">기업회원 승인, 반려</a>
-</div>
-
-<div class="company-check-sidebar-item">
-<a href="./recruiter-info.html">기업회원 정보 조회</a>
-</div>
-
-</aside>
-
-
-<!-- 오른쪽 영역 -->
-<section class="company-check-content">
-
-<div class="company-check-title-area">
-<h2>기업회원 승인 및 반려</h2>
-</div>
-
-<div class="company-check-subtitle">
-신규 기업회원가입자 목록
-</div>
-
-
-<!-- 리스트 헤더 -->
-
-<div class="company-check-table">
-
-<div class="company-check-row company-check-head">
-
-<div class="company-check-col number">번호</div>
-<div class="company-check-col id">아이디</div>
-<div class="company-check-col company">기업이름</div>
-<div class="company-check-col date">가입날짜</div>
-<div class="company-check-col status">승인/반려</div>
-
-</div>
-
-
-
-
-<!-- <div class="company-check-row">
-<div class="company-check-col number">1</div>
-<div class="company-check-col id">
-<a class="company-check-link" href="#">SsamSsong</a>
-</div>
-<div class="company-check-col company">
-<a class="company-check-link" href="#">쌈쏭쌈싸머거</a>
-</div>
-<div class="company-check-col date">26.02.12</div>
-<div class="company-check-col status">대기</div> -->
-
-
-<!-- 리스트 1 -->
-
-
-<a href="./company-checkdetail.html" class="company-check-row">
-
-<div class="company-check-col number">1</div>
-<div class="company-check-col id">SsamSsong</div>
-<div class="company-check-col company">쌈쏭쌈싸머거</div>
-<div class="company-check-col date">26.02.12</div>
-<div class="company-check-col status">대기</div>
-
-</a>
-
-<!-- 리스트 2 -->
-
-<a href="#" class="company-check-row">
-
-<div class="company-check-col number">2</div>
-<div class="company-check-col id">HEAJJunBaBo</div>
-<div class="company-check-col company">헤준BABO</div>
-<div class="company-check-col date">26.02.24</div>
-<div class="company-check-col status">대기</div>
-
-</a>
-
-
-<!-- 리스트 3 -->
-
-<a href="#" class="company-check-row">
-
-<div class="company-check-col number">3</div>
-<div class="company-check-col id">Jinokispretty</div>
-<div class="company-check-col company">진옥IT</div>
-<div class="company-check-col date">26.02.26</div>
-<div class="company-check-col status">대기</div>
-
-</a>
-
-
-<!-- 리스트 4 -->
-
-<a href="#" class="company-check-row">
-
-<div class="company-check-col number">4</div>
-<div class="company-check-col id">adorableJinok</div>
-<div class="company-check-col company">doradora컴퓨터</div>
-<div class="company-check-col date">26.02.28</div>
-<div class="company-check-col status">대기</div>
-
-</a>
-
-
-<!-- 리스트 5 -->
-
-<a href="#" class="company-check-row">
-
-<div class="company-check-col number">5</div>
-<div class="company-check-col id">IWantSleep</div>
-<div class="company-check-col company">IT솔리드</div>
-<div class="company-check-col date">26.03.01</div>
-<div class="company-check-col status">대기</div>
-
-</a>
-
-<!-- 리스트 6 -->
-
-<a href="#" class="company-check-row">
-
-<div class="company-check-col number">5</div>
-<div class="company-check-col id">IWantSleep</div>
-<div class="company-check-col company">IT솔리드</div>
-<div class="company-check-col date">26.03.01</div>
-<div class="company-check-col status">대기</div>
-
-</a>
-
-<!-- 리스트 7 -->
-
-<a href="#" class="company-check-row">
-
-<div class="company-check-col number">5</div>
-<div class="company-check-col id">IWantSleep</div>
-<div class="company-check-col company">IT솔리드</div>
-<div class="company-check-col date">26.03.01</div>
-<div class="company-check-col status">대기</div>
-
-</a>
-
-<!-- 리스트 8 -->
-
-<a href="#" class="company-check-row">
-
-<div class="company-check-col number">5</div>
-<div class="company-check-col id">IWantSleep</div>
-<div class="company-check-col company">IT솔리드</div>
-<div class="company-check-col date">26.03.01</div>
-<div class="company-check-col status">대기</div>
-
-</a>
-
-<!-- 리스트 9 -->
-
-<a href="#" class="company-check-row">
-
-<div class="company-check-col number">5</div>
-<div class="company-check-col id">IWantSleep</div>
-<div class="company-check-col company">IT솔리드</div>
-<div class="company-check-col date">26.03.01</div>
-<div class="company-check-col status">대기</div>
-
-</a>
-
-<!-- 리스트 10 -->
-
-<a href="#" class="company-check-row">
-
-<div class="company-check-col number">5</div>
-<div class="company-check-col id">IWantSleep</div>
-<div class="company-check-col company">IT솔리드</div>
-<div class="company-check-col date">26.03.01</div>
-<div class="company-check-col status">대기</div>
-
-</a>
-
-</div>
-
-
-<!-- 페이지네이션 -->
-
-<div class="company-check-pagination">
-
-<!-- <span>&lt;&lt;</span> -->
-<span>&lt;</span>
-
-<a class="company-check-page company-check-page-active">1</a>
-<a class="company-check-page">2</a>
-<a class="company-check-page">3</a>
-<a class="company-check-page">4</a>
-<a class="company-check-page">5</a>
-
-<span>&gt;</span>
-<!-- <span>&gt;&gt;</span> -->
-
-</div>
-
-
-</section>
-
-</main>
-
-</div>
-
+		<main class="rm-main">
+
+			<aside class="rm-leftbar">
+				<div class="rm-left-item">
+					<a href="${pageContext.request.contextPath}/admin/insertQuestion.adfc">질의문 관리</a>
+				</div>
+
+				<div class="rm-left-item">
+					<a href="${pageContext.request.contextPath}/admin/companyInfoListOk.adfc">기업 정보페이지</a>
+				</div>
+
+				<div class="rm-left-item rm-active">
+					<a href="${pageContext.request.contextPath}/admin/roadmapManagement.adfc?jobNumber=1">로드맵 관리</a>
+				</div>
+			</aside>
+
+			<section class="rm-content">
+
+				<div class="rm-top-tab">
+					<a href="${pageContext.request.contextPath}/admin/roadmapManagement.adfc?jobNumber=1"
+						class="rm-tab ${jobNumber == 1 ? 'rm-tab-active' : ''}">공격</a>
+
+					<a href="${pageContext.request.contextPath}/admin/roadmapManagement.adfc?jobNumber=2"
+						class="rm-tab ${jobNumber == 2 ? 'rm-tab-active' : ''}">방어전략</a>
+
+					<a href="${pageContext.request.contextPath}/admin/roadmapManagement.adfc?jobNumber=3"
+						class="rm-tab ${jobNumber == 3 ? 'rm-tab-active' : ''}">보안 구축/개발</a>
+
+					<a href="${pageContext.request.contextPath}/admin/roadmapManagement.adfc?jobNumber=4"
+						class="rm-tab ${jobNumber == 4 ? 'rm-tab-active' : ''}">기타</a>
+				</div>
+
+				<form action="${pageContext.request.contextPath}/admin/updateRoadmap.adfc" method="post" id="roadmapForm">
+					<input type="hidden" name="jobNumber" value="${jobNumber}">
+
+					<div class="rm-section">
+						<div class="rm-section-title">기본 정보</div>
+
+						<div class="rm-row">
+							<label class="rm-label">이미지 경로</label>
+							<input class="rm-input" type="text" name="roadmapImagePath"
+								value="${roadmap.roadmapImagePath}" placeholder="예) roadmap_job1.png">
+						</div>
+
+						<div class="rm-row">
+							<label class="rm-label">직종 이름</label>
+							<input class="rm-input rm-readonly" type="text" value="${roadmapTitle}" readonly="readonly">
+						</div>
+
+						<div class="rm-row rm-row-top">
+							<label class="rm-label">이름 설명</label>
+							<textarea class="rm-textarea rm-readonly" readonly="readonly">${roadmapSubDesc}</textarea>
+						</div>
+					</div>
+
+					<div class="rm-section">
+						<div class="rm-section-title">직업</div>
+
+						<c:forEach begin="0" end="5" var="i">
+							<input type="hidden" name="roadmapJobNumber${i + 1}" value="${roadmapJobList[i].roadmapJobNumber}">
+
+							<div class="rm-row">
+								<label class="rm-label">직업 ${i + 1}</label>
+								<input class="rm-input" type="text" name="roadmapJobName${i + 1}"
+									value="${roadmapJobList[i].roadmapJobName}">
+							</div>
+
+							<div class="rm-row rm-row-top">
+								<label class="rm-label">직업 ${i + 1} 설명</label>
+								<textarea class="rm-textarea" name="roadmapJobDesc${i + 1}">${roadmapJobList[i].roadmapJobDesc}</textarea>
+							</div>
+						</c:forEach>
+					</div>
+
+					<div class="rm-section">
+						<div class="rm-section-title">1. 기초 다지기</div>
+
+						<c:forEach begin="0" end="2" var="i">
+							<input type="hidden" name="curriculumNumber${i + 1}" value="${curriculumList[i].curriculumNumber}">
+
+							<div class="rm-row">
+								<label class="rm-label">내용 ${i + 1}</label>
+								<input class="rm-input" type="text" name="skillName${i + 1}" value="${curriculumList[i].skillName}">
+							</div>
+
+							<div class="rm-row rm-row-top">
+								<label class="rm-label">내용 ${i + 1} 설명</label>
+								<textarea class="rm-textarea" name="skillDesc${i + 1}">${curriculumList[i].skillDesc}</textarea>
+							</div>
+						</c:forEach>
+					</div>
+
+					<div class="rm-section">
+						<div class="rm-section-title">2. 보안 기초 다지기</div>
+
+						<c:forEach begin="3" end="5" var="i">
+							<input type="hidden" name="curriculumNumber${i + 1}" value="${curriculumList[i].curriculumNumber}">
+
+							<div class="rm-row">
+								<label class="rm-label">내용 ${i - 2}</label>
+								<input class="rm-input" type="text" name="skillName${i + 1}" value="${curriculumList[i].skillName}">
+							</div>
+
+							<div class="rm-row rm-row-top">
+								<label class="rm-label">내용 ${i - 2} 설명</label>
+								<textarea class="rm-textarea" name="skillDesc${i + 1}">${curriculumList[i].skillDesc}</textarea>
+							</div>
+						</c:forEach>
+					</div>
+
+					<div class="rm-section">
+						<div class="rm-section-title">3. 실습</div>
+
+						<c:forEach begin="6" end="8" var="i">
+							<input type="hidden" name="curriculumNumber${i + 1}" value="${curriculumList[i].curriculumNumber}">
+
+							<div class="rm-row">
+								<label class="rm-label">내용 ${i - 5}</label>
+								<input class="rm-input" type="text" name="skillName${i + 1}" value="${curriculumList[i].skillName}">
+							</div>
+
+							<div class="rm-row rm-row-top">
+								<label class="rm-label">내용 ${i - 5} 설명</label>
+								<textarea class="rm-textarea" name="skillDesc${i + 1}">${curriculumList[i].skillDesc}</textarea>
+							</div>
+						</c:forEach>
+					</div>
+
+					<div class="rm-section">
+						<div class="rm-section-title">4. 결과물</div>
+
+						<c:forEach begin="9" end="11" var="i">
+							<input type="hidden" name="curriculumNumber${i + 1}" value="${curriculumList[i].curriculumNumber}">
+
+							<div class="rm-row">
+								<label class="rm-label">내용 ${i - 8}</label>
+								<input class="rm-input" type="text" name="skillName${i + 1}" value="${curriculumList[i].skillName}">
+							</div>
+
+							<div class="rm-row rm-row-top">
+								<label class="rm-label">내용 ${i - 8} 설명</label>
+								<textarea class="rm-textarea" name="skillDesc${i + 1}">${curriculumList[i].skillDesc}</textarea>
+							</div>
+						</c:forEach>
+					</div>
+
+					<div class="rm-section">
+						<div class="rm-section-title">추천 기술</div>
+
+						<c:forEach begin="0" end="6" var="i">
+							<input type="hidden" name="recNumber${i + 1}" value="${recList[i].recNumber}">
+
+							<div class="rm-row">
+								<label class="rm-label">내용 ${i + 1}</label>
+								<input class="rm-input" type="text" name="recName${i + 1}" value="${recList[i].recName}">
+							</div>
+						</c:forEach>
+					</div>
+
+					<div class="rm-section">
+						<div class="rm-section-title">추천 성향</div>
+
+						<c:forEach begin="7" end="10" var="i">
+							<input type="hidden" name="recNumber${i + 1}" value="${recList[i].recNumber}">
+
+							<div class="rm-row">
+								<label class="rm-label">내용 ${i - 6}</label>
+								<input class="rm-input" type="text" name="recName${i + 1}" value="${recList[i].recName}">
+							</div>
+						</c:forEach>
+					</div>
+
+					<div class="rm-section">
+						<div class="rm-section-title">추천 자격증</div>
+
+						<c:forEach begin="11" end="14" var="i">
+							<input type="hidden" name="recNumber${i + 1}" value="${recList[i].recNumber}">
+
+							<div class="rm-row">
+								<label class="rm-label">내용 ${i - 10}</label>
+								<input class="rm-input" type="text" name="recName${i + 1}" value="${recList[i].recName}">
+							</div>
+						</c:forEach>
+					</div>
+
+					<div class="rm-btn-wrap">
+						<button type="submit" class="rm-btn rm-btn-save">수정</button>
+						<button type="reset" class="rm-btn rm-btn-reset" id="roadmapResetBtn">취소</button>
+					</div>
+				</form>
+			</section>
+		</main>
+	</div>
+
+	<script src="${pageContext.request.contextPath}/assets/js/admin/main-management/roadmap-management.js"></script>
 </body>
 </html>

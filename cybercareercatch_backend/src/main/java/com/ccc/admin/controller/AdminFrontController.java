@@ -43,93 +43,91 @@ public class AdminFrontController extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		/* 요청/응답 한글 처리 */
+		/* 한글 깨짐 방지 */
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 
-		/* 현재 요청 경로를 구한다. */
+		/* 사용자가 요청한 경로를 구한다. */
 		String target = request.getRequestURI().substring(request.getContextPath().length());
 		System.out.println("관리자 프론트 컨트롤러 진입 : " + target);
 
-		/* 이동 정보를 담을 객체이다. */
 		Result result = null;
 
 		switch (target) {
 
-		/* =====================================================
-		   관리자 로그인 관련
-		===================================================== */
-
+		/* =========================
+		 * 관리자 로그인 / 로그아웃 / 메인
+		 * =========================
+		 */
 		case "/admin/login.adfc":
-			System.out.println("관리자 로그인 페이지 요청");
 			result = new AdminLoginController().execute(request, response);
-			System.out.println("관리자 로그인 페이지 이동 완료");
 			break;
 
 		case "/admin/loginOk.adfc":
-			System.out.println("관리자 로그인 처리 요청");
 			result = new AdminLoginOkController().execute(request, response);
-			System.out.println("관리자 로그인 처리 완료");
 			break;
 
 		case "/admin/logout.adfc":
-			System.out.println("관리자 로그아웃 처리 요청");
 			result = new AdminLogoutController().execute(request, response);
-			System.out.println("관리자 로그아웃 처리 완료");
 			break;
 
-		/* =====================================================
-		   질의문 관련
-		===================================================== */
+		case "/admin/main.adfc":
+			result = new AdminMainController().execute(request, response);
+			break;
 
+		/* =========================
+		 * 질의문 관련
+		 * =========================
+		 */
 		case "/admin/insertQuestion.adfc":
-			System.out.println("질의문 관리 페이지 요청");
 			result = new AdminInsertQuestionController().execute(request, response);
-			System.out.println("질의문 관리 페이지 이동 완료");
 			break;
 
 		case "/admin/insertQuestionOk.adfc":
-			System.out.println("질의문 질문 저장 처리 요청");
 			result = new AdminInsertQuestionControllerOk().execute(request, response);
-			System.out.println("질의문 질문 저장 처리 완료");
 			break;
 
 		case "/admin/jobCheck.adfc":
-			System.out.println("질의문 답변 목록 페이지 요청");
 			result = new AdminJobCheckController().execute(request, response);
-			System.out.println("질의문 답변 목록 페이지 이동 완료");
 			break;
 
 		case "/admin/jobCheckDetail.adfc":
-			System.out.println("질의문 답변 상세 페이지 요청");
 			result = new AdminJobCheckDetailController().execute(request, response);
-			System.out.println("질의문 답변 상세 페이지 이동 완료");
 			break;
 
 		case "/admin/judgeJobResult.adfc":
-			System.out.println("질의문 직군 판정 저장 요청");
 			result = new AdminJudgeJobResultController().execute(request, response);
-			System.out.println("질의문 직군 판정 저장 완료");
 			break;
 
-		/* =====================================================
-		   로드맵 관련
-		===================================================== */
+		/* =========================
+		 * 기업 정보페이지 관련
+		 * =========================
+		 */
+		case "/admin/companyInfoListOk.adfc":
+			result = new AdminCompanyInfoListController().execute(request, response);
+			break;
 
+		case "/admin/deleteCompanyInfo.adfc":
+			result = new AdminDeleteCompanyInfoController().execute(request, response);
+			break;
+
+		/* =========================
+		 * 로드맵 관련
+		 * =========================
+		 */
 		case "/admin/roadmapManagement.adfc":
-			System.out.println("관리자 로드맵 관리 페이지 요청");
 			result = new AdminRoadmapManagementController().execute(request, response);
-			System.out.println("관리자 로드맵 관리 페이지 이동 완료");
 			break;
 
 		case "/admin/updateRoadmap.adfc":
-			System.out.println("관리자 로드맵 수정 저장 요청");
 			result = new AdminUpdateRoadmapController().execute(request, response);
-			System.out.println("관리자 로드맵 수정 저장 완료");
 			break;
 		}
 
-		/* 이동 정보가 있으면 forward 또는 redirect를 처리한다. */
+		/*
+		 * 결과 경로가 있으면
+		 * redirect 또는 forward 방식으로 이동한다.
+		 */
 		if (result != null && result.getPath() != null) {
 			if (result.isRedirect()) {
 				response.sendRedirect(result.getPath());

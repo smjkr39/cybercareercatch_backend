@@ -1,192 +1,129 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
+/*
+ * 로그인하지 않은 상태에서 관리자 메인에 들어오면
+ * 관리자 로그인 페이지로 보낸다.
+ */
+if (session.getAttribute("adminNumber") == null) {
+	response.sendRedirect(request.getContextPath() + "/admin/login.adfc");
+	return;
+}
+%>
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>관리자 메인 페이지</title>
+<title>관리자 메인 대시보드</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/admin/admin-main.css">
 </head>
 
-<body>
+<body class="admin-main-body">
 
-	<div class="container">
+	<div class="admin-main-container">
 
-		<header class="top-bar">
-			<div class="logo">
-				<a
-					href="${pageContext.request.contextPath}/app/admin/admin-main.jsp">관리자
+		<header class="admin-main-top">
+
+			<div class="admin-main-title">
+				<a href="${pageContext.request.contextPath}/admin/main.adfc">관리자
 					페이지</a>
 			</div>
 
-			<nav class="main-nav">
+			<nav class="admin-main-menu">
 				<a
+					href="${pageContext.request.contextPath}/app/admin/member-management/member-info.jsp">회원
+					관리</a> <a
 					href="${pageContext.request.contextPath}/admin/insertQuestion.adfc">메인
 					관리</a> <a
-					href="${pageContext.request.contextPath}/admin/insertQuestion.adfc">질의문
-					관리</a> <a href="${pageContext.request.contextPath}/admin/logout.adfc"
-					class="logout-btn">로그아웃</a>
+					href="${pageContext.request.contextPath}/app/admin/community-management/expo-schedule.jsp">커뮤니티
+					관리</a>
 			</nav>
 
-			<a href="${pageContext.request.contextPath}/admin/logout.ad"
-				class="logout-btn">로그아웃</a>
+			<a href="${pageContext.request.contextPath}/admin/logout.adfc"
+				class="admin-main-logout">로그아웃</a>
 		</header>
 
-		<main class="main-content">
+		<main class="admin-main-main">
 
-			<aside class="sidebar">
-				<div class="sidebar-item sidebar-active">
-					<a
-						href="${pageContext.request.contextPath}/app/admin/admin-main.jsp">대시보드</a>
+			<aside class="admin-main-leftbar">
+				<div class="admin-main-left-item admin-main-active">
+					<a href="${pageContext.request.contextPath}/admin/main.adfc">대시보드</a>
 				</div>
-				<div class="sidebar-item">
+
+				<div class="admin-main-left-item">
 					<a
-						href="${pageContext.request.contextPath}/app/admin/main-management/qna-management.jsp">질의문
+						href="${pageContext.request.contextPath}/admin/insertQuestion.adfc">질의문
 						관리</a>
 				</div>
-				<div class="sidebar-item">
+
+				<div class="admin-main-left-item">
 					<a
-						href="${pageContext.request.contextPath}/app/admin/main-management/company-info.jsp">기업
+						href="${pageContext.request.contextPath}/admin/companyInfoListOk.adfc">기업
 						정보페이지</a>
 				</div>
-				<div class="sidebar-item">
+
+				<div class="admin-main-left-item">
 					<a
-						href="${pageContext.request.contextPath}/app/admin/main-management/roadmap-management.jsp">로드맵
+						href="${pageContext.request.contextPath}/admin/roadmapManagement.adfc">로드맵
 						관리</a>
 				</div>
 			</aside>
 
-			<section class="dashboard">
+			<section class="admin-main-content">
 
-				<div class="summary-cards">
-					<div class="card">
-						<div class="card-title">총 일반 회원 수</div>
-						<div class="card-value">20</div>
+				<h2 class="admin-main-dashboard-title">관리자 메인 대시보드</h2>
+				<p class="admin-main-desc">관리자가 자주 사용하는 기능으로 바로 이동할 수 있는 페이지입니다.</p>
+
+				<div class="admin-main-stats">
+					<div class="admin-main-stat-box">
+						<div class="admin-main-stat-box-title">총 일반 회원 수</div>
+						<div class="admin-main-stat-box-number">-</div>
 					</div>
 
-					<div class="card">
-						<div class="card-title">총 기업 회원 수</div>
-						<div class="card-value">20</div>
+					<div class="admin-main-stat-box">
+						<div class="admin-main-stat-box-title">총 기업 회원 수</div>
+						<div class="admin-main-stat-box-number">-</div>
 					</div>
 
-					<div class="card">
-						<div class="card-title">총 박람회 수</div>
-						<div class="card-value">10</div>
-					</div>
-				</div>
-
-				<div class="dashboard-section">
-					<h3>최근 일반 회원</h3>
-
-					<div class="table-box">
-						<div class="table-row table-head">
-							<div>회원번호</div>
-							<div>아이디</div>
-							<div>이름</div>
-							<div>가입일</div>
-						</div>
-
-						<div class="table-row">
-							<div>20</div>
-							<div>user20</div>
-							<div>노태윤</div>
-							<div>2026-02-26</div>
-						</div>
-
-						<div class="table-row">
-							<div>19</div>
-							<div>user19</div>
-							<div>강수아</div>
-							<div>2026-02-25</div>
-						</div>
-
-						<div class="table-row">
-							<div>18</div>
-							<div>user18</div>
-							<div>조민성</div>
-							<div>2026-02-24</div>
-						</div>
+					<div class="admin-main-stat-box">
+						<div class="admin-main-stat-box-title">총 박람회 수</div>
+						<div class="admin-main-stat-box-number">-</div>
 					</div>
 				</div>
 
-				<div class="dashboard-section">
-					<h3>최근 기업 회원</h3>
+				<div class="admin-main-shortcut-wrap">
 
-					<div class="table-box">
-						<div class="table-row table-head">
-							<div>회원번호</div>
-							<div>아이디</div>
-							<div>기업명</div>
-							<div>가입일</div>
-							<div>상태</div>
-						</div>
-
-						<div class="table-row">
-							<div>40</div>
-							<div>comp20</div>
-							<div>에버가드</div>
-							<div>2026-03-17</div>
-							<div>승인</div>
-						</div>
-
-						<div class="table-row">
-							<div>39</div>
-							<div>comp19</div>
-							<div>락포인트</div>
-							<div>2026-03-16</div>
-							<div>반려</div>
-						</div>
-
-						<div class="table-row">
-							<div>38</div>
-							<div>comp18</div>
-							<div>시큐브릿지</div>
-							<div>2026-03-15</div>
-							<div>승인</div>
-						</div>
+					<div class="admin-main-card">
+						<h3 class="admin-main-card-title">질의문 관리</h3>
+						<p class="admin-main-card-desc">질의문 조회, 수정, 저장을 관리합니다.</p>
+						<a class="admin-main-card-btn"
+							href="${pageContext.request.contextPath}/admin/insertQuestion.adfc">바로가기</a>
 					</div>
-				</div>
 
-				<div class="dashboard-section">
-					<h3>최근 박람회</h3>
-
-					<div class="table-box">
-						<div class="table-row table-head">
-							<div>박람회번호</div>
-							<div>박람회명</div>
-							<div>시작일</div>
-							<div>종료일</div>
-							<div>장소</div>
-						</div>
-
-						<div class="table-row">
-							<div>10</div>
-							<div>2026 청년 IT 보안 일자리 박람회</div>
-							<div>2026-07-01</div>
-							<div>2026-07-03</div>
-							<div>창원 컨벤션센터</div>
-						</div>
-
-						<div class="table-row">
-							<div>9</div>
-							<div>2026 AI 보안 기술 채용 박람회</div>
-							<div>2026-06-20</div>
-							<div>2026-06-21</div>
-							<div>서울 SETEC</div>
-						</div>
-
-						<div class="table-row">
-							<div>8</div>
-							<div>2026 개인정보보호 산업 박람회</div>
-							<div>2026-06-12</div>
-							<div>2026-06-14</div>
-							<div>수원 컨벤션센터</div>
-						</div>
+					<div class="admin-main-card">
+						<h3 class="admin-main-card-title">기업 정보페이지</h3>
+						<p class="admin-main-card-desc">기업 정보 목록 조회, 검색, 삭제를 관리합니다.</p>
+						<a class="admin-main-card-btn"
+							href="${pageContext.request.contextPath}/admin/companyInfoListOk.adfc">바로가기</a>
 					</div>
+
+					<div class="admin-main-card">
+						<h3 class="admin-main-card-title">로드맵 관리</h3>
+						<p class="admin-main-card-desc">직군별 로드맵 정보를 수정하고 저장합니다.</p>
+						<a class="admin-main-card-btn"
+							href="${pageContext.request.contextPath}/admin/roadmapManagement.adfc">바로가기</a>
+					</div>
+
+					<div class="admin-main-card">
+						<h3 class="admin-main-card-title">질의문 답변 목록</h3>
+						<p class="admin-main-card-desc">회원 답변을 확인하고 직군 판정을 진행합니다.</p>
+						<a class="admin-main-card-btn"
+							href="${pageContext.request.contextPath}/admin/jobCheck.adfc">바로가기</a>
+					</div>
+
 				</div>
 
 			</section>
@@ -196,5 +133,4 @@
 	</div>
 
 </body>
-
 </html>

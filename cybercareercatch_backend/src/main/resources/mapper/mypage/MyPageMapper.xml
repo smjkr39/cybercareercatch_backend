@@ -204,7 +204,7 @@
 		WHERE P.POST_TYPE = 'QNA_POST'
 		AND P.ANSWER_STATUS =
 		'답변대기'
-		AND CM.USER_NUMBER = #{value}
+		AND CM.USER_NUMBER = #{userNumber}
 		AND CM.COMPANY_MANAGER_STATE =
 		'ACTIVE'
 	</select>
@@ -395,6 +395,8 @@
 		)
 	</insert>
 
+	<!-- 기업회원 마이페이지 - 기업정보페이지 수정(기업소개 수정) -->
+	<!-- 사용 페이지 : companyPageEdit.jsp -->
 	<!-- 기업회원 마이페이지 - 기업정보페이지 수정(기업소개 수정) -->
 	<!-- 사용 페이지 : companyPageEdit.jsp -->
 	<update id="updateCompInfo" parameterType="CompanyInfoDTO">

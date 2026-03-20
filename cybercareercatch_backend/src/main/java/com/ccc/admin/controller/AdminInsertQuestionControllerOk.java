@@ -3,139 +3,63 @@ package com.ccc.admin.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ccc.common.Execute;
 import com.ccc.common.Result;
+import com.ccc.job.dao.JobDAO;
+import com.ccc.job.dto.JobRecommendQuestionDTO;
 
-/*
- * 관리자 관련 요청을 한 곳에서 받는 프론트 컨트롤러이다.
- */
-public class AdminFrontController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class AdminInsertQuestionControllerOk implements Execute {
 
-	public AdminFrontController() {
-		super();
-	}
-
-	/*
-	 * GET 방식 요청을 doProcess()로 넘긴다.
-	 */
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doProcess(request, response);
-	}
-
-	/*
-	 * POST 방식 요청을 doProcess()로 넘긴다.
-	 */
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doProcess(request, response);
-	}
-
-	/*
-	 * 실제 요청을 처리하는 메소드이다.
-	 */
-	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
+	public Result execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		/* 요청/응답 한글 처리 */
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
+		// 질의문 관련 DB 작업을 처리할 DAO 객체이다.
+		JobDAO jobDAO = new JobDAO();
 
-		/* 현재 요청 경로를 구한다. */
-		String target = request.getRequestURI().substring(request.getContextPath().length());
-		System.out.println("관리자 프론트 컨트롤러 진입 : " + target);
+		// 이동 정보를 담을 객체이다.
+		Result result = new Result();
 
-		/* 이동 정보를 담을 객체이다. */
-		Result result = null;
+		// 질문 1번부터 10번까지 반복하면서 저장한다.
+		for (int i = 1; i <= 10; i++) {
 
-		switch (target) {
+			// 질문 번호 파라미터를 가져온다.
+			String questionNumber = request.getParameter("jobQuestionNumber" + i);
 
-		/* =====================================================
-		   관리자 로그인 관련
-		===================================================== */
+			// 질문 내용 파라미터를 가져온다.
+			String questionContent = request.getParameter("jobQuestionContent" + i);
 
-		case "/admin/login.adfc":
-			System.out.println("관리자 로그인 페이지 요청");
-			result = new AdminLoginController().execute(request, response);
-			System.out.println("관리자 로그인 페이지 이동 완료");
-			break;
+			// 번호가 없거나 내용이 비어 있으면 해당 질문은 처리하지 않는다.
+			if (questionNumber == null || questionContent == null || questionContent.trim().equals("")) {
+				continue;
+			}
 
-		case "/admin/loginOk.adfc":
-			System.out.println("관리자 로그인 처리 요청");
-			result = new AdminLoginOkController().execute(request, response);
-			System.out.println("관리자 로그인 처리 완료");
-			break;
+			// DTO 객체를 생성한다.
+			JobRecommendQuestionDTO questionDTO = new JobRecommendQuestionDTO();
 
-		case "/admin/logout.adfc":
-			System.out.println("관리자 로그아웃 처리 요청");
-			result = new AdminLogoutController().execute(request, response);
-			System.out.println("관리자 로그아웃 처리 완료");
-			break;
+			// DTO에 질문 번호와 질문 내용을 저장한다.
+			questionDTO.setJobQuestionNumber(Integer.parseInt(questionNumber));
+			questionDTO.setJobQuestionContent(questionContent);
 
-		/* =====================================================
-		   질의문 관련
-		===================================================== */
+			// 기존에 해당 질문 번호가 존재하는지 확인한다.
+			JobRecommendQuestionDTO foundQuestion = jobDAO.selectQuestion(questionDTO.getJobQuestionNumber());
 
-		case "/admin/insertQuestion.adfc":
-			System.out.println("질의문 관리 페이지 요청");
-			result = new AdminInsertQuestionController().execute(request, response);
-			System.out.println("질의문 관리 페이지 이동 완료");
-			break;
-
-		case "/admin/insertQuestionOk.adfc":
-			System.out.println("질의문 질문 저장 처리 요청");
-			result = new AdminInsertQuestionControllerOk().execute(request, response);
-			System.out.println("질의문 질문 저장 처리 완료");
-			break;
-
-		case "/admin/jobCheck.adfc":
-			System.out.println("질의문 답변 목록 페이지 요청");
-			result = new AdminJobCheckController().execute(request, response);
-			System.out.println("질의문 답변 목록 페이지 이동 완료");
-			break;
-
-		case "/admin/jobCheckDetail.adfc":
-			System.out.println("질의문 답변 상세 페이지 요청");
-			result = new AdminJobCheckDetailController().execute(request, response);
-			System.out.println("질의문 답변 상세 페이지 이동 완료");
-			break;
-
-		case "/admin/judgeJobResult.adfc":
-			System.out.println("질의문 직군 판정 저장 요청");
-			result = new AdminJudgeJobResultController().execute(request, response);
-			System.out.println("질의문 직군 판정 저장 완료");
-			break;
-
-		/* =====================================================
-		   로드맵 관련
-		===================================================== */
-
-		case "/admin/roadmapManagement.adfc":
-			System.out.println("관리자 로드맵 관리 페이지 요청");
-			result = new AdminRoadmapManagementController().execute(request, response);
-			System.out.println("관리자 로드맵 관리 페이지 이동 완료");
-			break;
-
-		case "/admin/updateRoadmap.adfc":
-			System.out.println("관리자 로드맵 수정 저장 요청");
-			result = new AdminUpdateRoadmapController().execute(request, response);
-			System.out.println("관리자 로드맵 수정 저장 완료");
-			break;
-		}
-
-		/* 이동 정보가 있으면 forward 또는 redirect를 처리한다. */
-		if (result != null && result.getPath() != null) {
-			if (result.isRedirect()) {
-				response.sendRedirect(result.getPath());
+			// 기존 질문이 있으면 수정한다.
+			if (foundQuestion != null) {
+				jobDAO.updateQuestion(questionDTO);
 			} else {
-				request.getRequestDispatcher(result.getPath()).forward(request, response);
+				// 기존 질문이 없으면 새로 등록한다.
+				jobDAO.insertQuestion(questionDTO);
 			}
 		}
+
+		// 저장 후 다시 질의문 관리 페이지로 이동한다.
+		result.setPath(request.getContextPath() + "/admin/insertQuestion.adfc");
+		result.setRedirect(true);
+
+		return result;
 	}
 }

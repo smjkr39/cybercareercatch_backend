@@ -35,8 +35,8 @@ public class JobDAO {
 	}
 
 	// 질의문 작성
-	public void insertQuestion(JobRecommendQuestionDTO jobRecommendQuestionDTO) {
-		sqlSession.insert("job.insertQuestion", jobRecommendQuestionDTO);
+	public int insertQuestion(JobRecommendQuestionDTO jobRecommendQuestionDTO) {
+		return sqlSession.insert("job.insertQuestion", jobRecommendQuestionDTO);
 	}
 
 	// 질의문 수정
