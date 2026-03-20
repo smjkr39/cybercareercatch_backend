@@ -32,7 +32,7 @@ public class MypageMemberEditInfoController implements Execute{
 		
 		// 비로그인
 		if (userNumber == null) {
-			result.setPath(request.getContextPath() + "/member/login.mpfc");
+			result.setPath(request.getContextPath() + "/member/login.mefc");
 			result.setRedirect(true);
 			return result;
 		}

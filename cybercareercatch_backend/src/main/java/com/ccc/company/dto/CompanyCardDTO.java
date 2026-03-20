@@ -96,14 +96,6 @@ public class CompanyCardDTO {
         this.compSummary = compSummary;
     }
 
-    public String getCompType() {
-        return compType;
-    }
-
-    public void setCompType(String compType) {
-        this.compType = compType;
-    }
-
     public String getFilePath() {
         return filePath;
     }
@@ -190,7 +182,6 @@ public class CompanyCardDTO {
                 + ", companyAddress=" + companyAddress
                 + ", companyState=" + companyState
                 + ", compSummary=" + compSummary
-                + ", compType=" + compType
                 + ", filePath=" + filePath
                 + ", compPageDate=" + compPageDate
                 + ", cat1IsHiring=" + cat1IsHiring

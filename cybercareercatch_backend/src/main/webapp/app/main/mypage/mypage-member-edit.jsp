@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -10,10 +13,13 @@
 <title>일반회원 마이페이지(수정)</title>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/main/mypage/mypage-member-edit.css">
+	href="${contextPath}/assets/css/main/mypage/mypage-member-edit.css">
 
+<script>
+	const contextPath = "${contextPath}";
+</script>
 <script defer
-	src="${pageContext.request.contextPath}/assets/js/main/mypage/member-mypage-edit.js"></script>
+	src="${contextPath}/assets/js/main/mypage/member-mypage-edit.js"></script>
 </head>
 
 <body>
@@ -23,7 +29,7 @@
 
 			<!-- 회원정보 변경 -->
 			<form id="member-phone-form"
-				action="${pageContext.request.contextPath}/mypage/member/updatePhone.mpfc"
+				action="${contextPath}/mypage/member/update-phone.my"
 				method="post">
 
 				<div class="mypage-subtitle">회원정보 변경</div>
@@ -32,7 +38,7 @@
 					<div class="mypage-info-box">
 						<div class="mypage-info-title">아이디</div>
 						<div class="mypage-input-wrap">
-							<div class="mypage-info-text" id="member-id">${memberMypageInfoDTO.userId}</div>
+							<div class="mypage-info-text" id="member-id">${memberInfo.userId}</div>
 						</div>
 					</div>
 
@@ -41,7 +47,7 @@
 						<div class="mypage-input-wrap">
 							<input type="text" name="userPhone" class="mypage-info-text"
 								id="member-phonenumber"
-								value="${memberMypageInfoDTO.userPhone}"
+								value="${memberInfo.userPhone}"
 								placeholder="01012345678"
 								maxlength="11">
 							<div class="input-message" id="member-phonenumber-message">${phoneMessage}</div>
@@ -70,7 +76,7 @@
 
 			<!-- 비밀번호 변경 -->
 			<form id="member-password-form"
-				action="${pageContext.request.contextPath}/mypage/member/updatePw.mpfc"
+				action="${contextPath}/mypage/member/update-password.my"
 				method="post">
 
 				<div class="mypage-subtitle">비밀번호 변경</div>
@@ -113,7 +119,7 @@
 			</form>
 
 			<div class="member-quit-wrap">
-				<a href="${pageContext.request.contextPath}/mypage/member/quit.mpfc" class="btn"
+				<a href="${contextPath}/mypage/member/quit.my" class="btn"
 					id="member-quit">회원탈퇴</a>
 			</div>
 		</div>
