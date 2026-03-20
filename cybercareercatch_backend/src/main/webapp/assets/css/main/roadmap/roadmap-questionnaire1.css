@@ -1,56 +1,62 @@
-/* 축약어 주석 동일 */
-
-      /* Abbrev(축약어) 규칙
-      rmq = RoadMap Questionnaire (이 페이지 공통 prefix)
-      hdr = header(상단 타이틀 영역)
-      job = job cards(직무 카드 영역)
-      map = roadmap image(로드맵 이미지 영역)
-      more = 더보기 버튼 영역
-      pnl = panel(테두리 있는 박스/카드 단위)
-      frm = frame(패널 외곽 테두리)
-      box = 패널 내부 컨텐츠 박스
-      head = 패널 헤더(번호/제목 줄)
-      row = 한 줄(좌/우 또는 단일 항목)
-      colL/colR = 좌/우 컬럼
-      grid = 2열 배치 영역
-      col = grid의 컬럼
-      it = item(단일 항목)
-      ic = icon
-      img = image
-     */
-
 .rmq-wrap {
     width: 1440px;
     margin: 0 auto;
-    min-height: auto;
-    border: solid 1px black;
+    padding: 40px 0 60px;
+    box-sizing: border-box;
+    font-family: "Malgun Gothic", sans-serif;
+    color: #222222;
+}
+
+.rmq-tab-wrap {
+    width: 1200px;
+    margin: 0 auto 30px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.rmq-tab {
+    min-width: 150px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    border: 1px solid #cfd6ea;
+    background: #f7f9ff;
+    text-decoration: none;
+    color: #333333;
+    font-weight: 700;
+    text-align: center;
+}
+
+.rmq-tab-active {
+    background: #7d84e6;
+    border-color: #7d84e6;
+    color: #ffffff;
 }
 
 .rmq-hdr {
     width: 1200px;
-    height: 200px;
+    min-height: 200px;
     display: flex;
-    margin: auto;
-    margin-top: 40px;
+    margin: 0 auto;
     justify-content: center;
+    align-items: center;
 }
 
 .rmq-hdr-ic {
-    width: 10%;
-    height: 100%;
+    width: 120px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .rmq-hdr-ic-img {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
 }
 
 .rmq-hdr-content {
-    width: 60%;
-    height: 100%;
+    width: calc(100% - 120px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,22 +64,22 @@
 }
 
 .rmq-hdr-titlebox h1 {
-    display: flex;
-    justify-items: center;
-    flex-direction: column;
+    margin: 0 0 14px;
     text-align: center;
+    font-size: 34px;
 }
 
-.rmq-hdr-subbox h5{
+.rmq-hdr-subbox h5 {
+    margin: 0;
     text-align: center;
+    line-height: 1.7;
+    font-size: 16px;
+    font-weight: 400;
 }
-
-/* main2 */
 
 .rmq-job {
     width: 1200px;
-    height: 500px;
-    margin: 100px auto 0;
+    margin: 70px auto 0;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -82,230 +88,237 @@
 .rmq-job-rowtop,
 .rmq-job-rowbottom {
     width: 100%;
-    height: 50%;
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
 .rmq-job-card {
-    width: 30%;
-    height: 100%;
-    border: solid rgb(0, 0, 0, 0.2);
-    border-radius: 3%;
+    width: 33.3333%;
+    min-height: 220px;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    border-radius: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
+    background: #ffffff;
 }
 
 .rmq-job-cardin {
-    width: 90%;
-    height: 90%;
+    width: 88%;
+    min-height: 180px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
 }
 
 .rmq-job-cardttl {
     width: 100%;
-    height: 40%;
+    min-height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    border-bottom: solid rgba(1, 1, 1, 0.2);
+    border-bottom: 1px solid rgba(1, 1, 1, 0.15);
+    padding-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.rmq-job-cardttl h3 {
+    margin: 0;
+    font-size: 22px;
 }
 
 .rmq-job-carddesc {
     width: 100%;
-    height: 60%;
     text-align: center;
+    padding-top: 18px;
+    box-sizing: border-box;
 }
 
-/* main3 */
+.rmq-job-carddesc h5 {
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.7;
+    font-size: 15px;
+}
 
 .rmq-map {
     width: 1200px;
-    min-height: 600px;
-    margin: auto;
-    margin-top: 60px;
+    min-height: 520px;
+    margin: 60px auto 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .rmq-map img {
+    width: 100%;
+    max-height: 520px;
+    object-fit: contain;
+    display: block;
+}
+
+.rmq-map-placeholder {
+    width: 100%;
+    min-height: 420px;
+    border: 2px dashed #c9d0ea;
+    border-radius: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1200px;
+    color: #6a7399;
+    font-size: 22px;
+    background: #f8faff;
 }
 
 .rmq-more {
     width: 1200px;
-    margin: auto;
-    margin-top: 30px;
-    height: 30px;
+    margin: 24px auto 0;
     display: flex;
-    justify-content: right;
+    justify-content: flex-end;
 }
 
-/* step list */
+#showmore {
+    min-width: 110px;
+    height: 42px;
+    background-color: #7d84e6;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
 
 .rmq-steplist {
     width: 1200px;
-    height: auto;
-    margin: auto;
-    margin-top: 40px;
+    margin: 30px auto 0;
+    display: none;
+}
+
+.rmq-steplist.active {
+    display: block;
 }
 
 .rmq-pnl {
     width: 100%;
-    height: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 14px;
 }
 
 .rmq-pnl-frm {
     width: 1200px;
-    height: 95%;
-    border: solid rgba(1, 1, 1, 0.2);
-    margin: auto;
+    border: 1px solid rgba(1, 1, 1, 0.15);
     box-sizing: border-box;
-    margin-bottom: 30px;
-    border-radius: 5px;
+    margin-bottom: 16px;
+    border-radius: 16px;
+    background: #ffffff;
 }
 
 .rmq-pnl-box {
     width: 95%;
-    height: 100%;
-    margin: auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    margin-bottom: 10px;
+    padding-bottom: 12px;
 }
 
 .rmq-pnl-head {
     display: flex;
     align-items: center;
     gap: 20px;
-    padding: 10px 15px;
+    padding: 18px 6px;
     box-sizing: border-box;
-    border-bottom: solid rgba(1, 1, 1, 0.2);
-    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(1, 1, 1, 0.15);
+    margin-bottom: 8px;
 }
 
 .rmq-pnl-head h1 {
     margin: 0;
-}
-
-.rmq-pnl-head img {
-    width: 50px;
-    height: 50px;
-    display: block;
+    font-size: 28px;
 }
 
 .rmq-pnl-row {
     width: 100%;
-    min-height: 40px;
+    min-height: 54px;
     display: flex;
     box-sizing: border-box;
+    border-bottom: 1px solid #f0f2f7;
 }
 
 .rmq-pnl-coll {
-    width: 20%;
-    padding: 10px 15px;
+    width: 24%;
+    padding: 14px 12px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
+    font-weight: 700;
 }
 
 .rmq-pnl-colr {
-    width: 80%;
-    padding: 10px 15px;
+    width: 76%;
+    padding: 14px 12px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
 }
 
 .rmq-pnl-coll h3,
-.rmq-pnl-colr h3 {
+.rmq-pnl-colr h3,
+.rmq-pnl-it h3 {
     margin: 0;
+    line-height: 1.6;
+    font-size: 16px;
 }
 
-/* 추천 단일 항목 */
-.rmq-pnl-rowit,
-.rmq-pnl-rowitwide {
+.rmq-pnl-rowitwide,
+.rmq-pnl-rowit {
     width: 100%;
     display: flex;
     box-sizing: border-box;
+    border-bottom: 1px solid #f0f2f7;
 }
 
 .rmq-pnl-it {
     width: 100%;
     display: flex;
     align-items: center;
-    padding: 8px;
-}
-
-.rmq-pnl-it h3 {
-    margin: 0;
+    padding: 14px 12px;
+    box-sizing: border-box;
 }
 
 .rmq-grid {
     display: flex;
     width: 1200px;
-    height: auto;
-    margin: auto;
-    gap: 5px;
+    margin: 0 auto;
+    gap: 20px;
 }
 
 .rmq-col {
-    width: 49.8%;
-    height: 30%;
+    width: 50%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: auto;
+    align-items: stretch;
 }
 
-/* 더보기 버튼 */
-#showmore {
-    width: 70px;
-    height: 30px;
-    background-color: #7d84e6;
-    color: white;
-    border-color: white;
-    border-radius: 5px;
-}
-
-/* 채용공고 버튼 */
 #cnldjq {
     width: 1200px;
-    height: 200px;
-    border: solid #7d84e6;
-    margin: auto;
+    height: 140px;
+    border: 2px solid #7d84e6;
+    margin: 20px auto 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 18px;
     background-color: white;
-    margin-bottom: 50px;
-
+    cursor: pointer;
 }
 
 #cnldjq h1 {
     color: #7d84e6;
-}
-
-.rmq-steplist {
-    display: none;
-}
-
-.rmq-steplist.active {
-    display: block;
+    margin: 0;
 }

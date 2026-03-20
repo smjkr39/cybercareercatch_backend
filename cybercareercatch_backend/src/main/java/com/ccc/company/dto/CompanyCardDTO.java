@@ -1,5 +1,8 @@
 package com.ccc.company.dto;
 
+/*
+ * 관리자 기업 정보페이지 목록에서 사용하는 DTO이다.
+ */
 public class CompanyCardDTO {
 
     // =========================

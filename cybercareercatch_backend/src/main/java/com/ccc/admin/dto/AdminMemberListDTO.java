@@ -7,8 +7,6 @@ public class AdminMemberListDTO {
     private String userName;
     private String userJoinDate;
 
-    public AdminMemberListDTO() {}
-
     public int getUserNumber() {
         return userNumber;
     }

@@ -8,59 +8,60 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.ccc.common.Execute;
-import com.ccc.common.Result;
 import com.ccc.admin.dao.AdminDAO;
 import com.ccc.admin.dto.AdminDTO;
+import com.ccc.common.Execute;
+import com.ccc.common.Result;
 
-public class AdminLoginOkController implements Execute{
+/*
+ * 관리자 로그인 처리를 담당하는 컨트롤러이다.
+ */
+public class AdminLoginOkController implements Execute {
 
 	@Override
 	public Result execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		AdminDTO adminDTO = new AdminDTO();
+
 		AdminDAO adminDAO = new AdminDAO();
-		int adminNumber = 0;
+		AdminDTO adminDTO = new AdminDTO();
 		Result result = new Result();
-		
+
 		String adminId = request.getParameter("adminId");
 		String adminPw = request.getParameter("adminPw");
 		String remember = request.getParameter("remember");
-		HttpSession session = request.getSession(); //+++ 세션저장
-		String path = null;
-		
+
 		adminDTO.setAdminId(adminId);
 		adminDTO.setAdminPw(adminPw);
-		
-		//쿼리문 실행 메소드 호출
-		adminNumber = adminDAO.login(adminDTO);
-		System.out.println(adminNumber); 
-		
-		if(adminNumber != -1) {
-			path = request.getContextPath() + "/admin/main.adfc";
-			session.setAttribute("adminNumber", adminNumber);
-			System.out.println("세션값 : " + adminNumber);
-			
-			if(remember != null) {
+
+		/* DB에서 관리자 계정 조회 */
+		AdminDTO loginAdmin = adminDAO.login(adminDTO);
+
+		if (loginAdmin != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("adminNumber", loginAdmin.getAdminNumber());
+			session.setAttribute("loginAdmin", loginAdmin);
+
+			if (remember != null) {
 				Cookie cookie = new Cookie("adminId", adminId);
-				cookie.setMaxAge(60 * 60 * 24); //1일
+				cookie.setMaxAge(60 * 60 * 24 * 30);
+				cookie.setPath(request.getContextPath().isEmpty() ? "/" : request.getContextPath());
 				response.addCookie(cookie);
-			}else {
-				//체크 해제시 쿠키 삭제
+			} else {
 				Cookie cookie = new Cookie("adminId", "");
 				cookie.setMaxAge(0);
+				cookie.setPath(request.getContextPath().isEmpty() ? "/" : request.getContextPath());
 				response.addCookie(cookie);
 			}
-		}else {
-			path = request.getContextPath() + "/admin/login.adfc?login=fail";
+
+			result.setPath(request.getContextPath() + "/admin/main.adfc");
+			result.setRedirect(true);
+			return result;
 		}
-		
-		result.setRedirect(true); //세션에 저장된 값은 유지
-		result.setPath(path);
-		
-		
+
+		/* 로그인 실패 시 로그인창 유지 */
+		result.setPath(request.getContextPath() + "/admin/login.adfc?login=fail");
+		result.setRedirect(true);
+
 		return result;
 	}
-
 }

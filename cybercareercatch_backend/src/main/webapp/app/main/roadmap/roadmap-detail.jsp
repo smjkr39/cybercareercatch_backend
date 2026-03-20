@@ -16,51 +16,17 @@
 	<div class="rmq-wrap">
 
 		<div class="rmq-tab-wrap">
+			<a href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=1"
+				class="rmq-tab ${jobNumber == 1 ? 'rmq-tab-active' : ''}">보안컨설팅</a>
 
-			<c:choose>
-				<c:when test="${jobNumber == 1}">
-					<a href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=1"
-						class="rmq-tab rmq-tab-active">보안컨설팅</a>
-				</c:when>
-				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=1"
-						class="rmq-tab">보안컨설팅</a>
-				</c:otherwise>
-			</c:choose>
+			<a href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=2"
+				class="rmq-tab ${jobNumber == 2 ? 'rmq-tab-active' : ''}">시스템/네트워크</a>
 
-			<c:choose>
-				<c:when test="${jobNumber == 2}">
-					<a href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=2"
-						class="rmq-tab rmq-tab-active">시스템/네트워크</a>
-				</c:when>
-				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=2"
-						class="rmq-tab">시스템/네트워크</a>
-				</c:otherwise>
-			</c:choose>
+			<a href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=3"
+				class="rmq-tab ${jobNumber == 3 ? 'rmq-tab-active' : ''}">보안관제</a>
 
-			<c:choose>
-				<c:when test="${jobNumber == 3}">
-					<a href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=3"
-						class="rmq-tab rmq-tab-active">보안관제</a>
-				</c:when>
-				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=3"
-						class="rmq-tab">보안관제</a>
-				</c:otherwise>
-			</c:choose>
-
-			<c:choose>
-				<c:when test="${jobNumber == 4}">
-					<a href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=4"
-						class="rmq-tab rmq-tab-active">침해사고/포렌식</a>
-				</c:when>
-				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=4"
-						class="rmq-tab">침해사고/포렌식</a>
-				</c:otherwise>
-			</c:choose>
-
+			<a href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=4"
+				class="rmq-tab ${jobNumber == 4 ? 'rmq-tab-active' : ''}">침해사고/포렌식</a>
 		</div>
 
 		<main class="rmq-hdr">
@@ -287,8 +253,7 @@
 		</main>
 
 		<main>
-			<button class="btn" id="cnldjq" type="button"
-				onclick="location.href='${pageContext.request.contextPath}/app/main/company/company-ad.jsp'">
+			<button class="btn" id="cnldjq" type="button">
 				<h1>채용공고 바로가기</h1>
 			</button>
 		</main>
