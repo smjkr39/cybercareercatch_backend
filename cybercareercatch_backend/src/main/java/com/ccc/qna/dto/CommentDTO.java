@@ -1,15 +1,14 @@
 package com.ccc.qna.dto;
 
-public class QnaCommentDTO {
+public class CommentDTO {
 	private Long commentNumber;
 	private Long postNumber;
 	private Long userNumber;
 	private String memberId;
 	private String commentContent;
 	private String commentCreatedDate;
-
 	
-	public QnaCommentDTO() {;}
+	public CommentDTO() {;}
 
 	public Long getCommentNumber() {
 		return commentNumber;
@@ -31,8 +30,8 @@ public class QnaCommentDTO {
 		return userNumber;
 	}
 
-	public void setUserNumber(Long i) {
-		this.userNumber = i;
+	public void setUserNumber(Long userNumber) {
+		this.userNumber = userNumber;
 	}
 
 	public String getMemberId() {
@@ -57,5 +56,12 @@ public class QnaCommentDTO {
 
 	public void setCommentCreatedDate(String commentCreatedDate) {
 		this.commentCreatedDate = commentCreatedDate;
+	}
+
+	@Override
+	public String toString() {
+		return "CommentDTO [commentNumber=" + commentNumber + ", postNumber=" + postNumber + ", userNumber="
+				+ userNumber + ", memberId=" + memberId + ", commentContent=" + commentContent
+				+ ", commentCreatedDate=" + commentCreatedDate + "]";
 	}
 }
