@@ -90,6 +90,17 @@ public class MemberFrontController extends HttpServlet {
 		case "/member/checkIdOk.mefc":
 			result = new CheckIdOkController().execute(request, response);
 			break;
+		case "/member/findPw.mefc":
+			result = new FindPwCheckController().execute(request, response);
+			break;
+		case "/member/findPwOk.mefc":
+			result = new FindPwOkController().execute(request, response);
+			break;
+		case "/member/find-password.mefc":
+			result = new Result();
+			result.setPath("/app/main/account/find-password.jsp");
+			result.setRedirect(false);
+			break;
 		default:
 			System.out.println("어디로감?");
 		}

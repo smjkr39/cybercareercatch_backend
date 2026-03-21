@@ -34,8 +34,22 @@
 	</insert>
 
 	<select id="checkId" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM TBL_USER
+		SELECT
+		COUNT(*) FROM TBL_USER
 		WHERE USER_ID = #{userId}
 	</select>
+
+	<select id="checkIdAndPhone" parameterType="UserDTO"
+		resultType="int">
+		SELECT COUNT(*) FROM TBL_USER
+		WHERE USER_ID = #{userId}
+		AND USER_PHONE = #{userPhone}
+	</select>
+
+	<update id="updatePw" parameterType="UserDTO">
+		UPDATE TBL_USER
+		SET USER_PW = #{userPassword}
+		WHERE USER_ID = #{userId}
+	</update>
 
 </mapper>
