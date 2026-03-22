@@ -11,8 +11,11 @@ public class CompanyDetailDTO {
 	private String compCeoName;
 	private int compFndYear;
 	private int compEmplCnt;
-	private int compRev;
-	private int compCap;
+
+	// 매출액 / 자본금은 숫자가 클 수 있어서 int 말고 String으로 받는다.
+	private String compRev;
+	private String compCap;
+
 	private String compType;
 	private String compSummary;
 	private String compTech;
@@ -101,19 +104,19 @@ public class CompanyDetailDTO {
 		this.compEmplCnt = compEmplCnt;
 	}
 	
-	public int getCompRev() {
+	public String getCompRev() {
 		return compRev;
 	}
 	
-	public void setCompRev(int compRev) {
+	public void setCompRev(String compRev) {
 		this.compRev = compRev;
 	}
 	
-	public int getCompCap() {
+	public String getCompCap() {
 		return compCap;
 	}
 	
-	public void setCompCap(int compCap) {
+	public void setCompCap(String compCap) {
 		this.compCap = compCap;
 	}
 	
@@ -239,18 +242,31 @@ public class CompanyDetailDTO {
 
 	@Override
 	public String toString() {
-		return "CompanyDetailDTO [companyNumber=" + companyNumber + ", companyName=" + companyName + ", companyAddress="
-				+ companyAddress + ", companyState=" + companyState + ", CompanyBrn=" + companyBrn + ", filePath="
-				+ filePath + ", compCeoName=" + compCeoName + ", compFndYear=" + compFndYear + ", compEmplCnt="
-				+ compEmplCnt + ", compRev=" + compRev + ", compCap=" + compCap + ", compType=" + compType
-				+ ", compSummary=" + compSummary + ", compTech=" + compTech + ", compMainBiz=" + compMainBiz
-				+ ", compInfo=" + compInfo + ", compSvcHist=" + compSvcHist + ", jobPostProfile=" + jobPostProfile
-				+ ", jobPostContent=" + jobPostContent + ", jobPostProcess=" + jobPostProcess + ", jobPostMethod="
-				+ jobPostMethod + ", jobPostDate=" + jobPostDate + ", cat1IsHiring=" + cat1IsHiring + ", cat2IsHiring="
-				+ cat2IsHiring + ", cat3IsHiring=" + cat3IsHiring + ", cat4IsHiring=" + cat4IsHiring + "]";
+		return "CompanyDetailDTO [companyNumber=" + companyNumber 
+				+ ", companyName=" + companyName
+				+ ", companyAddress=" + companyAddress 
+				+ ", companyState=" + companyState 
+				+ ", companyBrn=" + companyBrn
+				+ ", filePath=" + filePath 
+				+ ", compCeoName=" + compCeoName 
+				+ ", compFndYear=" + compFndYear
+				+ ", compEmplCnt=" + compEmplCnt 
+				+ ", compRev=" + compRev 
+				+ ", compCap=" + compCap
+				+ ", compType=" + compType 
+				+ ", compSummary=" + compSummary 
+				+ ", compTech=" + compTech
+				+ ", compMainBiz=" + compMainBiz 
+				+ ", compInfo=" + compInfo 
+				+ ", compSvcHist=" + compSvcHist
+				+ ", jobPostProfile=" + jobPostProfile 
+				+ ", jobPostContent=" + jobPostContent
+				+ ", jobPostProcess=" + jobPostProcess 
+				+ ", jobPostMethod=" + jobPostMethod
+				+ ", jobPostDate=" + jobPostDate 
+				+ ", cat1IsHiring=" + cat1IsHiring 
+				+ ", cat2IsHiring=" + cat2IsHiring
+				+ ", cat3IsHiring=" + cat3IsHiring 
+				+ ", cat4IsHiring=" + cat4IsHiring + "]";
 	}
-	
-	
-
-	
 }
