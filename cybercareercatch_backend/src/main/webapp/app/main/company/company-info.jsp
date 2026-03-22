@@ -6,8 +6,14 @@
 
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
     <title>기업 정보페이지 관리</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin/main-management/company-info.css">
+=======
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberCareerCatch</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main/company/company-info.css">
+>>>>>>> 8158ab0 (260322 김진옥메인 수정)
 </head>
 
 <body class="companyInfo-body">
@@ -235,8 +241,8 @@
               <td class="cmp-hdr-meta-lbl">매출액</td>
               <td>
                 <c:choose>
-                  <c:when test="${companyDetail.compRev gt 0}">
-                    ${companyDetail.compRev}
+                  <c:when test="${not empty companyDetail.compRev}">
+                    <c:out value="${companyDetail.compRev}" />
                   </c:when>
                   <c:otherwise>-</c:otherwise>
                 </c:choose>

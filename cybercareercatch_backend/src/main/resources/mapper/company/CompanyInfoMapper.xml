@@ -53,7 +53,7 @@
             C.COMPANY_ADDRESS AS companyAddress,
             C.COMPANY_STATE AS companyState,
             C.COMPANY_BRN AS companyBrn,
-            NVL(CI.COMP_IMAGE_PATH, F.FILE_PATH) AS filePath,
+            F.FILE_PATH AS filePath,
             CI.COMP_CEO_NAME AS compCeoName,
             CI.COMP_FND_YEAR AS compFndYear,
             CI.COMP_EMPL_CNT AS compEmplCnt,

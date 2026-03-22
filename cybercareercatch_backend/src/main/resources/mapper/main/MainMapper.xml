@@ -7,13 +7,88 @@
 
     <!-- 메인 상단 질문 1개 조회 -->
     <select id="selectMainQuestion"
+<<<<<<< HEAD
             parameterType="JobRecommendQuestionDTO" resultType="JobRecommendQuestionDTO">
+=======
+            resultType="com.ccc.job.dto.JobRecommendQuestionDTO"
+            parameterType="int">
+>>>>>>> 8158ab0 (260322 김진옥메인 수정)
         SELECT
             JOB_QUESTION_NUMBER AS jobQuestionNumber,
             JOB_QUESTION_CONTENT AS jobQuestionContent
         FROM TBL_JOB_RECOMMEND_QUESTION
         WHERE JOB_QUESTION_NUMBER = #{jobQuestionNumber}
     </select>
+
+    <!-- 메인 질문 총 개수 조회 -->
+    <select id="selectMainQuestionCount" resultType="int">
+        SELECT COUNT(JOB_QUESTION_NUMBER)
+        FROM TBL_JOB_RECOMMEND_QUESTION
+    </select>
+
+    <!-- 일반회원 여부 확인 -->
+    <select id="checkGeneralMember" parameterType="int" resultType="int">
+        SELECT COUNT(*)
+        FROM TBL_USER
+        WHERE USER_NUMBER = #{value}
+          AND USER_TYPE = '일반회원'
+    </select>
+
+    <!-- 직군검사 결과 1건 생성 -->
+    <insert id="insertMainJobResult"
+            parameterType="com.ccc.job.dto.JobTestResultDTO">
+        <selectKey keyProperty="jobResultNumber" resultType="int" order="BEFORE">
+            SELECT SEQ_JOB_RESULT.NEXTVAL
+            FROM DUAL
+        </selectKey>
+
+        INSERT INTO TBL_JOB_RESULT (
+            JOB_RESULT_NUMBER,
+            USER_NUMBER,
+            JOB_RESULT_STATUS,
+            JOB_RESULT_CREATED_DATE
+        ) VALUES (
+            #{jobResultNumber},
+            #{userNumber},
+            '진행중',
+            SYSDATE
+        )
+    </insert>
+
+    <!-- 직군검사 최종 제출 처리 -->
+    <update id="updateMainJobResultSubmitted" parameterType="int">
+        UPDATE TBL_JOB_RESULT
+        SET JOB_RESULT_STATUS = '제출완료'
+        WHERE JOB_RESULT_NUMBER = #{value}
+    </update>
+
+    <!-- 메인 상단 질문 1개 저장 -->
+    <insert id="insertMainAnswer"
+            parameterType="com.ccc.job.dto.JobTestSubmitDTO">
+        INSERT INTO TBL_JOB_RESULT_ANSWER (
+            JOB_RESULT_NUMBER,
+            JOB_QUESTION_NUMBER,
+            JOB_QUESTION_CONTENT_SNAPSHOT,
+            ANSWER_CONTENT
+        ) VALUES (
+            #{jobResultNumber},
+            #{jobQuestionNumber},
+            #{jobQuestionContentSnapshot},
+            #{answerContent}
+        )
+    </insert>
+
+    <!-- 진행중 답변 삭제 -->
+    <delete id="deleteMainJobResultAnswers" parameterType="int">
+        DELETE FROM TBL_JOB_RESULT_ANSWER
+        WHERE JOB_RESULT_NUMBER = #{value}
+    </delete>
+
+    <!-- 진행중 결과 삭제 -->
+    <delete id="deleteMainJobResult" parameterType="int">
+        DELETE FROM TBL_JOB_RESULT
+        WHERE JOB_RESULT_NUMBER = #{value}
+    </delete>
 
     <!-- 메인 추천 직군 유형 4개 조회 -->
     <select id="selectMainJobGroupList"
@@ -22,6 +97,7 @@
             JOB_NUMBER AS jobNumber,
             JOB_NAME AS jobName
         FROM TBL_JOB_GROUP
+        WHERE JOB_NUMBER BETWEEN 1 AND 4
         ORDER BY JOB_NUMBER ASC
     </select>
 
@@ -36,7 +112,7 @@
                 C.COMPANY_ADDRESS AS companyAddress,
                 C.COMPANY_STATE AS companyState,
                 CI.COMP_SUMMARY AS compSummary,
-                NVL(CI.COMP_IMAGE_PATH, F.FILE_PATH) AS filePath,
+                F.FILE_PATH AS filePath,
                 TO_CHAR(CI.COMP_PAGE_DATE, 'YYYY-MM-DD') AS compPageDate,
                 NVL(JP.CAT1_IS_HIRING, 0) AS cat1IsHiring,
                 NVL(JP.CAT2_IS_HIRING, 0) AS cat2IsHiring,
@@ -83,7 +159,7 @@
         WHERE ROWNUM &lt;= 5
     </select>
 
-    <!-- 메인 기업 Q&A 최신글 5개 조회 -->
+    <!-- 메인 기업 QNA 최신글 5개 조회 -->
     <select id="selectMainQnaList"
             resultType="QnaListDTO">
         SELECT *
@@ -122,6 +198,7 @@
         ORDER BY START_DATE ASC, EXPO_NUMBER ASC
     </select>
 
+<<<<<<< HEAD
     <insert id="insertMainAnswer"
         parameterType="JobTestSubmitDTO">
     INSERT INTO TBL_JOB_RESULT_ANSWER (
@@ -137,4 +214,6 @@
     )
 </insert>
 
+=======
+>>>>>>> 8158ab0 (260322 김진옥메인 수정)
 </mapper>

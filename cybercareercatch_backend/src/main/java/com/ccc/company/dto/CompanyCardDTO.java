@@ -8,8 +8,8 @@ public class CompanyCardDTO {
     // =========================
     // 기업 카드 / 기업 홍보 목록 출력용 필드
     // =========================
-	
-	private String sortType; // 정렬 방식을 저장하는 필드이다.
+
+    private String sortType; // 정렬 방식
 
     // 기업 번호
     private int companyNumber;
@@ -46,8 +46,6 @@ public class CompanyCardDTO {
     // =========================
 
     // 직군 필터 번호
-    // 지금 기업홍보 목록 쿼리에서 안 쓸 수도 있지만,
-    // 다른 목록 조회 쿼리와 같이 재사용할 가능성이 있으면 남겨둬도 된다.
     private Integer jobNumber;
 
     // 페이징 시작 행 번호
@@ -57,7 +55,8 @@ public class CompanyCardDTO {
     private Integer endRow;
 
     // 기본 생성자
-    public CompanyCardDTO() {;}
+    public CompanyCardDTO() {
+    }
 
     public int getCompanyNumber() {
         return companyNumber;
@@ -97,6 +96,14 @@ public class CompanyCardDTO {
 
     public void setCompSummary(String compSummary) {
         this.compSummary = compSummary;
+    }
+
+    public String getCompType() {
+        return compType;
+    }
+
+    public void setCompType(String compType) {
+        this.compType = compType;
     }
 
     public String getFilePath() {
@@ -171,20 +178,22 @@ public class CompanyCardDTO {
         this.endRow = endRow;
     }
 
-    public String getSortType() { // 정렬 방식을 반환하는 getter 메소드이다.
-    	return sortType; // sortType 값을 반환한다.
+    public String getSortType() {
+        return sortType;
     }
 
-    public void setSortType(String sortType) { // 정렬 방식을 저장하는 setter 메소드이다.
-    	this.sortType = sortType; // 전달받은 sortType 값을 필드에 저장한다.
+    public void setSortType(String sortType) {
+        this.sortType = sortType;
     }
-    
+
+    @Override
     public String toString() {
         return "CompanyCardDTO [companyNumber=" + companyNumber
                 + ", companyName=" + companyName
                 + ", companyAddress=" + companyAddress
                 + ", companyState=" + companyState
                 + ", compSummary=" + compSummary
+                + ", compType=" + compType
                 + ", filePath=" + filePath
                 + ", compPageDate=" + compPageDate
                 + ", cat1IsHiring=" + cat1IsHiring
@@ -195,7 +204,5 @@ public class CompanyCardDTO {
                 + ", sortType=" + sortType
                 + ", startRow=" + startRow
                 + ", endRow=" + endRow + "]";
-        
-        
     }
 }
