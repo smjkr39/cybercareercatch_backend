@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ccc.common.Execute;
 import com.ccc.common.Result;
 import com.ccc.qna.dao.QnaDAO;
-import com.ccc.qna.dto.CompanyDTO;
+import com.ccc.qna.dto.QnaCompanyDTO;
 import com.ccc.qna.dto.QnaListDTO;
 
 public class QnaListController implements Execute {
@@ -47,7 +47,7 @@ public class QnaListController implements Execute {
 			}
 		}
 
-		List<CompanyDTO> companyList = qnaDAO.selectCompanyList();
+		List<QnaCompanyDTO> companyList = qnaDAO.selectCompanyList();
 		List<QnaListDTO> qnaList = qnaDAO.selectQnaList(searchType, searchKeyword, companyNumber);
 
 		request.setAttribute("companyList", companyList);

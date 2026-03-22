@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.ccc.common.Execute;
 import com.ccc.common.Result;
 import com.ccc.qna.dao.QnaDAO;
-import com.ccc.qna.dto.CompanyDTO;
+import com.ccc.qna.dto.QnaCompanyDTO;
 
 public class QnaWriteFormController implements Execute {
 
@@ -21,7 +21,7 @@ public class QnaWriteFormController implements Execute {
 		QnaDAO qnaDAO = new QnaDAO();
 		Result result = new Result();
 
-		List<CompanyDTO> companyList = qnaDAO.selectCompanyList();
+		List<QnaCompanyDTO> companyList = qnaDAO.selectCompanyList();
 		request.setAttribute("companyList", companyList);
 
 		result.setPath("/app/main/qna/add-qna.jsp");

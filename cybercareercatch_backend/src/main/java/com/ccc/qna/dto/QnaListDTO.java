@@ -4,10 +4,14 @@ public class QnaListDTO {
 	private Long postNumber;
 	private String postTitle;
 	private String memberId;
+	private String companyName;
 	private String postCreatedDate;
 	private String answerStatus;
-	
-	public QnaListDTO() {;}
+	private int viewCount;
+
+	public QnaListDTO() {
+		;
+	}
 
 	public Long getPostNumber() {
 		return postNumber;
@@ -33,6 +37,14 @@ public class QnaListDTO {
 		this.memberId = memberId;
 	}
 
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
 	public String getPostCreatedDate() {
 		return postCreatedDate;
 	}
@@ -49,9 +61,18 @@ public class QnaListDTO {
 		this.answerStatus = answerStatus;
 	}
 
+	public int getViewCount() {
+		return viewCount;
+	}
+
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
+
 	@Override
 	public String toString() {
 		return "QnaListDTO [postNumber=" + postNumber + ", postTitle=" + postTitle + ", memberId=" + memberId
-				+ ", postCreatedDate=" + postCreatedDate + ", answerStatus=" + answerStatus + "]";
+				+ ", companyName=" + companyName + ", postCreatedDate=" + postCreatedDate + ", answerStatus="
+				+ answerStatus + ", viewCount=" + viewCount + "]";
 	}
 }
