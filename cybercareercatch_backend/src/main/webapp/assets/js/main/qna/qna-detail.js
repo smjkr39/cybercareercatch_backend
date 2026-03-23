@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-const replyInput = document.getElementById("replyInput");
-
-if (replyInput) {
-   replyInput.addEventListener("keydown", function(e) {
-      if (e.key === "Enter") {
-         e.target.form.submit();
-      }
-   });
-}
-=======
 document.addEventListener("DOMContentLoaded", function () {
   const page = document.getElementById("qnaDetailPage");
 
@@ -72,4 +61,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
->>>>>>> de81b31 (20260323 이해준 자유게시판, 기업qna 수정)

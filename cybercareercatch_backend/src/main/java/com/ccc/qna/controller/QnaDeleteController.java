@@ -14,19 +14,13 @@ import com.ccc.qna.dto.QnaDetailDTO;
 
 public class QnaDeleteController implements Execute {
 
-   @Override
-   public Result execute(HttpServletRequest request, HttpServletResponse response)
-         throws ServletException, IOException {
+	@Override
+	public Result execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-      QnaDAO qnaDAO = new QnaDAO();
-      Result result = new Result();
+		QnaDAO qnaDAO = new QnaDAO();
+		Result result = new Result();
 
-<<<<<<< HEAD
-      String postNumberStr = request.getParameter("postNumber");
-
-      System.out.println("게시글 삭제 요청 들어옴");
-      System.out.println("postNumberStr : " + postNumberStr);
-=======
 		HttpSession session = request.getSession(false);
 
 		if (session == null || session.getAttribute("userNumber") == null) {
@@ -39,30 +33,13 @@ public class QnaDeleteController implements Execute {
 		String userType = (String) session.getAttribute("userType");
 
 		String postNumberStr = request.getParameter("postNumber");
->>>>>>> de81b31 (20260323 이해준 자유게시판, 기업qna 수정)
 
-      if (postNumberStr == null || postNumberStr.trim().isEmpty()) {
-         result.setPath(request.getContextPath() + "/qna/list.qfc");
-         result.setRedirect(true);
-         return result;
-      }
+		if (postNumberStr == null || postNumberStr.trim().isEmpty()) {
+			result.setPath(request.getContextPath() + "/qna/list.qfc");
+			result.setRedirect(true);
+			return result;
+		}
 
-<<<<<<< HEAD
-      Long postNumber = Long.parseLong(postNumberStr);
-
-      // 1. 해당 게시글의 댓글 전체 삭제
-      qnaDAO.deleteCommentsByPostNumber(postNumber);
-
-      // 2. 게시글 삭제
-      qnaDAO.deleteQna(postNumber);
-
-      // 3. 목록으로 이동
-      result.setPath(request.getContextPath() + "/qna/list.qfc");
-      result.setRedirect(true);
-
-      return result;
-   }
-=======
 		int postNumber = 0;
 
 		try {
@@ -81,9 +58,7 @@ public class QnaDeleteController implements Execute {
 			return result;
 		}
 
-		if (!"일반회원".equals(userType)
-				|| userNumber == null
-				|| qna.getUserNumber() == null
+		if (!"일반회원".equals(userType) || userNumber == null || qna.getUserNumber() == null
 				|| qna.getUserNumber().intValue() != userNumber.intValue()) {
 			result.setPath(request.getContextPath() + "/qna/detail.qfc?postNumber=" + postNumber);
 			result.setRedirect(true);
@@ -97,5 +72,4 @@ public class QnaDeleteController implements Execute {
 		result.setRedirect(true);
 		return result;
 	}
->>>>>>> de81b31 (20260323 이해준 자유게시판, 기업qna 수정)
 }

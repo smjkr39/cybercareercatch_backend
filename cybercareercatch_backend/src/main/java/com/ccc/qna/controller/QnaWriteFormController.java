@@ -15,43 +15,30 @@ import com.ccc.qna.dao.QnaDAO;
 
 public class QnaWriteFormController implements Execute {
 
-   @Override
-   public Result execute(HttpServletRequest request, HttpServletResponse response)
-         throws ServletException, IOException {
+	@Override
+	public Result execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-      QnaDAO qnaDAO = new QnaDAO();
-      Result result = new Result();
+		QnaDAO qnaDAO = new QnaDAO();
+		Result result = new Result();
 
-<<<<<<< HEAD
-      List<CompanyDTO> companyList = qnaDAO.selectCompanyList();
-      request.setAttribute("companyList", companyList);
-
-      result.setPath("/app/main/qna/add-qna.jsp");
-      result.setRedirect(false);
-=======
 		// =========================================================
 		// [원본 세션 방식]
 		// 테스트 끝나면 아래 주석 풀고 테스트용 코드는 지우면 됩니다.
 		// =========================================================
 		/*
-		HttpSession session = request.getSession(false);
-
-		// 비회원 접근 불가
-		if (session == null || session.getAttribute("userNumber") == null) {
-			result.setPath(request.getContextPath() + "/member/login.mefc");
-			result.setRedirect(true);
-			return result;
-		}
-
-		String userType = (String) session.getAttribute("userType");
-
-		// 일반회원만 글쓰기 폼 접근 가능
-		if (!"일반회원".equals(userType)) {
-			result.setPath(request.getContextPath() + "/qna/list.qfc");
-			result.setRedirect(true);
-			return result;
-		}
-		*/
+		 * HttpSession session = request.getSession(false);
+		 * 
+		 * // 비회원 접근 불가 if (session == null || session.getAttribute("userNumber") ==
+		 * null) { result.setPath(request.getContextPath() + "/member/login.mefc");
+		 * result.setRedirect(true); return result; }
+		 * 
+		 * String userType = (String) session.getAttribute("userType");
+		 * 
+		 * // 일반회원만 글쓰기 폼 접근 가능 if (!"일반회원".equals(userType)) {
+		 * result.setPath(request.getContextPath() + "/qna/list.qfc");
+		 * result.setRedirect(true); return result; }
+		 */
 
 		// =========================================================
 		// [테스트용 로그인 분기]
@@ -62,7 +49,7 @@ public class QnaWriteFormController implements Execute {
 //		String testLoginId = "member01";
 
 		// 기업회원 테스트
-		 String testLoginId = "company08";
+		String testLoginId = "company08";
 
 		Integer userNumber = null;
 		String userType = null;
@@ -104,8 +91,7 @@ public class QnaWriteFormController implements Execute {
 		// add-qna.jsp 말고 qna-write.jsp로 통일
 		result.setPath("/app/main/qna/qna-write.jsp");
 		result.setRedirect(false);
->>>>>>> de81b31 (20260323 이해준 자유게시판, 기업qna 수정)
 
-      return result;
-   }
+		return result;
+	}
 }

@@ -15,17 +15,15 @@ import com.ccc.qna.dto.QnaDetailDTO;
 
 public class QnaCommentDeleteController implements Execute {
 
-   @Override
-   public Result execute(HttpServletRequest request, HttpServletResponse response)
-         throws ServletException, IOException {
+	@Override
+	public Result execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-      QnaDAO qnaDAO = new QnaDAO();
-      Result result = new Result();
+		QnaDAO qnaDAO = new QnaDAO();
+		Result result = new Result();
 
-<<<<<<< HEAD
-      String commentNumberStr = request.getParameter("commentNumber");
-      String postNumberStr = request.getParameter("postNumber");
-=======
+		String commentNumberStr = request.getParameter("commentNumber");
+		String postNumberStr = request.getParameter("postNumber");
 		HttpSession session = request.getSession(false);
 
 		// 비회원 접근 불가
@@ -39,27 +37,12 @@ public class QnaCommentDeleteController implements Execute {
 		String userType = (String) session.getAttribute("userType");
 		Integer loginCompanyNumber = (Integer) session.getAttribute("companyNumber");
 
-		String commentNumberStr = request.getParameter("commentNumber");
-		String postNumberStr = request.getParameter("postNumber");
->>>>>>> de81b31 (20260323 이해준 자유게시판, 기업qna 수정)
+		System.out.println("댓글 삭제 요청 들어옴");
+		System.out.println("commentNumberStr : " + commentNumberStr);
+		System.out.println("postNumberStr : " + postNumberStr);
 
-      System.out.println("댓글 삭제 요청 들어옴");
-      System.out.println("commentNumberStr : " + commentNumberStr);
-      System.out.println("postNumberStr : " + postNumberStr);
-
-<<<<<<< HEAD
-      if(commentNumberStr == null || commentNumberStr.trim().isEmpty()
-            || postNumberStr == null || postNumberStr.trim().isEmpty()) {
-         result.setPath(request.getContextPath() + "/qna/list.qfc");
-         result.setRedirect(true);
-         return result;
-      }
-
-      Long commentNumber = Long.parseLong(commentNumberStr);
-      Long postNumber = Long.parseLong(postNumberStr);
-=======
-		if (commentNumberStr == null || commentNumberStr.trim().isEmpty()
-				|| postNumberStr == null || postNumberStr.trim().isEmpty()) {
+		if (commentNumberStr == null || commentNumberStr.trim().isEmpty() || postNumberStr == null
+				|| postNumberStr.trim().isEmpty()) {
 			result.setPath(request.getContextPath() + "/qna/list.qfc");
 			result.setRedirect(true);
 			return result;
@@ -81,40 +64,28 @@ public class QnaCommentDeleteController implements Execute {
 		QnaCommentDTO comment = qnaDAO.selectComment(commentNumber);
 
 		// 기업회원, 자기 회사 글, 자기 댓글만 삭제 가능
-		if (!"기업회원".equals(userType)
-				|| userNumber == null
-				|| loginCompanyNumber == null
-				|| qna == null
-				|| qna.getCompanyNumber() == null
-				|| qna.getCompanyNumber().intValue() != loginCompanyNumber.intValue()
-				|| comment == null
-				|| comment.getUserNumber() == null
+		if (!"기업회원".equals(userType) || userNumber == null || loginCompanyNumber == null || qna == null
+				|| qna.getCompanyNumber() == null || qna.getCompanyNumber().intValue() != loginCompanyNumber.intValue()
+				|| comment == null || comment.getUserNumber() == null
 				|| comment.getUserNumber().intValue() != userNumber.intValue()) {
 
 			result.setPath(request.getContextPath() + "/qna/detail.qfc?postNumber=" + postNumber);
 			result.setRedirect(true);
 			return result;
 		}
->>>>>>> de81b31 (20260323 이해준 자유게시판, 기업qna 수정)
 
-      qnaDAO.deleteComment(commentNumber);
+		qnaDAO.deleteComment(commentNumber);
 
-      int commentCount = qnaDAO.selectCommentCountByPostNumber(postNumber);
-      System.out.println("삭제 후 댓글 개수 : " + commentCount);
+		int commentCount = qnaDAO.selectCommentCountByPostNumber(postNumber);
+		System.out.println("삭제 후 댓글 개수 : " + commentCount);
 
-<<<<<<< HEAD
-      if(commentCount == 0) {
-         qnaDAO.updateAnswerStatusToWait(postNumber);
-      }
-=======
 		if (commentCount == 0) {
 			qnaDAO.updateAnswerStatusToWait(postNumber);
 		}
->>>>>>> de81b31 (20260323 이해준 자유게시판, 기업qna 수정)
 
-      result.setPath(request.getContextPath() + "/qna/detail.qfc?postNumber=" + postNumber);
-      result.setRedirect(true);
+		result.setPath(request.getContextPath() + "/qna/detail.qfc?postNumber=" + postNumber);
+		result.setRedirect(true);
 
-      return result;
-   }
+		return result;
+	}
 }

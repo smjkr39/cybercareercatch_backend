@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-function openPost(id) {
-   location.href = contextPath + "/qna/detail.qfc?postNumber=" + id;
-}
-=======
 document.addEventListener("DOMContentLoaded", function () {
   const page = document.getElementById("qnaListPage");
 
@@ -37,4 +32,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
->>>>>>> de81b31 (20260323 이해준 자유게시판, 기업qna 수정)

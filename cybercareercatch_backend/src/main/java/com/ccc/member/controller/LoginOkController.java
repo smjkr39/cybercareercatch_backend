@@ -37,20 +37,15 @@ public class LoginOkController implements Execute {
 		System.out.println(memberNumber);
 
 		if (memberNumber != -1) {
-<<<<<<< HEAD
-			path = "/main/mainpage.mafc";
-			session.setAttribute("memberNumber", memberNumber);
-			System.out.println("세션값 : " + memberNumber);
-=======
 			String userType = userDAO.selectUserType(memberNumber);
 			Integer companyNumber = userDAO.selectCompanyNumberByUserNumber(memberNumber);
->>>>>>> de81b31 (20260323 이해준 자유게시판, 기업qna 수정)
 
 			// 기존 프로젝트에서 쓰던 세션값 유지
 			session.setAttribute("memberNumber", memberNumber);
 
 			// [수정] 다른 컨트롤러/QNA 쪽에서 실제로 쓰는 세션값도 같이 저장
-			// QnaListController, QnaDetailController 등은 userNumber, userType, companyNumber를 사용함
+			// QnaListController, QnaDetailController 등은 userNumber, userType,
+			// companyNumber를 사용함
 			session.setAttribute("userNumber", memberNumber);
 			session.setAttribute("userType", userType);
 

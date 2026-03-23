@@ -12,11 +12,7 @@ import com.ccc.common.Execute;
 import com.ccc.common.Result;
 import com.ccc.company.dto.CompanyDTO;
 import com.ccc.qna.dao.QnaDAO;
-<<<<<<< HEAD
-import com.ccc.qna.dto.QnaCompanyDTO;
-=======
 import com.ccc.qna.dto.QnaDTO;
->>>>>>> de81b31 (20260323 이해준 자유게시판, 기업qna 수정)
 import com.ccc.qna.dto.QnaListDTO;
 
 public class QnaListController implements Execute {

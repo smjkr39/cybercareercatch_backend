@@ -16,73 +16,37 @@ import com.ccc.qna.dto.QnaDetailDTO;
 
 public class QnaDetailController implements Execute {
 
-   @Override
-   public Result execute(HttpServletRequest request, HttpServletResponse response)
-         throws ServletException, IOException {
+	@Override
+	public Result execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-      QnaDAO qnaDAO = new QnaDAO();
-      Result result = new Result();
+		QnaDAO qnaDAO = new QnaDAO();
+		Result result = new Result();
 
-      String postNumberStr = request.getParameter("postNumber");
-
-<<<<<<< HEAD
-      if(postNumberStr == null || postNumberStr.trim().isEmpty()) {
-         result.setPath(request.getContextPath() + "/qna/list.qfc");
-         result.setRedirect(true);
-         return result;
-      }
-
-      Long postNumber = Long.parseLong(postNumberStr);
-
-      QnaDetailDTO qnaDetail = qnaDAO.selectQnaDetail(postNumber);
-      List<QnaCommentDTO> commentList = qnaDAO.selectCommentListByPostNumber(postNumber);
-
-      System.out.println("상세 postNumber : " + postNumber);
-      System.out.println("qnaDetail : " + qnaDetail);
-      System.out.println("commentList size : " + (commentList == null ? "null" : commentList.size()));
-
-      if(qnaDetail == null) {
-         result.setPath(request.getContextPath() + "/qna/list.qfc");
-         result.setRedirect(true);
-         return result;
-      }
-
-      request.setAttribute("qnaDetail", qnaDetail);
-      request.setAttribute("commentList", commentList);
-
-      result.setPath("/app/main/qna/qna-detail.jsp");
-      result.setRedirect(false);
-
-      return result;
-   }
-=======
+		String postNumberStr = request.getParameter("postNumber");
 		// =========================================================
 		// [원본 세션 방식]
 		// 테스트 끝나면 아래 주석 풀고 테스트용 코드는 지우면 됩니다.
 		// =========================================================
 		/*
-		HttpSession session = request.getSession(false);
-
-		if (session == null || session.getAttribute("userNumber") == null) {
-			HttpSession loginSession = request.getSession();
-
-			if (postNumberStr != null && !postNumberStr.trim().isEmpty()) {
-				loginSession.setAttribute("redirectAfterLogin",
-						request.getContextPath() + "/qna/detail.qfc?postNumber=" + postNumberStr);
-			} else {
-				loginSession.setAttribute("redirectAfterLogin",
-						request.getContextPath() + "/qna/list.qfc");
-			}
-
-			result.setPath(request.getContextPath() + "/member/login.mefc");
-			result.setRedirect(true);
-			return result;
-		}
-
-		Integer loginUserNumber = (Integer) session.getAttribute("userNumber");
-		String userType = (String) session.getAttribute("userType");
-		Integer loginCompanyNumber = (Integer) session.getAttribute("companyNumber");
-		*/
+		 * HttpSession session = request.getSession(false);
+		 * 
+		 * if (session == null || session.getAttribute("userNumber") == null) {
+		 * HttpSession loginSession = request.getSession();
+		 * 
+		 * if (postNumberStr != null && !postNumberStr.trim().isEmpty()) {
+		 * loginSession.setAttribute("redirectAfterLogin", request.getContextPath() +
+		 * "/qna/detail.qfc?postNumber=" + postNumberStr); } else {
+		 * loginSession.setAttribute("redirectAfterLogin", request.getContextPath() +
+		 * "/qna/list.qfc"); }
+		 * 
+		 * result.setPath(request.getContextPath() + "/member/login.mefc");
+		 * result.setRedirect(true); return result; }
+		 * 
+		 * Integer loginUserNumber = (Integer) session.getAttribute("userNumber");
+		 * String userType = (String) session.getAttribute("userType"); Integer
+		 * loginCompanyNumber = (Integer) session.getAttribute("companyNumber");
+		 */
 
 		// =========================================================
 		// [테스트용 로그인 분기]
@@ -93,7 +57,7 @@ public class QnaDetailController implements Execute {
 //		String testLoginId = "member01";
 
 		// 기업회원 테스트
-		 String testLoginId = "company08";
+		String testLoginId = "company08";
 
 		Integer loginUserNumber = null;
 		String userType = null;
@@ -154,8 +118,7 @@ public class QnaDetailController implements Execute {
 		// 기업회원은 자기 회사 글만 접근 가능
 		// =========================================================
 		if ("기업회원".equals(userType)) {
-			if (loginCompanyNumber == null
-					|| qna.getCompanyNumber() == null
+			if (loginCompanyNumber == null || qna.getCompanyNumber() == null
 					|| qna.getCompanyNumber().intValue() != loginCompanyNumber.intValue()) {
 				result.setPath(request.getContextPath() + "/qna/list.qfc");
 				result.setRedirect(true);
@@ -189,26 +152,19 @@ public class QnaDetailController implements Execute {
 		boolean showCommentDeleteButton = false;
 
 		// 일반회원 본인 글만 삭제 가능
-		if ("일반회원".equals(userType)
-				&& loginUserNumber != null
-				&& qna.getUserNumber() != null
+		if ("일반회원".equals(userType) && loginUserNumber != null && qna.getUserNumber() != null
 				&& qna.getUserNumber().intValue() == loginUserNumber.intValue()) {
 			showDeleteButton = true;
 		}
 
 		// 기업회원은 자기 회사 글 + 댓글이 아직 없을 때만 댓글 작성 가능
-		if ("기업회원".equals(userType)
-				&& loginCompanyNumber != null
-				&& qna.getCompanyNumber() != null
-				&& qna.getCompanyNumber().intValue() == loginCompanyNumber.intValue()
-				&& qnaComment == null) {
+		if ("기업회원".equals(userType) && loginCompanyNumber != null && qna.getCompanyNumber() != null
+				&& qna.getCompanyNumber().intValue() == loginCompanyNumber.intValue() && qnaComment == null) {
 			showCommentWriteForm = true;
 		}
 
 		// 기업회원은 자기 댓글만 삭제 가능
-		if ("기업회원".equals(userType)
-				&& loginUserNumber != null
-				&& qnaComment != null
+		if ("기업회원".equals(userType) && loginUserNumber != null && qnaComment != null
 				&& qnaComment.getUserNumber() != null
 				&& qnaComment.getUserNumber().intValue() == loginUserNumber.intValue()) {
 			showCommentDeleteButton = true;
@@ -237,5 +193,4 @@ public class QnaDetailController implements Execute {
 		result.setRedirect(false);
 		return result;
 	}
->>>>>>> de81b31 (20260323 이해준 자유게시판, 기업qna 수정)
 }
