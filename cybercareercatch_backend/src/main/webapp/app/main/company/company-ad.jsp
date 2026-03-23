@@ -93,5 +93,6 @@
     </main>
 
     <script src="${pageContext.request.contextPath}/assets/js/main/company/company-ad.js"></script>
+    <jsp:include page="/app/main/footer/footer.jsp" />
 </body>
 </html>

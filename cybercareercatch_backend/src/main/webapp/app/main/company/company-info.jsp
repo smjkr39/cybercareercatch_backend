@@ -107,15 +107,14 @@ if (request.getAttribute("companyDetail") == null) {
 								</c:choose></td>
 
 							<td class="cmp-hdr-meta-lbl">매출액</td>
-							<td><c:choose>
-									<c:choose>
-										<c:when test="${not empty companyDetail.compRev}">
-											<c:out value="${companyDetail.compRev}" />
-										</c:when>
-										<c:otherwise>-</c:otherwise>
-									</c:choose>
-									<c:otherwise>-</c:otherwise>
-								</c:choose></td>
+							<td>
+								<c:choose>
+    								<c:when test="${not empty companyDetail.compRev}">
+        								<c:out value="${companyDetail.compRev}" />
+    								</c:when>
+    								<c:otherwise>-</c:otherwise>
+								</c:choose>
+							</td>
 						</tr>
 					</table>
 
@@ -314,5 +313,6 @@ if (request.getAttribute("companyDetail") == null) {
 
 	<script
 		src="${pageContext.request.contextPath}/assets/js/main/company/company-info.js"></script>
+	<jsp:include page="/app/main/footer/footer.jsp" />
 </body>
 </html>
