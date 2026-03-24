@@ -95,7 +95,11 @@ public class PostFrontController extends HttpServlet {
 			result = new CommentDeleteOkController().execute(request, response);
 			System.out.println("댓글 삭제 처리 완료");
 			break;
-
+		case "/post/noticeDetail.pfc":
+			System.out.println("공지사항 상세 요청");
+			result = new NoticeDetailController().execute(request, response);
+			System.out.println("공지사항 상세 완료");
+			break;
 		}
 
 		if (result != null && result.getPath() != null) {

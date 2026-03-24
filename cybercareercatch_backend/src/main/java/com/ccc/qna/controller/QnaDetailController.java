@@ -96,12 +96,15 @@ public class QnaDetailController implements Execute {
 		// 기업회원은 자기 회사 글만 접근 가능
 		// =========================================================
 		if ("기업회원".equals(userType)) {
-			if (loginCompanyNumber == null || qna.getCompanyNumber() == null
-					|| qna.getCompanyNumber().intValue() != loginCompanyNumber.intValue()) {
-				result.setPath(request.getContextPath() + "/qna/list.qfc");
-				result.setRedirect(true);
-				return result;
+			boolean isNotice = (qna.getCompanyNumber() == null); // 공지면 true
+			if (!isNotice) { // 공지가 아닐 때만 회사 확인
+				if (loginCompanyNumber == null || qna.getCompanyNumber().intValue() != loginCompanyNumber.intValue()) {
+					result.setPath(request.getContextPath() + "/qna/list.qfc");
+					result.setRedirect(true);
+					return result;
+				}
 			}
+			System.out.println(isNotice);
 		}
 
 		// =========================================================
