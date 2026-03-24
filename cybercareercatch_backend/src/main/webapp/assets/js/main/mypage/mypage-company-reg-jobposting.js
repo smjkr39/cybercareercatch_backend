@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 		// 각 입력칸 가져오기
 		const ceoName = document.getElementById("company-ceoname");
+		const companyYearFounded = document.getElementById("company-yearfounded");
+		const companyEmployeeCount = document.getElementById("company-employeecount");
+		const companySales = document.getElementById("company-sales");
+		const companyCapital = document.getElementById("company-capital");
 		const companyType = document.getElementById("company-type");
 		const companyDescription = document.getElementById("company-description");
 		const companyInfo = document.getElementById("company-info");
@@ -32,6 +36,34 @@ document.addEventListener("DOMContentLoaded", function() {
 			return;
 		}
 
+		if (companyYearFounded.value.trim().length > 4) {
+			alert("설립년도는 4자 이하로 입력해주세요.");
+			companyYearFounded.focus();
+			e.preventDefault();
+			return;
+		}
+
+		if (companyEmployeeCount.value.trim().length > 20) {
+			alert("사원수는 20자 이하로 입력해주세요.");
+			companyEmployeeCount.focus();
+			e.preventDefault();
+			return;
+		}
+
+		if (companySales.value.trim().length > 20) {
+			alert("매출액은 20자 이하로 입력해주세요.");
+			companySales.focus();
+			e.preventDefault();
+			return;
+		}
+
+		if (companyCapital.value.trim().length > 20) {
+			alert("자본금은 20자 이하로 입력해주세요.");
+			companyCapital.focus();
+			e.preventDefault();
+			return;
+		}
+
 		if (companyType.value.trim().length > 20) {
 			alert("기업형태는 20자 이하로 입력해주세요.");
 			companyType.focus();
@@ -39,8 +71,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			return;
 		}
 
-		if (companyDescription.value.trim().length > 20) {
-			alert("한줄소개는 20자 이하로 입력해주세요.");
+		if (companyDescription.value.trim().length > 50) {
+			alert("한줄소개는 50자 이하로 입력해주세요.");
 			companyDescription.focus();
 			e.preventDefault();
 			return;
@@ -53,15 +85,15 @@ document.addEventListener("DOMContentLoaded", function() {
 			return;
 		}
 
-		if (companyTech.value.trim().length > 1000) {
-			alert("대표기술은 1000자 이하로 입력해주세요.");
+		if (companyTech.value.trim().length > 500) {
+			alert("대표기술은 500자 이하로 입력해주세요.");
 			companyTech.focus();
 			e.preventDefault();
 			return;
 		}
 
-		if (companyBusiness.value.trim().length > 1000) {
-			alert("주요사업은 1000자 이하로 입력해주세요.");
+		if (companyBusiness.value.trim().length > 700) {
+			alert("주요사업은 700자 이하로 입력해주세요.");
 			companyBusiness.focus();
 			e.preventDefault();
 			return;
@@ -74,8 +106,8 @@ document.addEventListener("DOMContentLoaded", function() {
 			return;
 		}
 
-		if (companyTalent.value.trim().length > 1000) {
-			alert("인재상은 1000자 이하로 입력해주세요.");
+		if (companyTalent.value.trim().length > 500) {
+			alert("인재상은 500자 이하로 입력해주세요.");
 			companyTalent.focus();
 			e.preventDefault();
 			return;
@@ -88,15 +120,15 @@ document.addEventListener("DOMContentLoaded", function() {
 			return;
 		}
 
-		if (companyProcess.value.trim().length > 1000) {
-			alert("채용 절차는 1000자 이하로 입력해주세요.");
+		if (companyProcess.value.trim().length > 500) {
+			alert("채용 절차는 500자 이하로 입력해주세요.");
 			companyProcess.focus();
 			e.preventDefault();
 			return;
 		}
 
-		if (companyApply.value.trim().length > 1000) {
-			alert("지원 정보는 1000자 이하로 입력해주세요.");
+		if (companyApply.value.trim().length > 500) {
+			alert("지원 정보는 500자 이하로 입력해주세요.");
 			companyApply.focus();
 			e.preventDefault();
 			return;

@@ -173,7 +173,7 @@ public class MypageCompanypageRegisterOkController implements Execute {
 						System.out.println("새 파일 저장 실패 : " + newFile.getAbsolutePath());
 					}
 
-					newFilePath = "upload/company/" + newFileName;
+					newFilePath = "/upload/company/" + newFileName;
 				}
 			}
 		}

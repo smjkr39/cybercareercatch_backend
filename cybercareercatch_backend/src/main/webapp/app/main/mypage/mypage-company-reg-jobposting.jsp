@@ -58,7 +58,9 @@
 					</div>
 
 					<div class="jobpost-section-box">
-						<div class="jobpost-section-subtitle">대표자명</div>
+						<div class="jobpost-section-subtitle">
+							대표자명 <span class="limit-text">(최대 20자)</span>
+						</div>
 						<div class="jobpost-section-content">
 							<input class="jobpost-section-inputcontent" type="text"
 								name="company_ceoname" id="company-ceoname"
@@ -67,43 +69,53 @@
 					</div>
 
 					<div class="jobpost-section-box">
-						<div class="jobpost-section-subtitle">설립년도</div>
+						<div class="jobpost-section-subtitle">
+							설립년도 <span class="limit-text">(최대 4자)</span>
+						</div>
 						<div class="jobpost-section-content">
 							<input class="jobpost-section-inputcontent" type="text"
 								name="company_yearfounded" id="company-yearfounded"
-								placeholder="예 : 2010" required>
+								placeholder="예 : 2010" maxlength="4" required>
 						</div>
 					</div>
 
 					<div class="jobpost-section-box">
-						<div class="jobpost-section-subtitle">사원수</div>
+						<div class="jobpost-section-subtitle">
+							사원수 <span class="limit-text">(최대 20자)</span>
+						</div>
 						<div class="jobpost-section-content">
 							<input class="jobpost-section-inputcontent" type="text"
 								name="company_employeecount" id="company-employeecount"
-								placeholder="예 : 1200명" required>
+								placeholder="예 : 1200명" maxlength="20" required>
 						</div>
 					</div>
 
 					<div class="jobpost-section-box">
-						<div class="jobpost-section-subtitle">매출액</div>
+						<div class="jobpost-section-subtitle">
+							매출액 <span class="limit-text">(최대 20자)</span>
+						</div>
 						<div class="jobpost-section-content">
 							<input class="jobpost-section-inputcontent" type="text"
 								name="company_sales" id="company-sales"
-								placeholder="예 : 100,000,000원" required>
+								placeholder="예 : 100,000,000원" maxlength="20" required>
 						</div>
 					</div>
 
 					<div class="jobpost-section-box">
-						<div class="jobpost-section-subtitle">자본금</div>
+						<div class="jobpost-section-subtitle">
+							자본금 <span class="limit-text">(최대 20자)</span>
+						</div>
 						<div class="jobpost-section-content">
 							<input class="jobpost-section-inputcontent" type="text"
 								name="company_capital" id="company-capital"
-								placeholder="예 : 100,000,000원" required>
+								placeholder="예 : 100,000,000원" maxlength="20" required>
 						</div>
 					</div>
 
 					<div class="jobpost-section-box">
-						<div class="jobpost-section-subtitle">기업형태</div>
+						<div class="jobpost-section-subtitle">
+							기업형태 <span class="limit-text">(최대 20자)</span>
+						</div>
 						<div class="jobpost-section-content">
 							<input class="jobpost-section-inputcontent" type="text"
 								name="company_type" id="company-type" placeholder="예 : 중견기업"
@@ -117,16 +129,20 @@
 					<div class="jobpost-section-title">기업 정보</div>
 
 					<div class="jobpost-section-box">
-						<div class="jobpost-section-subtitle">한줄소개</div>
+						<div class="jobpost-section-subtitle">
+							한줄소개 <span class="limit-text">(최대 50자)</span>
+						</div>
 						<div class="jobpost-section-content">
 							<input class="jobpost-section-inputcontent" type="text"
 								name="company_description" id="company-description"
-								placeholder="예 : 보안서비스 개발 컨설팅 전문기업" maxlength="20" required>
+								placeholder="예 : 보안서비스 개발 컨설팅 전문기업" maxlength="50" required>
 						</div>
 					</div>
 
 					<div class="jobpost-section-box">
-						<div class="jobpost-section-subtitle">기업정보</div>
+						<div class="jobpost-section-subtitle">
+							기업정보 <span class="limit-text">(최대 1000자)</span>
+						</div>
 						<div class="jobpost-section-content-textarea">
 							<textarea name="company_info" id="company-info"
 								placeholder="기업의 상세 소개를 입력하세요" maxlength="1000" required></textarea>
@@ -134,24 +150,30 @@
 					</div>
 
 					<div class="jobpost-section-box">
-						<div class="jobpost-section-subtitle">대표기술</div>
+						<div class="jobpost-section-subtitle">
+							대표기술 <span class="limit-text">(최대 500자)</span>
+						</div>
 						<div class="jobpost-section-content-textarea">
 							<textarea class="jobpost-section-content" name="company_tech"
 								id="company-tech" placeholder="사용 기술, 보유 기술, 핵심 역량 등을 입력하세요"
-								maxlength="1000" required></textarea>
+								maxlength="500" required></textarea>
 						</div>
 					</div>
 
 					<div class="jobpost-section-box">
-						<div class="jobpost-section-subtitle">주요사업</div>
+						<div class="jobpost-section-subtitle">
+							주요사업 <span class="limit-text">(최대 700자)</span>
+						</div>
 						<div class="jobpost-section-content-textarea">
 							<textarea name="company_business" id="company-business"
-								placeholder="주요 서비스, 사업 분야 등을 입력하세요" maxlength="1000" required></textarea>
+								placeholder="주요 서비스, 사업 분야 등을 입력하세요" maxlength="700" required></textarea>
 						</div>
 					</div>
 
 					<div class="jobpost-section-box">
-						<div class="jobpost-section-subtitle">서비스 확장 및 운영 이력</div>
+						<div class="jobpost-section-subtitle">
+							서비스 확장 및 운영 이력 <span class="limit-text">(최대 1000자)</span>
+						</div>
 						<div class="jobpost-section-content-textarea">
 							<textarea name="company_history" id="company-history"
 								placeholder="주요 서비스, 사업 분야 등을 입력하세요" maxlength="1000" required></textarea>
@@ -175,15 +197,19 @@
 					</div>
 
 					<div class="jobpost-section-box">
-						<div class="jobpost-section-subtitle">인재상</div>
+						<div class="jobpost-section-subtitle">
+							인재상 <span class="limit-text">(최대 500자)</span>
+						</div>
 						<div class="jobpost-section-content-textarea">
 							<textarea name="company_talent" id="company-talent"
-								maxlength="1000" required></textarea>
+								maxlength="500" required></textarea>
 						</div>
 					</div>
 
 					<div class="jobpost-section-box">
-						<div class="jobpost-section-subtitle">채용부분</div>
+						<div class="jobpost-section-subtitle">
+							채용부분 <span class="limit-text">(최대 1000자)</span>
+						</div>
 						<div class="jobpost-section-content-textarea">
 							<textarea name="company_jobpart" id="company-jobpart"
 								maxlength="1000" required></textarea>
@@ -191,18 +217,22 @@
 					</div>
 
 					<div class="jobpost-section-box">
-						<div class="jobpost-section-subtitle">채용 절차</div>
+						<div class="jobpost-section-subtitle">
+							채용 절차 <span class="limit-text">(최대 500자)</span>
+						</div>
 						<div class="jobpost-section-content-textarea">
 							<textarea name="company_process" id="company-process"
-								maxlength="1000" required></textarea>
+								maxlength="500" required></textarea>
 						</div>
 					</div>
 
 					<div class="jobpost-section-box">
-						<div class="jobpost-section-subtitle">지원 정보</div>
+						<div class="jobpost-section-subtitle">
+							지원 정보 <span class="limit-text">(최대 500자)</span>
+						</div>
 						<div class="jobpost-section-content-textarea">
-							<textarea name="company_apply" id="company-apply"
-								maxlength="1000" required></textarea>
+							<textarea name="company_apply" id="company-apply" maxlength="500"
+								required></textarea>
 						</div>
 					</div>
 				</div>
