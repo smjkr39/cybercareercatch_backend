@@ -42,4 +42,12 @@ public class UserDAO {
 	public String selectUserNameByUserNumber(int userNumber) {
 		return (String) sqlSession.selectOne("user.selectUserNameByUserNumber", userNumber);
 	}
+
+	public String selectCompanyState(int userNumber) {
+		return sqlSession.selectOne("user.selectCompanyState", userNumber);
+	}
+
+	public String selectCompanyManagerState(int userNumber) {
+		return sqlSession.selectOne("user.selectCompanyManagerState", userNumber);
+	}
 }

@@ -1,23 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>로그인</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="../../../assets/css/main/account/login.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>로그인</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="../../../assets/css/main/account/login.css" />
 </head>
 <body>
-  <header></header>
- 
+	<header></header>
 
-  <!--
+
+	<!--
     =============================================================
     [클래스명 뜻]
     * account_login_container  : 로그인 페이지 전체 바탕 영역
@@ -43,76 +46,103 @@
     =============================================================
   -->
 
-  <main class="account_login_container">
-    <!-- 경로와 로그인 폼을 같이 묶어주는 inner 박스 추가 -->
-    <div class="account_login_inner">
-      
-    
+	<main class="account_login_container">
+		<!-- 경로와 로그인 폼을 같이 묶어주는 inner 박스 추가 -->
+		<div class="account_login_inner">
 
-      <div class="account_login_box">
-        
-        <!-- 상단 로고 -->
-        <div class="account_login_logo">
-          <a href="${pageContextPath.request.contextPath }/mainpage/mainpage.mafc"><span class="logo-strong">C</span><span class="logo-soft">yber</span><span class="logo-strong">C</span><span class="logo-soft">areer</span><span class="logo-strong">C</span><span class="logo-soft">atch</span></a>
-        </div>
 
-        <!-- 로그인 폼 -->
-        <form action="${pageContext.request.contextPath}/member/loginOk.mefc" method="post" id="loginForm" class="account_login_form">
-          
-          <!-- 아이디 입력란 -->
-          <div class="account_login_field">
-            <label for="loginId" class="account_login_label">아이디</label>
-            <div class="account_login_input_wrap">
-              <span class="account_login_icon" aria-hidden="true">
-                <!-- 사람 모양 아이콘 -->
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+			<div class="account_login_box">
+
+				<!-- 상단 로고 -->
+				<div class="account_login_logo">
+					<a
+						href="${pageContextPath.request.contextPath }/mainpage/mainpage.mafc"><span
+						class="logo-strong">C</span><span class="logo-soft">yber</span><span
+						class="logo-strong">C</span><span class="logo-soft">areer</span><span
+						class="logo-strong">C</span><span class="logo-soft">atch</span></a>
+				</div>
+
+				<!-- 로그인 폼 -->
+				<form
+					action="${pageContext.request.contextPath}/member/loginOk.mefc"
+					method="post" id="loginForm" class="account_login_form">
+
+					<!-- 아이디 입력란 -->
+					<div class="account_login_field">
+						<label for="loginId" class="account_login_label">아이디</label>
+						<div class="account_login_input_wrap">
+							<span class="account_login_icon" aria-hidden="true"> <!-- 사람 모양 아이콘 -->
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+									stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                   <circle cx="12" cy="7" r="4"></circle>
                 </svg>
-              </span>
-              <input type="text" id="loginId" name="userId" class="account_login_input" placeholder="아이디를 입력해주세요" required />
-            </div>
-          </div>
+							</span> <input type="text" id="loginId" name="userId"
+								class="account_login_input" placeholder="아이디를 입력해주세요" required />
+						</div>
+					</div>
 
-          <!-- 비밀번호 입력란 -->
-          <div class="account_login_field">
-            <label for="loginPw" class="account_login_label">비밀번호</label>
-            <div class="account_login_input_wrap">
-              <span class="account_login_icon" aria-hidden="true">
-                <!-- 자물쇠 모양 아이콘 -->
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+					<!-- 비밀번호 입력란 -->
+					<div class="account_login_field">
+						<label for="loginPw" class="account_login_label">비밀번호</label>
+						<div class="account_login_input_wrap">
+							<span class="account_login_icon" aria-hidden="true"> <!-- 자물쇠 모양 아이콘 -->
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+									stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2"
+										ry="2"></rect>
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
-              </span>
-              <input type="password" name="userPassword" id="loginPw" class="account_login_input" placeholder="비밀번호를 입력해주세요" required />
-            </div>
-            
-            <!-- 하단 옵션 (에러 메시지 & 비밀번호 찾기) -->
-            <div class="account_login_options">
-              <!-- JS 연동 시 에러가 났을 때만 보이도록 클래스(is-show) 제어 가능 -->
-              <span class="account_login_error" id="loginErrorMsg">아이디 또는 비밀번호가 잘못되었습니다.</span>
-              <a href="${pageContext.request.contextPath}/member/find-password.mefc" class="account_login_find_pw">비밀번호 찾기</a>
-            </div>
-          </div>
+							</span> <input type="password" name="userPassword" id="loginPw"
+								class="account_login_input" placeholder="비밀번호를 입력해주세요" required />
+						</div>
 
-          <!-- 로그인 버튼 -->
-          <button type="submit" class="account_login_submit_btn">로그인</button>
+						<!-- 하단 옵션 (에러 메시지 & 비밀번호 찾기) -->
+						<div class="account_login_options">
+							<c:choose>
+								<c:when test="${param.login eq 'fail'}">
+									<span class="account_login_error" id="loginErrorMsg"
+										style="display: inline;"> 아이디 또는 비밀번호가 일치하지 않습니다. </span>
+								</c:when>
+								<c:when test="${param.login eq 'notApproved'}">
+									<span class="account_login_error" id="loginErrorMsg"
+										style="display: inline;"> 기업 승인이 완료되지 않은 계정입니다. </span>
+								</c:when>
+								<c:when test="${param.login eq 'notActive'}">
+									<span class="account_login_error" id="loginErrorMsg"
+										style="display: inline;"> 비활성화된 계정입니다. 관리자에게 문의하세요. </span>
+								</c:when>
+								<c:otherwise>
+									<%-- 에러 없을 때는 숨김 --%>
+									<span class="account_login_error" id="loginErrorMsg"
+										style="display: none;"> 아이디 또는 비밀번호가 잘못되었습니다. </span>
+								</c:otherwise>
+							</c:choose>
 
-          <!-- 회원가입 링크 영역 -->
-          <div class="account_login_signup_wrap">
-            <a href="${pageContext.request.contextPath}/member/signup.mefc" class="account_login_signup_link">회원가입</a>
-          </div>
-        </form>
+							<a
+								href="${pageContext.request.contextPath}/member/find-password.mefc"
+								class="account_login_find_pw">비밀번호 찾기</a>
+						</div>
 
-      </div>
-    </div>
-  </main>
+						<!-- 로그인 버튼 -->
+						<button type="submit" class="account_login_submit_btn">로그인</button>
 
-  <!-- 공통 footer 영역 -->
+						<!-- 회원가입 링크 영역 -->
+						<div class="account_login_signup_wrap">
+							<a href="${pageContext.request.contextPath}/member/signup.mefc"
+								class="account_login_signup_link">회원가입</a>
+						</div>
+				</form>
 
-  <!-- JS: 로그인 및 회원가입 페이지 이동 로직 (뼈대) -->
-  <!-- <script src="../../../assets/js/main/account/login.js"> 
+			</div>
+		</div>
+	</main>
+
+	<!-- 공통 footer 영역 -->
+
+	<!-- JS: 로그인 및 회원가입 페이지 이동 로직 (뼈대) -->
+	<!-- <script src="../../../assets/js/main/account/login.js"> 
     
   </script>-->
 </body>

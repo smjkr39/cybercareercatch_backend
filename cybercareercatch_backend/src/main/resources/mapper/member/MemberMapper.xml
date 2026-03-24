@@ -90,7 +90,8 @@
 		resultType="int">
 		SELECT COMPANY_NUMBER
 		FROM TBL_COMPANY_MEMBER
-		WHERE USER_NUMBER = #{value}
+		WHERE
+		USER_NUMBER = #{value}
 	</select>
 
 	<select id="selectUserNameByUserNumber" parameterType="int"
@@ -99,5 +100,21 @@
 		FROM TBL_USER
 		WHERE USER_NUMBER = #{value}
 	</select>
+	
+	<!-- 기업회원 승인 상태 확인 -->
+	<select id="selectCompanyState" parameterType="int"
+		resultType="String">
+		SELECT C.COMPANY_STATE
+		FROM TBL_COMPANY C
+		JOIN TBL_COMPANY_MEMBER CM ON C.COMPANY_NUMBER = CM.COMPANY_NUMBER
+		WHERE CM.USER_NUMBER = #{value}
+	</select>
 
+	<!-- 기업회원 담당자 활성화 상태 확인 -->
+	<select id="selectCompanyManagerState" parameterType="int"
+		resultType="String">
+		SELECT COMPANY_MANAGER_STATE
+		FROM TBL_COMPANY_MEMBER
+		WHERE USER_NUMBER = #{value}
+	</select>
 </mapper>

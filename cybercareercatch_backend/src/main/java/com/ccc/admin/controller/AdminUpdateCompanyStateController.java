@@ -43,6 +43,10 @@ public class AdminUpdateCompanyStateController implements Execute {
 		companyDTO.setCompanyState(companyState);
 
 		adminDAO.updateCompanyState(companyDTO);
+		
+		if ("승인".equals(companyState)) {
+            adminDAO.updateCompanyManagerStateActive(companyNumber);
+        }
 
 		String resultMessage = "승인".equals(companyState) ? "approve" : "reject";
 

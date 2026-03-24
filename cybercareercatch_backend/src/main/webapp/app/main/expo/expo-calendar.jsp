@@ -20,7 +20,26 @@
 </script>
 
 <body>
-    <jsp:include page="/app/main/header/header-logout.jsp" />
+	<c:set var="isLoggedIn"
+		value="${not empty sessionScope.user or not empty sessionScope.userNumber}" />
+	<c:set var="defaultCompanyImg"
+		value="${pageContext.request.contextPath}/assets/img/기업이미지_샘플1.jpg" />
+
+	<c:choose>
+		<c:when test="${not empty sessionScope.userNumber}">
+			<c:choose>
+				<c:when test="${sessionScope.userType == '기업회원'}">
+					<jsp:include page="/app/main/header/header-login-company.jsp" />
+				</c:when>
+				<c:otherwise>
+					<jsp:include page="/app/main/header/header-login-member.jsp" />
+				</c:otherwise>
+			</c:choose>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="/app/main/header/header-logout.jsp" />
+		</c:otherwise>
+	</c:choose>
 
     <main class="expo-main">
         <section class="expo-cal">
@@ -64,9 +83,9 @@
         </section>
     </main>
 
-    <jsp:include page="/app/main/footer/footer.jsp" />
 
     <script src="${pageContext.request.contextPath}/assets/js/main/expo/expo-calendar.js"></script>
+	<footer><jsp:include page="/app/main/footer/footer.jsp" /></footer>
 </body>
 
 </html>

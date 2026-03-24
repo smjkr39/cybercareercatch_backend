@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		passwordCombo: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9])\S+$/
 	};
 
-	const DEMO_AUTH_CODE = "123456";
+	/*const DEMO_AUTH_CODE = "123456";*/
 	let smsRequested = false;
 	let smsVerified = false;
 
@@ -465,13 +465,48 @@ document.addEventListener("DOMContentLoaded", () => {
 	requestSmsBtn.addEventListener("click", () => {
 		if (!validateManagerPhone(true)) return;
 
-		smsRequested = true;
+		smsRequested = false;
 		smsVerified = false;
 		clearBoxState(authCodeBox);
 		clearMessagePair(authCodeErrorMsg, authCodeSuccessMsg);
 
-		alert("인증번호가 전송되었습니다. 테스트용 인증번호는 123456 입니다.");
-		authCodeInput.focus();
+		fetch(`${base}/member/sendSMS.mefc`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+				"X-Requested-With": "XMLHttpRequest"
+			},
+			body: new URLSearchParams({ phoneNumber: managerPhoneInput.value.trim() })
+		})
+			.then(response => {
+				if (!response.ok) throw new Error("SMS 발송 실패");
+				return response.text();
+			})
+			.then(message => {
+				console.log(message);
+				smsRequested = true;
+				smsVerified = false;
+				authCodeInput.disabled = false;
+				authCodeInput.value = "";
+				authCodeInput.focus();
+				clearBoxState(managerPhoneBox);
+				managerPhoneBox && managerPhoneBox.classList.add("is-success");
+				if (authCodeErrorMsg) {
+					authCodeErrorMsg.textContent = "인증번호가 전송되었습니다.";
+					authCodeErrorMsg.style.color = "green";
+					show(authCodeErrorMsg);
+				}
+			})
+			.catch(error => {
+				console.error("SMS 발송 오류:", error);
+				smsRequested = false;
+				fail({
+					message: "인증번호 발송 중 오류가 발생했습니다.",
+					input: managerPhoneInput,
+					box: managerPhoneBox,
+					popup: false
+				});
+			});
 	});
 
 	verifyAuthCodeBtn.addEventListener("click", () => {
@@ -483,27 +518,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		if (!validateAuthCodeFormat(true)) return;
 
-		if (authCodeInput.value.trim() !== DEMO_AUTH_CODE) {
-			smsVerified = false;
-			fail({
-				message: "잘못된 인증번호입니다",
-				input: authCodeInput,
-				box: authCodeBox,
-				errorEl: authCodeErrorMsg,
-				successEl: authCodeSuccessMsg,
-				popup: true
+		fetch(`${base}/member/verifyCode.mefc`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json; charset=utf-8",
+				"Accept": "application/json"
+			},
+			body: JSON.stringify({ code: authCodeInput.value.trim() })
+		})
+			.then(response => {
+				if (!response.ok) throw new Error("인증 확인 실패");
+				return response.json();
+			})
+			.then(data => {
+				if (data.success) {
+					smsVerified = true;
+					pass({ box: authCodeBox, successEl: authCodeSuccessMsg, errorEl: authCodeErrorMsg });
+					alert("휴대폰 인증이 완료되었습니다.");
+				} else {
+					smsVerified = false;
+					fail({
+						message: "잘못된 인증번호입니다.",
+						input: authCodeInput,
+						box: authCodeBox,
+						errorEl: authCodeErrorMsg,
+						successEl: authCodeSuccessMsg,
+						popup: true
+					});
+				}
+			})
+			.catch(error => {
+				console.error("인증 확인 오류:", error);
+				smsVerified = false;
+				fail({
+					message: "인증 처리 중 오류가 발생했습니다.",
+					input: authCodeInput,
+					box: authCodeBox,
+					errorEl: authCodeErrorMsg,
+					successEl: authCodeSuccessMsg,
+					popup: false
+				});
 			});
-			return;
-		}
-
-		smsVerified = true;
-		pass({
-			box: authCodeBox,
-			successEl: authCodeSuccessMsg,
-			errorEl: authCodeErrorMsg
-		});
-
-		alert("휴대폰 인증이 완료되었습니다");
 	});
 
 	checkPasswordBtn.addEventListener("click", () => {

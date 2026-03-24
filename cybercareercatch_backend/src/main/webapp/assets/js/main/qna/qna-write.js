@@ -1,66 +1,104 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const page = document.getElementById("qnaWritePage");
+/*
+기업 QnA 글쓰기 페이지 스크립트
 
-  if (!page) {
-    return;
-  }
+역할
+1. 제목/내용 길이 검증
+2. 등록 전 확인창 띄우기
+*/
+document.addEventListener("DOMContentLoaded", () => {
+	const qnaWriteForm = document.getElementById("qnaWriteForm");
+	const titleInput = document.getElementById("postTitle");       // ← 추가
+	const contentInput = document.getElementById("postContent");   // ← 추가
+	const titleCount = document.getElementById("titleCount");      // ← 추가
+	const contentCount = document.getElementById("contentCount");  // ← 추가
+	const submitBtn = document.querySelector(".cmw-btn");          // ← 추가
 
-  const loginRequired = page.dataset.loginRequired === "true";
-  const companyBlocked = page.dataset.companyBlocked === "true";
-  const loginMessage = page.dataset.loginMessage;
-  const companyMessage = page.dataset.companyMessage;
-  const loginUrl = page.dataset.loginUrl;
-  const listUrl = page.dataset.listUrl;
+	const TITLE_MIN = 10;
+	const TITLE_MAX = 100;
+	const CONTENT_MIN = 10;
+	const CONTENT_MAX = 1000;
+	
+	let titleAlertShown = false;
+	let contentAlertShown = false;
 
-  if (loginRequired) {
-    alert(loginMessage);
-    location.href = loginUrl;
-    return;
-  }
+	function updateCount() {
+		if (titleInput && titleCount) {
+			titleCount.textContent = `${titleInput.value.length} / ${TITLE_MAX}`;
+		}
+		if (contentInput && contentCount) {
+			contentCount.textContent = `${contentInput.value.length} / ${CONTENT_MAX}`;
+		}
+	}
 
-  if (companyBlocked) {
-    alert(companyMessage);
-    location.href = listUrl;
-    return;
-  }
+	function limitInput(input, max, type) {
+		if (!input) return;
+		if (input.value.length > max) {
+			input.value = input.value.substring(0, max);
+			if (type === "title" && !titleAlertShown) {
+				alert(`제목은 더이상 입력할 수 없습니다. 최대 ${TITLE_MAX}자까지 입력 가능합니다.`);
+				titleAlertShown = true;
+			}
+			if (type === "content" && !contentAlertShown) {
+				alert(`내용은 더이상 입력할 수 없습니다. 최대 ${CONTENT_MAX}자까지 입력 가능합니다.`);
+				contentAlertShown = true;
+			}
+		} else {
+			if (type === "title") titleAlertShown = false;
+			if (type === "content") contentAlertShown = false;
+		}
+	}
 
-  const cancelButton = document.getElementById("qnaWriteCancelBtn");
-  if (cancelButton) {
-    cancelButton.addEventListener("click", function () {
-      location.href = listUrl;
-    });
-  }
+	if (titleInput) {
+		titleInput.addEventListener("input", () => {
+			limitInput(titleInput, TITLE_MAX, "title");
+			updateCount();
+		});
+	}
 
-  const writeForm = document.getElementById("qnaWriteForm");
-  if (writeForm) {
-    writeForm.addEventListener("submit", function (e) {
-      const companyNumber = document.getElementById("companyNumber").value;
-      const title = document.getElementById("postTitle").value.trim();
-      const contentElement = document.getElementById("postContent");
-      const content = contentElement.value;
-      const trimmedContent = contentElement.value.trim();
+	if (contentInput) {
+		contentInput.addEventListener("input", () => {
+			limitInput(contentInput, CONTENT_MAX, "content");
+			updateCount();
+		});
+	}
 
-      if (!companyNumber) {
-        alert("기업을 선택해주세요.");
-        e.preventDefault();
-        return;
-      }
+	if (qnaWriteForm) {
+		qnaWriteForm.addEventListener("submit", function(e) {
+			const companyNumber = document.getElementById("companyNumber").value;
+			const postTitle = document.getElementById("postTitle").value.trim();
+			const postContentElement = document.getElementById("postContent");
+			const postContent = postContentElement.value;        // 공백 포함 길이 체크용
+			const postContentTrimmed = postContentElement.value.trim(); // 공백만 입력 방지용
 
-      if (title.length < 10 || title.length > 100) {
-        alert("제목은 10자 이상 100자 이하로 입력해주세요.");
-        e.preventDefault();
-        return;
-      }
+			if (!companyNumber) {
+				alert("기업을 선택해주세요.");
+				e.preventDefault();
+				return;
+			}
 
-      if (trimmedContent.length === 0 || content.length < 10 || content.length > 1000) {
-        alert("내용은 공백 포함 10자 이상 1000자 이하로 입력해주세요.");
-        e.preventDefault();
-        return;
-      }
+			if (postTitle.length < 10 || postTitle.length > 100) {
+				alert("제목은 10자 이상 100자 이하로 입력해주세요.");
+				return;
+			}
 
-      if (!confirm("글을 등록하시겠습니까?")) {
-        e.preventDefault();
-      }
-    });
-  }
+			// 내용은 공백 포함 10자 이상 1000자 이하
+			if (postContentTrimmed.length === 0 || postContent.length < 10 || postContent.length > 1000) {
+				alert("내용은 공백 포함 10자 이상 1000자 이하로 입력해주세요.");
+				e.preventDefault();
+				return;
+			}
+
+			const ok = confirm("글을 생성하겠습니까?");
+			if (!ok) {
+				e.preventDefault();
+				return;
+			}
+			if (submitBtn) {
+				submitBtn.disabled = true;
+				submitBtn.textContent = "등록 중...";
+			}
+
+		});
+	}
+	updateCount();
 });

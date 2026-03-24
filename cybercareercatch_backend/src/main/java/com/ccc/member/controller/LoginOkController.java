@@ -41,6 +41,29 @@ public class LoginOkController implements Execute {
 			String userType = userDAO.selectUserType(userNumber);
 			Integer companyNumber = userDAO.selectCompanyNumberByUserNumber(userNumber);
 
+			if ("기업회원".equals(userType)) {
+
+				// 1. 기업 승인 상태 확인
+				String companyState = userDAO.selectCompanyState(userNumber);
+
+				if (!"승인".equals(companyState)) {
+					path = request.getContextPath() + "/member/login.mefc?login=notApproved";
+					result.setRedirect(true);
+					result.setPath(path);
+					return result;
+				}
+
+				// 2. 채용 담당자 활성화 상태 확인
+				String managerState = userDAO.selectCompanyManagerState(userNumber);
+
+				if (!"ACTIVE".equals(managerState)) {
+					path = request.getContextPath() + "/member/login.mefc?login=notActive";
+					result.setRedirect(true);
+					result.setPath(path);
+					return result;
+				}
+			}
+
 			// 기존 프로젝트에서 쓰던 세션값 유지
 			session.setAttribute("userNumber", userNumber);
 

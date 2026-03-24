@@ -235,7 +235,7 @@ public class MypageCompanypageEditOkController implements Execute {
 					}
 
 					// DB에 저장할 상대경로
-					newFilePath = "upload/company/" + newFileName;
+					newFilePath = "/upload/company/" + newFileName;
 				}
 			}
 		}

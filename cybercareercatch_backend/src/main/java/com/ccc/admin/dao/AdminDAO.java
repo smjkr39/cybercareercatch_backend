@@ -122,4 +122,9 @@ public class AdminDAO {
 	public void deleteRecruiter(int userNumber) {
 		sqlSession.delete("admin.deleteRecruiter", userNumber);
 	}
+	
+	// 기업 회원 승인 시 최근 기업 담당자를 활성화
+	public void updateCompanyManagerStateActive(int companyNumber) {
+	    sqlSession.update("admin.updateCompanyManagerStateActive", companyNumber);
+	}
 }

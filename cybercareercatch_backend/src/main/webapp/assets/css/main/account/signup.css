@@ -20,8 +20,8 @@ body {
 }
 
 header{
-  height: 166px;
-  background-color: #ff0000;
+  height: 160px;
+  /* background-color: #ff0000; */
 }
 
 /* 전체 컨테이너 */

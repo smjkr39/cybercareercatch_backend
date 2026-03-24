@@ -165,8 +165,7 @@ public class AdminFrontController extends HttpServlet {
 			break;
 
 		/*
-		 * ====================================================================== 
-		 * 								엑스포
+		 * ====================================================================== 엑스포
 		 * =======================================================================
 		 */
 
@@ -177,7 +176,7 @@ public class AdminFrontController extends HttpServlet {
 		case "/admin/expoDetailSchedule.adfc":
 			result = new AdminExpoDetailScheduleController().execute(request, response);
 			break;
-			
+
 		case "/admin/insertExpo.adfc":
 			result = new AdminInsertExpoController().execute(request, response);
 			break;
@@ -189,9 +188,9 @@ public class AdminFrontController extends HttpServlet {
 		case "/admin/addExpoCompany.adfc":
 			result = new AdminAddExpoCompanyController().execute(request, response);
 			break;
-			/*
-			 * ========================= 자유게시판 =========================
-			 */	
+		/*
+		 * ========================= 자유게시판 =========================
+		 */
 		case "/admin/communityManagement.adfc":
 			result = new AdminCommunityManagementController().execute(request, response);
 			break;
@@ -199,14 +198,18 @@ public class AdminFrontController extends HttpServlet {
 		case "/admin/deleteFreePost.adfc":
 			result = new AdminDeleteFreePostController().execute(request, response);
 			break;
-			
+
 		case "/admin/saveFreeNotice.adfc":
 			result = new AdminSaveFreeNoticeController().execute(request, response);
 			break;
-			/*
-			 * ========================= 기업간 일반회원 qna =========================
-			 */	
-			
+		/*
+		 * ========================= 기업간 일반회원 qna =========================
+		 */
+
+		case "/admin/companyQnaDetail.adfc":
+			result = new AdminCompanyQnaDetailController().execute(request, response);
+			break;
+
 		case "/admin/companyQnaManagement.adfc":
 			result = new AdminCompanyQnaManagementController().execute(request, response);
 			break;
@@ -229,4 +232,5 @@ public class AdminFrontController extends HttpServlet {
 				request.getRequestDispatcher(result.getPath()).forward(request, response);
 			}
 		}
-	}}
+	}
+}

@@ -13,7 +13,14 @@
 	href="${pageContext.request.contextPath}/assets/css/main/qna/qna-detail.css">
 </head>
 <body>
-
+	<c:choose>
+		<c:when test="${isCompanyMember}">
+			<jsp:include page="/app/main/header/header-login-company.jsp" />
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="/app/main/header/header-login-member.jsp" />
+		</c:otherwise>
+	</c:choose>
 	<div id="qnaDetailPage" data-login-required="${loginRequired}"
 		data-login-message="기업 Q&A는 로그인 후 이용 가능합니다."
 		data-login-url="${pageContext.request.contextPath}/member/login.mefc"
@@ -120,5 +127,6 @@
 
 	<script
 		src="${pageContext.request.contextPath}/assets/js/main/qna/qna-detail.js"></script>
+	<footer><jsp:include page="/app/main/footer/footer.jsp" /></footer>
 </body>
 </html>

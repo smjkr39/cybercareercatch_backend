@@ -27,10 +27,10 @@ body {
   color: #333333;
 }
 
-header {
+/* header {
   height: 166px;
   background-color: #ff0000;
-}
+} */
 
 * {
   box-sizing: border-box;
