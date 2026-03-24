@@ -19,6 +19,26 @@
 </head>
 
 <body>
+	<c:set var="isLoggedIn"
+		value="${not empty sessionScope.user or not empty sessionScope.userNumber}" />
+	<c:set var="defaultCompanyImg"
+		value="${pageContext.request.contextPath}/assets/img/기업이미지_샘플1.jpg" />
+
+	<c:choose>
+		<c:when test="${not empty sessionScope.userNumber}">
+			<c:choose>
+				<c:when test="${sessionScope.userType == '기업회원'}">
+					<jsp:include page="/app/main/header/header-login-company.jsp" />
+				</c:when>
+				<c:otherwise>
+					<jsp:include page="/app/main/header/header-login-member.jsp" />
+				</c:otherwise>
+			</c:choose>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="/app/main/header/header-logout.jsp" />
+		</c:otherwise>
+	</c:choose>
 	<main>
 		<div class="main-container">
 			<div class="mypage-title">마이페이지</div>
@@ -42,23 +62,19 @@
 						<div class="mypage-info-title">전화번호</div>
 						<div class="mypage-input-wrap">
 							<input type="text" name="userPhone" class="mypage-info-text"
-								id="member-phonenumber"
-								value="${memberMypageInfoDTO.userPhone}"
-								placeholder="전화번호입력(-제외)"
-								maxlength="11"
-								required>
+								id="member-phonenumber" value="${memberMypageInfoDTO.userPhone}"
+								placeholder="전화번호입력(-제외)" maxlength="11" required>
 							<div class="input-message" id="member-phonenumber-message">${phoneMessage}</div>
 						</div>
-						<button type="button" class="btn" id="member-phonenumber-submit-btn">전송</button>
+						<button type="button" class="btn"
+							id="member-phonenumber-submit-btn">전송</button>
 					</div>
 
 					<div class="mypage-info-box">
 						<div class="mypage-info-title">인증번호</div>
 						<div class="mypage-input-wrap">
 							<input type="text" name="authCode" class="mypage-info-text"
-								id="member-verificationcode"
-								placeholder="인증번호"
-								maxlength="6"
+								id="member-verificationcode" placeholder="인증번호" maxlength="6"
 								required disabled>
 							<div class="input-message" id="member-verificationcode-message">${authMessage}</div>
 						</div>
@@ -93,8 +109,8 @@
 					<div class="mypage-info-box">
 						<div class="mypage-info-title">변경할 비밀번호</div>
 						<div class="mypage-input-wrap">
-							<input type="password" name="newUserPw"
-								class="mypage-info-text" id="member-change-pw" required>
+							<input type="password" name="newUserPw" class="mypage-info-text"
+								id="member-change-pw" required>
 							<div class="input-message" id="member-change-pw-message">${newPwMessage}</div>
 						</div>
 					</div>
@@ -122,6 +138,7 @@
 			</div>
 		</div>
 	</main>
+	<footer><jsp:include page="/app/main/footer/footer.jsp" /></footer>
 </body>
 
 </html>

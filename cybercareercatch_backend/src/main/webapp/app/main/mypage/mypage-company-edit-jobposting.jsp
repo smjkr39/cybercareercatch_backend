@@ -15,6 +15,26 @@
 </head>
 
 <body>
+	<c:set var="isLoggedIn"
+		value="${not empty sessionScope.user or not empty sessionScope.userNumber}" />
+	<c:set var="defaultCompanyImg"
+		value="${pageContext.request.contextPath}/assets/img/기업이미지_샘플1.jpg" />
+
+	<c:choose>
+		<c:when test="${not empty sessionScope.userNumber}">
+			<c:choose>
+				<c:when test="${sessionScope.userType == '기업회원'}">
+					<jsp:include page="/app/main/header/header-login-company.jsp" />
+				</c:when>
+				<c:otherwise>
+					<jsp:include page="/app/main/header/header-login-member.jsp" />
+				</c:otherwise>
+			</c:choose>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="/app/main/header/header-logout.jsp" />
+		</c:otherwise>
+	</c:choose>
 	<main>
 		<div class="jobpost-main-container">
 			<div class="jobpost-title">마이페이지</div>
@@ -71,7 +91,8 @@
 						<div class="jobpost-section-subtitle">매출액</div>
 						<div class="jobpost-section-content">
 							<input class="jobpost-section-inputcontent" type="text"
-								name="company_sales" id="company-sales" placeholder="예 : 100,000,000원"
+								name="company_sales" id="company-sales"
+								placeholder="예 : 100,000,000원"
 								value="${companyDetailDTO.compRev}" required>
 						</div>
 					</div>
@@ -81,8 +102,8 @@
 						<div class="jobpost-section-content">
 							<input class="jobpost-section-inputcontent" type="text"
 								name="company_capital" id="company-capital"
-								placeholder="예 : 100,000,000원" value="${companyDetailDTO.compCap}"
-								required>
+								placeholder="예 : 100,000,000원"
+								value="${companyDetailDTO.compCap}" required>
 						</div>
 					</div>
 
@@ -152,13 +173,12 @@
 						직군선택
 						<div class="check-item">
 							<c:forEach var="jobGroup" items="${jobGroupList}">
-								<label>
-									<input type="checkbox" name="job_group"
-										value="${jobGroup.jobNumber}"
-										<c:if test="${jobGroup.jobNumber == 1 and companyDetailDTO.cat1IsHiring == 1}">checked</c:if>
-										<c:if test="${jobGroup.jobNumber == 2 and companyDetailDTO.cat2IsHiring == 1}">checked</c:if>
-										<c:if test="${jobGroup.jobNumber == 3 and companyDetailDTO.cat3IsHiring == 1}">checked</c:if>
-										<c:if test="${jobGroup.jobNumber == 4 and companyDetailDTO.cat4IsHiring == 1}">checked</c:if>>
+								<label> <input type="checkbox" name="job_group"
+									value="${jobGroup.jobNumber}"
+									<c:if test="${jobGroup.jobNumber == 1 and companyDetailDTO.cat1IsHiring == 1}">checked</c:if>
+									<c:if test="${jobGroup.jobNumber == 2 and companyDetailDTO.cat2IsHiring == 1}">checked</c:if>
+									<c:if test="${jobGroup.jobNumber == 3 and companyDetailDTO.cat3IsHiring == 1}">checked</c:if>
+									<c:if test="${jobGroup.jobNumber == 4 and companyDetailDTO.cat4IsHiring == 1}">checked</c:if>>
 									<span>${jobGroup.jobName}</span>
 								</label>
 							</c:forEach>
@@ -168,28 +188,32 @@
 					<div class="jobpost-section-box">
 						<div class="jobpost-section-subtitle">인재상</div>
 						<div class="jobpost-section-content-textarea">
-							<textarea name="company_talent" id="company-talent" maxlength="1000" required>${companyDetailDTO.jobPostProfile}</textarea>
+							<textarea name="company_talent" id="company-talent"
+								maxlength="1000" required>${companyDetailDTO.jobPostProfile}</textarea>
 						</div>
 					</div>
 
 					<div class="jobpost-section-box">
 						<div class="jobpost-section-subtitle">채용부분</div>
 						<div class="jobpost-section-content-textarea">
-							<textarea name="company_jobpart" id="company-jobpart" maxlength="1000" required>${companyDetailDTO.jobPostContent}</textarea>
+							<textarea name="company_jobpart" id="company-jobpart"
+								maxlength="1000" required>${companyDetailDTO.jobPostContent}</textarea>
 						</div>
 					</div>
 
 					<div class="jobpost-section-box">
 						<div class="jobpost-section-subtitle">채용 절차</div>
 						<div class="jobpost-section-content-textarea">
-							<textarea name="company_process" id="company-process" maxlength="1000" required>${companyDetailDTO.jobPostProcess}</textarea>
+							<textarea name="company_process" id="company-process"
+								maxlength="1000" required>${companyDetailDTO.jobPostProcess}</textarea>
 						</div>
 					</div>
 
 					<div class="jobpost-section-box">
 						<div class="jobpost-section-subtitle">지원 정보</div>
 						<div class="jobpost-section-content-textarea">
-							<textarea name="company_apply" id="company-apply" maxlength="1000" required>${companyDetailDTO.jobPostMethod}</textarea>
+							<textarea name="company_apply" id="company-apply"
+								maxlength="1000" required>${companyDetailDTO.jobPostMethod}</textarea>
 						</div>
 					</div>
 				</div>
@@ -202,11 +226,11 @@
 
 				<button type="button" class="btn" id="delete-btn"
 					data-delete-url="${pageContext.request.contextPath}/company/mypage/companypageDelete.mpfc">
-					게시물 삭제
-				</button>
+					게시물 삭제</button>
 			</form>
 		</div>
 	</main>
+	<footer><jsp:include page="/app/main/footer/footer.jsp" /></footer>
 </body>
 
 </html>

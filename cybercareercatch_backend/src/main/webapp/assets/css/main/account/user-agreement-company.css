@@ -30,10 +30,10 @@ body {
   color: #333333;
 }
 
-header{
-  height: 166px;
+/* header{
+  height: 160px;
   background-color: #ff0000;
-}
+} */
 
 * {
   box-sizing: border-box;

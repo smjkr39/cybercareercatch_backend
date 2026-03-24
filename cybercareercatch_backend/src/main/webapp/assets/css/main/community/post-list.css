@@ -1,163 +1,164 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-    background-color: #f5f5f5;
-    color: #111;
-    font-family: Arial, sans-serif;
+	background-color: #f5f5f5;
+	color: #111;
+	font-family: Arial, sans-serif;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+	text-decoration: none;
+	color: inherit;
+}
+
+.post-notice-row {
+	background-color: #f5f6ff;
+	font-weight: 700;
 }
 
 .post-list-wrap {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: 40px 20px;
 }
 
 .post-list-container {
-    width: 100%;
-    max-width: 1000px;
+	width: 100%;
+	max-width: 1000px;
 }
 
 .post-list-title {
-    font-size: 40px;
-    font-weight: bold;
-    margin-bottom: 30px;
+	font-size: 40px;
+	font-weight: bold;
+	margin-bottom: 30px;
 }
 
 .post-list-table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
 }
 
 .post-list-table thead tr {
-    border-top: 2px solid #7f88ff;
-    border-bottom: 1px solid #cfcfcf;
+	border-top: 2px solid #7f88ff;
+	border-bottom: 1px solid #cfcfcf;
 }
 
 .post-list-table tbody tr {
-    border-bottom: 1px solid #cfcfcf;
+	border-bottom: 1px solid #cfcfcf;
 }
 
-.post-list-table th,
-.post-list-table td {
-    padding: 18px 10px;
-    text-align: center;
-    font-size: 16px;
+.post-list-table th, .post-list-table td {
+	padding: 18px 10px;
+	text-align: center;
+	font-size: 16px;
 }
 
 .col-no {
-    width: 80px;
+	width: 80px;
 }
 
 .col-title {
-    width: 480px;
+	width: 480px;
 }
 
 .col-writer {
-    width: 120px;
+	width: 120px;
 }
 
 .col-date {
-    width: 140px;
+	width: 140px;
 }
 
 .col-view {
-    width: 100px;
+	width: 100px;
 }
 
 /* 제목 셀 */
 .post-title-td {
-    width: 480px;
-    max-width: 480px;
-    text-align: left;
-    padding-left: 20px;
-    padding-right: 20px;
+	width: 480px;
+	max-width: 480px;
+	text-align: left;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 /* 제목 링크를 한 줄로 고정 + 넘치면 ... */
 .post-title-link {
-    display: block;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+	display: block;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .post-page-box {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 22px 0 30px;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin: 22px 0 30px;
 }
 
 .page-btn {
-    display: inline-block;
-    min-width: 28px;
-    padding: 7px 10px;
-    border-radius: 6px;
-    text-align: center;
-    color: #333;
+	display: inline-block;
+	min-width: 28px;
+	padding: 7px 10px;
+	border-radius: 6px;
+	text-align: center;
+	color: #333;
 }
 
 .page-btn.active {
-    background-color: #7f88ff;
-    color: #fff;
+	background-color: #7f88ff;
+	color: #fff;
 }
 
 .post-search-box {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
 }
 
 .post-search-box form {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
 }
 
-.post-search-box select,
-.post-search-box input,
-.post-search-box button,
-.write-btn {
-    height: 40px;
-    border: 1px solid #cfcfcf;
-    border-radius: 6px;
-    font-size: 14px;
+.post-search-box select, .post-search-box input, .post-search-box button,
+	.write-btn {
+	height: 40px;
+	border: 1px solid #cfcfcf;
+	border-radius: 6px;
+	font-size: 14px;
 }
 
 .post-search-box select {
-    width: 90px;
-    padding: 0 10px;
-    background-color: #fff;
+	width: 90px;
+	padding: 0 10px;
+	background-color: #fff;
 }
 
 .post-search-box input {
-    width: 260px;
-    padding: 0 12px;
-    background-color: #fff;
+	width: 260px;
+	padding: 0 12px;
+	background-color: #fff;
 }
 
-.post-search-box button,
-.write-btn {
-    padding: 0 16px;
-    background-color: #7f88ff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    line-height: 40px;
+.post-search-box button, .write-btn {
+	padding: 0 16px;
+	background-color: #7f88ff;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	line-height: 40px;
 }
 
 .write-btn {
-    display: inline-block;
+	display: inline-block;
 }

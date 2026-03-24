@@ -15,6 +15,26 @@
 </head>
 
 <body>
+	<c:set var="isLoggedIn"
+		value="${not empty sessionScope.user or not empty sessionScope.userNumber}" />
+	<c:set var="defaultCompanyImg"
+		value="${pageContext.request.contextPath}/assets/img/기업이미지_샘플1.jpg" />
+
+	<c:choose>
+		<c:when test="${not empty sessionScope.userNumber}">
+			<c:choose>
+				<c:when test="${sessionScope.userType == '기업회원'}">
+					<jsp:include page="/app/main/header/header-login-company.jsp" />
+				</c:when>
+				<c:otherwise>
+					<jsp:include page="/app/main/header/header-login-member.jsp" />
+				</c:otherwise>
+			</c:choose>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="/app/main/header/header-logout.jsp" />
+		</c:otherwise>
+	</c:choose>
 	<main>
 		<div class="jobpost-main-container">
 			<div class="jobpost-title">마이페이지</div>
@@ -68,8 +88,8 @@
 						<div class="jobpost-section-subtitle">매출액</div>
 						<div class="jobpost-section-content">
 							<input class="jobpost-section-inputcontent" type="text"
-								name="company_sales" id="company-sales" placeholder="예 : 100,000,000원"
-								required>
+								name="company_sales" id="company-sales"
+								placeholder="예 : 100,000,000원" required>
 						</div>
 					</div>
 
@@ -157,28 +177,32 @@
 					<div class="jobpost-section-box">
 						<div class="jobpost-section-subtitle">인재상</div>
 						<div class="jobpost-section-content-textarea">
-							<textarea name="company_talent" id="company-talent" maxlength="1000" required></textarea>
+							<textarea name="company_talent" id="company-talent"
+								maxlength="1000" required></textarea>
 						</div>
 					</div>
 
 					<div class="jobpost-section-box">
 						<div class="jobpost-section-subtitle">채용부분</div>
 						<div class="jobpost-section-content-textarea">
-							<textarea name="company_jobpart" id="company-jobpart" maxlength="1000" required></textarea>
+							<textarea name="company_jobpart" id="company-jobpart"
+								maxlength="1000" required></textarea>
 						</div>
 					</div>
 
 					<div class="jobpost-section-box">
 						<div class="jobpost-section-subtitle">채용 절차</div>
 						<div class="jobpost-section-content-textarea">
-							<textarea name="company_process" id="company-process" maxlength="1000" required></textarea>
+							<textarea name="company_process" id="company-process"
+								maxlength="1000" required></textarea>
 						</div>
 					</div>
 
 					<div class="jobpost-section-box">
 						<div class="jobpost-section-subtitle">지원 정보</div>
 						<div class="jobpost-section-content-textarea">
-							<textarea name="company_apply" id="company-apply" maxlength="1000" required></textarea>
+							<textarea name="company_apply" id="company-apply"
+								maxlength="1000" required></textarea>
 						</div>
 					</div>
 				</div>
@@ -191,6 +215,7 @@
 			</form>
 		</div>
 	</main>
+	<footer><jsp:include page="/app/main/footer/footer.jsp" /></footer>
 </body>
 
 </html>

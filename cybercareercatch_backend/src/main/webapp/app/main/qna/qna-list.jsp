@@ -2,12 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="loginRequired" value="${empty requestScope.userNumber}" />
-<c:set var="showCompanyDropdown" value="${requestScope.isMemberUser}" />
-<c:set var="showWriteButton" value="${requestScope.isMemberUser}" />
-<c:set var="isCompanyMember" value="${requestScope.isCompanyUser}" />
-<c:set var="loginCompanyNumber" value="${requestScope.companyNumber}" />
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,21 +11,37 @@
 	href="${pageContext.request.contextPath}/assets/css/main/qna/qna-list.css">
 </head>
 <body>
+
+	<%-- post-list.jsp와 동일한 세션 방식으로 통일 --%>
+	<c:set var="isLoggedIn"
+		value="${not empty sessionScope.user or not empty sessionScope.userNumber}" />
+
 	<c:choose>
-		<c:when test="${isCompanyMember}">
-			<jsp:include page="/app/main/header/header-login-company.jsp" />
+		<c:when test="${not empty sessionScope.userNumber}">
+			<c:choose>
+				<c:when test="${sessionScope.userType == '기업회원'}">
+					<jsp:include page="/app/main/header/header-login-company.jsp" />
+				</c:when>
+				<c:otherwise>
+					<jsp:include page="/app/main/header/header-login-member.jsp" />
+				</c:otherwise>
+			</c:choose>
 		</c:when>
 		<c:otherwise>
-			<jsp:include page="/app/main/header/header-login-member.jsp" />
+			<jsp:include page="/app/main/header/header-logout.jsp" />
 		</c:otherwise>
 	</c:choose>
 
+	<%-- 비로그인 시 로그인 페이지로 이동 (JS 처리) --%>
+	<c:if test="${not isLoggedIn}">
+		<script>
+			alert('기업 Q&A는 로그인 후 이용 가능합니다.');
+			location.href = '${pageContext.request.contextPath}/member/login.mefc';
+		</script>
+	</c:if>
 
-	<div id="qnaListPage" data-login-required="${loginRequired}"
-		data-login-message="기업 Q&A는 로그인 후 이용 가능합니다."
-		data-login-url="${pageContext.request.contextPath}/member/login.mefc"></div>
-
-	<c:if test="${not loginRequired}">
+	<%-- 로그인 상태일 때만 본문 렌더링 --%>
+	<c:if test="${isLoggedIn}">
 		<div class="qnl-wrap">
 
 			<div class="qnl-top">
@@ -49,17 +59,16 @@
 
 			<div class="qnl-list">
 
+				<%-- 공지 --%>
 				<c:if test="${not empty latestQnaNotice}">
 					<div class="qnl-row qnl-row-notice">
 						<div class="qnl-row-col-num">공지</div>
-
 						<div class="qnl-row-col-ttl">
 							<a class="qnl-link"
 								href="${pageContext.request.contextPath}/qna/detail.qfc?postNumber=${latestQnaNotice.postNumber}">
 								<c:out value="${latestQnaNotice.postTitle}" />
 							</a>
 						</div>
-
 						<div class="qnl-row-col-company">관리자</div>
 						<div class="qnl-row-col-date">
 							<c:out value="${latestQnaNotice.postDate}" />
@@ -71,6 +80,7 @@
 					</div>
 				</c:if>
 
+				<%-- 일반 게시글 --%>
 				<c:choose>
 					<c:when test="${not empty qnaList}">
 						<c:forEach var="qna" items="${qnaList}" varStatus="status">
@@ -79,26 +89,21 @@
 								<div class="qnl-row-col-num">
 									<c:out value="${listStartNumber - status.index}" />
 								</div>
-
 								<div class="qnl-row-col-ttl">
 									<a class="qnl-link js-qna-link"
 										href="${pageContext.request.contextPath}/qna/detail.qfc?postNumber=${qna.postNumber}">
 										<c:out value="${qna.postTitle}" />
 									</a>
 								</div>
-
 								<div class="qnl-row-col-company">
 									<c:out value="${qna.companyName}" />
 								</div>
-
 								<div class="qnl-row-col-date">
 									<c:out value="${qna.postDate}" />
 								</div>
-
 								<div class="qnl-row-col-view">
 									<c:out value="${qna.viewCount}" />
 								</div>
-
 								<div class="qnl-row-col-state">
 									<c:choose>
 										<c:when test="${qna.answerStatus eq '답변완료'}">
@@ -112,7 +117,6 @@
 							</div>
 						</c:forEach>
 					</c:when>
-
 					<c:otherwise>
 						<div class="qnl-row">
 							<div class="qnl-row-col-empty">등록된 게시글이 없습니다.</div>
@@ -121,9 +125,9 @@
 				</c:choose>
 			</div>
 
+			<%-- 페이지네이션 --%>
 			<c:if test="${realEnd > 0}">
 				<div class="qnl-pg">
-
 					<c:if test="${startPage > 1}">
 						<a class="qnl-pg-btn"
 							href="${pageContext.request.contextPath}/qna/list.qfc?page=${startPage - 1}&searchType=${searchType}&searchKeyword=${searchKeyword}&companyNumber=${companyNumber}">
@@ -155,18 +159,19 @@
 				</div>
 			</c:if>
 
+			<%-- 검색 & 글쓰기 --%>
 			<div class="qnl-sch">
 				<form action="${pageContext.request.contextPath}/qna/list.qfc"
 					method="get" class="qnl-sch-form">
 
-					<c:if test="${showCompanyDropdown}">
+					<%-- 일반회원만 기업 드롭다운 표시 --%>
+					<c:if test="${sessionScope.userType eq '일반회원'}">
 						<select name="companyNumber" class="qnl-company-sel">
 							<option value="">전체 기업</option>
-
 							<c:forEach var="company" items="${companyList}">
 								<c:choose>
 									<c:when
-										test="${companyNumber ne null and companyNumber eq company.companyNumber.toString()}">
+										test="${companyNumber eq company.companyNumber.toString()}">
 										<option value="${company.companyNumber}" selected="selected">
 											<c:out value="${company.companyName}" />
 										</option>
@@ -181,9 +186,10 @@
 						</select>
 					</c:if>
 
-					<c:if test="${isCompanyMember}">
+					<%-- 기업회원은 자기 회사 번호 고정 --%>
+					<c:if test="${sessionScope.userType eq '기업회원'}">
 						<input type="hidden" name="companyNumber"
-							value="${loginCompanyNumber}" />
+							value="${sessionScope.companyNumber}" />
 					</c:if>
 
 					<select name="searchType" class="qnl-sel">
@@ -199,11 +205,11 @@
 						</c:choose>
 					</select> <input type="text" name="searchKeyword" class="qnl-inp"
 						value="${searchKeyword}" placeholder="검색어를 입력하세요" />
-
 					<button type="submit" class="qnl-btn">검색</button>
 				</form>
 
-				<c:if test="${showWriteButton}">
+				<%-- 일반회원만 글쓰기 버튼 표시 --%>
+				<c:if test="${sessionScope.userType eq '일반회원'}">
 					<a href="${pageContext.request.contextPath}/qna/write-form.qfc"
 						class="qnl-write-btn">글쓰기</a>
 				</c:if>
@@ -214,5 +220,6 @@
 
 	<script
 		src="${pageContext.request.contextPath}/assets/js/main/qna/qna-list.js"></script>
+	<footer><jsp:include page="/app/main/footer/footer.jsp" /></footer>
 </body>
 </html>

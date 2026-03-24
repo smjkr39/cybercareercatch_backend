@@ -18,6 +18,26 @@
 </head>
 
 <body>
+	<c:set var="isLoggedIn"
+		value="${not empty sessionScope.user or not empty sessionScope.userNumber}" />
+	<c:set var="defaultCompanyImg"
+		value="${pageContext.request.contextPath}/assets/img/기업이미지_샘플1.jpg" />
+
+	<c:choose>
+		<c:when test="${not empty sessionScope.userNumber}">
+			<c:choose>
+				<c:when test="${sessionScope.userType == '기업회원'}">
+					<jsp:include page="/app/main/header/header-login-company.jsp" />
+				</c:when>
+				<c:otherwise>
+					<jsp:include page="/app/main/header/header-login-member.jsp" />
+				</c:otherwise>
+			</c:choose>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="/app/main/header/header-logout.jsp" />
+		</c:otherwise>
+	</c:choose>
 	<main>
 		<div class="main-container">
 			<div class="mypage-title">마이페이지</div>
@@ -147,6 +167,7 @@
 			</div>
 		</div>
 	</main>
+	<footer><jsp:include page="/app/main/footer/footer.jsp" /></footer>
 </body>
 
 </html>

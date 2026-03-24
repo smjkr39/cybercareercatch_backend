@@ -11,7 +11,14 @@
 </head>
 <body>
 
-	<jsp:include page="/app/main/header/header-logout.jsp" />
+	<c:choose>
+		<c:when test="${isCompanyMember}">
+			<jsp:include page="/app/main/header/header-login-company.jsp" />
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="/app/main/header/header-login-member.jsp" />
+		</c:otherwise>
+	</c:choose>
 
 	<div class="qnw-wrap">
 		<div class="qnw-top">
@@ -58,5 +65,6 @@
 
 	<script
 		src="${pageContext.request.contextPath}/assets/js/main/qna/add-qna.js"></script>
+	<footer><jsp:include page="/app/main/footer/footer.jsp" /></footer>
 </body>
 </html>

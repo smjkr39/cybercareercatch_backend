@@ -182,6 +182,5 @@
 	<script
 		src="${pageContext.request.contextPath}/assets/js/main/account/find-password.js"></script>
 </body>
-</body>
 
 </html>

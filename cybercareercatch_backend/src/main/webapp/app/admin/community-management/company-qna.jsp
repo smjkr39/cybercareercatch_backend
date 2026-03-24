@@ -135,13 +135,13 @@ if (session.getAttribute("adminNumber") == null) {
 								<c:forEach var="qna" items="${qnaList}">
 									<div class="qna-row">
 										<div class="col1">${qna.postNumber}</div>
-										<div class="col2" title="${qna.postTitle}">
+										<div class="col2">
 											<a
-												href="${pageContext.request.contextPath}/qna/detail.qfc?postNumber=${qna.postNumber}">
+												href="${pageContext.request.contextPath}/admin/companyQnaDetail.adfc?postNumber=${qna.postNumber}">
 												${qna.postTitle} </a>
 										</div>
-										<div class="col3" title="${qna.companyName}">${qna.companyName}</div>
-										<div class="col4" title="${qna.memberId}">${qna.memberId}</div>
+										<div class="col3">${qna.companyName}</div>
+										<div class="col4">${qna.memberId}</div>
 										<div class="col5">${qna.postCreatedDate}</div>
 										<div class="col6">${qna.answerStatus}</div>
 										<div class="col7">${qna.viewCount}</div>
@@ -205,30 +205,8 @@ if (session.getAttribute("adminNumber") == null) {
 	</div>
 
 	<script
-		src="${pageContext.request.contextPath}/assets/js/admin/main-management/company-qna.js"></script>
-	<script>
-		function getByteLength(value) {
-			return new TextEncoder().encode(value).length;
-		}
-
-		document.addEventListener("DOMContentLoaded", function() {
-			const qnaNoticeForm = document.getElementById("qnaNoticeForm");
-			const noticeBox = document.getElementById("notice-box");
-
-			if (!qnaNoticeForm || !noticeBox) {
-				return;
-			}
-
-			qnaNoticeForm.addEventListener("submit", function(event) {
-				const content = noticeBox.value.trim();
-
-				if (content !== "" && getByteLength(content) > 4000) {
-					alert("글자 수 초과하셨습니다.");
-					noticeBox.focus();
-					event.preventDefault();
-				}
-			});
-		});
+		src="${pageContext.request.contextPath}/assets/js/admin/main-management/company-qna.js">
+		
 	</script>
 	<c:if test="${param.result eq 'saved'}">
 		<script>

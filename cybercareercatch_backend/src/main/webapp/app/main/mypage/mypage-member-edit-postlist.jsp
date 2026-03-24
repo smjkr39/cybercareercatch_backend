@@ -13,6 +13,26 @@
 </head>
 
 <body>
+	<c:set var="isLoggedIn"
+		value="${not empty sessionScope.user or not empty sessionScope.userNumber}" />
+	<c:set var="defaultCompanyImg"
+		value="${pageContext.request.contextPath}/assets/img/기업이미지_샘플1.jpg" />
+
+	<c:choose>
+		<c:when test="${not empty sessionScope.userNumber}">
+			<c:choose>
+				<c:when test="${sessionScope.userType == '기업회원'}">
+					<jsp:include page="/app/main/header/header-login-company.jsp" />
+				</c:when>
+				<c:otherwise>
+					<jsp:include page="/app/main/header/header-login-member.jsp" />
+				</c:otherwise>
+			</c:choose>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="/app/main/header/header-logout.jsp" />
+		</c:otherwise>
+	</c:choose>
 	<main>
 		<div class="main-container">
 			<div class="mypage-title">마이페이지</div>
@@ -21,7 +41,8 @@
 				<div class="mypage-subtitle">나의 Q&amp;A 게시글</div>
 				<div class="mypage-subtitle">Q&amp;A 리스트</div>
 
-				<form action="${pageContext.request.contextPath}/member/mypage/deleteMyQna.mpfc"
+				<form
+					action="${pageContext.request.contextPath}/member/mypage/deleteMyQna.mpfc"
 					method="post">
 					<ul class="mypage-QnAlist">
 						<li class="mypage-QnAlist-header">
@@ -71,8 +92,8 @@
 						<button type="submit" class="btn" id="mypage-delete-btn">삭제</button>
 					</div>
 				</form>
-				
-				
+
+
 				<c:if test="${not empty myQnaList}">
 					<div class="mypage-QnAlist-bottom">
 						<div class="mypage-pagination">
@@ -98,11 +119,12 @@
 						</div>
 					</div>
 				</c:if>
-				
-				
+
+
 			</div>
 		</div>
 	</main>
+	<footer><jsp:include page="/app/main/footer/footer.jsp" /></footer>
 </body>
 
 </html>

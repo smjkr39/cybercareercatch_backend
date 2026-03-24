@@ -547,6 +547,6 @@ to {
 		</script>
 	</c:if>
 
-	<jsp:include page="/app/main/footer/footer.jsp" />
+	<footer><jsp:include page="/app/main/footer/footer.jsp" /></footer>
 </body>
 </html>

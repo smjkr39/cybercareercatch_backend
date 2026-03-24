@@ -27,12 +27,18 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link" onclick="toggleDropdown(event)">직군검사</a>
                         <ul class="dropdown-menu job-menu">
-                            <li><a href="${pageContext.request.contextPath}/mainpage/mainpage.mafc">직군 검사</a></li>
-                            <li><a href="${pageContext.request.contextPath}/app/main/roadmap/roadmap-questionnaire1.jsp">보안컨설팅</a></li>
-                            <li><a href="${pageContext.request.contextPath}/app/main/roadmap/roadmap-questionnaire2.jsp">시스템/네트워크/엔지니어</a></li>
-                            <li><a href="${pageContext.request.contextPath}/app/main/roadmap/roadmap-questionnaire3.jsp">보안관제</a></li>
-                            <li><a href="${pageContext.request.contextPath}/app/main/roadmap/roadmap-questionnaire4.jsp">침해사고/디지털포렌식</a></li>
-                        </ul>
+							<li><a
+								href="${pageContext.request.contextPath}/mainpage/mainpage.mafc">직군
+									검사</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=1">보안컨설팅</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=2">시스템/네트워크/엔지니어</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=3">보안관제</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/roadmap/detail.rfc?jobNumber=4">침해사고/디지털포렌식</a></li>
+						</ul>
                     </li>
 
                     <li class="nav-item">
@@ -44,7 +50,7 @@
                         <ul class="dropdown-menu community-menu">
                             <li><a href="${pageContext.request.contextPath}/post/list.pfc">자유게시판</a></li>
                             <li><a href="${pageContext.request.contextPath}/qna/list.qfc">기업QnA</a></li>
-                            <li><a href="${pageContext.request.contextPath}/app/main/expo/expo-calendar.jsp">박람회일정</a></li>
+                            <li><a href="${pageContext.request.contextPath}/expo/expoList.efc">박람회일정</a></li>
                         </ul>
                     </li>
                 </ul>
