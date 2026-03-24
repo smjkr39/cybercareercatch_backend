@@ -24,26 +24,6 @@ public class MypageCompanyEditPhonenumController implements Execute {
 		HttpSession session = request.getSession();
 
 		Integer userNumber = (Integer) session.getAttribute("userNumber");
-		String userType = (String) session.getAttribute("userType");
-
-		session.setAttribute("userNumber", 1);
-		session.setAttribute("userType", "일반회원");
-		
-		//테스트용 - 삭제
-		session.setAttribute("userNumber", 51);
-		session.setAttribute("userType", "기업회원");
-
-		if (userNumber == null) {
-			result.setRedirect(true);
-			result.setPath(request.getContextPath() + "/member/login.mefc");
-			return result;
-		}
-
-		if (userType == null || !userType.equals("기업회원")) {
-			result.setRedirect(true);
-			result.setPath(request.getContextPath() + "/mainpage/mainpage.mafc");
-			return result;
-		}
 
 		Boolean companyPwChecked = (Boolean) session.getAttribute("companyPwChecked");
 		if (companyPwChecked == null || !companyPwChecked) {
@@ -100,7 +80,7 @@ public class MypageCompanyEditPhonenumController implements Execute {
 		session.removeAttribute("verificationCode");
 		session.removeAttribute("companyPwChecked");
 
-		result.setPath(request.getContextPath() + "/company/mypage.mpfc");
+		result.setPath(request.getContextPath() + "/company/mypage.mpfc?editSuccess=true");
 		result.setRedirect(true);
 
 		return result;
