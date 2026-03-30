@@ -5,7 +5,7 @@
 
     <!-- 기업홍보 총 개수 -->
     <select id="companyadcount"
-            parameterType="com.ccc.company.dto.CompanyCardDTO"
+            parameterType="CompanyCardDTO"
             resultType="int">
         SELECT COUNT(DISTINCT C.COMPANY_NUMBER)
         FROM TBL_COMPANY C
@@ -34,8 +34,8 @@
 
 <!-- 기업홍보 목록 -->
 <select id="companyadlist"
-	parameterType="com.ccc.company.dto.CompanyCardDTO"
-	resultType="com.ccc.company.dto.CompanyCardDTO">
+	parameterType="CompanyCardDTO"
+	resultType="CompanyCardDTO">
 
 	SELECT
 		companyNumber,

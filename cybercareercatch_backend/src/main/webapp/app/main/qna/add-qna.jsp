@@ -44,20 +44,21 @@
 				<div class="qnw-row">
 					<label class="qnw-lbl" for="postTitle">제목</label> <input
 						class="qnw-inp" type="text" name="postTitle" id="postTitle"
-						maxlength="100" placeholder="제목은 10자 이상 100자 이하로 입력해주세요" required>
+						placeholder="제목은 10자 이상 100자 이하로 입력해주세요" required> <span
+						id="titleCount">0 / 100</span>
 				</div>
 
 				<div class="qnw-row qnw-row-col">
 					<label class="qnw-lbl" for="postContent">내용</label>
 					<textarea class="qnw-ta" name="postContent" id="postContent"
-						maxlength="1000" placeholder="내용은 공백 포함 10자 이상 1000자 이하로 입력해주세요"
-						required></textarea>
+						placeholder="내용은 공백 포함 10자 이상 1000자 이하로 입력해주세요" required></textarea>
+					<span id="contentCount">0 / 1000</span>
 				</div>
 
 				<div class="qnw-btm">
 					<button type="button" class="qnw-btn qnw-btn-cancel"
 						onclick="location.href='${pageContext.request.contextPath}/qna/list.qfc'">취소</button>
-					<button type="submit" class="qnw-btn qnw-btn-submit">등록</button>
+					<button type="submit" class="qnw-btn qnw-btn-submit cmw-btn">등록</button>
 				</div>
 			</form>
 		</div>
