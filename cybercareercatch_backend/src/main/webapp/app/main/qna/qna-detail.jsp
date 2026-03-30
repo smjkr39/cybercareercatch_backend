@@ -58,9 +58,7 @@
 					</div>
 				</div>
 
-				<div class="qnd-cont">
-					<c:out value="${qnaDetail.postContent}" />
-				</div>
+				<div class="qnd-cont"><c:out value="${qnaDetail.postContent}" /></div>
 
 				<div class="qnd-btm">
 					<c:if test="${showDeleteButton}">
@@ -85,9 +83,7 @@
 								</span>
 							</div>
 
-							<div class="qnd-cmt-cont">
-								<c:out value="${qnaComment.commentContent}" />
-							</div>
+							<div class="qnd-cmt-cont"><c:out value="${qnaComment.commentContent}" /></div> 
 
 							<c:if test="${showCommentDeleteButton}">
 								<div class="qnd-cmt-btm">
